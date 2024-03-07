@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Agents\AgentController;
+use App\Http\Controllers\Contacts\ContactController;
 use App\Http\Controllers\Post\DashboardController;
 use App\Http\Controllers\Post\StockController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Roles\RolesController;
 use App\Http\Controllers\Users\UserManagementController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +30,14 @@ use Inertia\Inertia;
 Route::resource('/', DashboardController::class);
 
 Route::resource('users', UserManagementController::class);
-
+Route::resource('agents', AgentController::class);
+Route::resource('roles', RolesController::class);
 Route::get('stock-alert', [StockController::class, 'stock_alert'])->name('stock.alert');
 
+
+Route::prefix('contact')->group(function () {
+    Route::resource('/', ContactController::class);
+});
 
 // Route::get('
 

@@ -32,6 +32,7 @@ import { BiCategory } from 'react-icons/bi'
 import { AiOutlineDeploymentUnit } from 'react-icons/ai'
 import { SiBrandfolder } from 'react-icons/si'
 import { LuPanelTopOpen } from 'react-icons/lu'
+import { url } from 'inspector'
 
 interface SidebarItemProps {
   title: string
@@ -55,7 +56,7 @@ const sidebarData: SidebarItemProps[] = [
 
   {
     title: 'Stock Alert',
-    url: route('stock.alert'),
+    url: '/stock-alert',
     icon: <FaChartArea />,
     subMenuIcon: <FiChevronDown />,
   },
@@ -68,19 +69,19 @@ const sidebarData: SidebarItemProps[] = [
       {
         title: 'Users',
         icon: <FaUser />,
-        url: '',
+        url: '/users',
       },
 
       {
         title: 'Roles',
         icon: <FaUserLock />,
-        url: '',
+        url: '/roles',
       },
 
       {
         title: 'Sales Commission Agents',
         icon: <FaMoneyCheckAlt />,
-        url: '',
+        url: '/agents',
       },
     ],
   },
@@ -93,7 +94,7 @@ const sidebarData: SidebarItemProps[] = [
       {
         title: 'Suppliers',
         icon: <FaUser />,
-        url: '',
+        url: '/suppliers',
       },
 
       {
