@@ -13,10 +13,6 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
     setIsOpen(!isOpen)
   }
 
-  {
-    !isOpen ? console.log('sdsd') : null
-  }
-
   return (
     <>
       {/* header */}

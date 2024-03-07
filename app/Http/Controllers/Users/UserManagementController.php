@@ -20,7 +20,7 @@ class UserManagementController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Users/Create');
     }
 
     /**

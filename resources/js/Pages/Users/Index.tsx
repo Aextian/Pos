@@ -16,7 +16,7 @@ const Index = () => {
         <div className="relative flex flex-col gap-1 bg-white  border-t-4 border-cyan-500 text-xs overflow-x-auto mx-3 p-4 rounded-md">
           <div className="flex flex-row justify-between items-center gap-2">
             <h1 className="text-lg font-medium">All users</h1>
-            <Link href="#" className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
+            <Link href={route('users.create')} className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
               Add
             </Link>
           </div>
