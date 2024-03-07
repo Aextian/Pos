@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Agents\AgentController;
 use App\Http\Controllers\Contacts\ContactController;
+use App\Http\Controllers\Contacts\SupplierController;
 use App\Http\Controllers\Post\DashboardController;
 use App\Http\Controllers\Post\StockController;
 use App\Http\Controllers\ProfileController;
@@ -35,20 +36,42 @@ Route::resource('roles', RolesController::class);
 Route::get('stock-alert', [StockController::class, 'stock_alert'])->name('stock.alert');
 
 
-Route::prefix('contact')->group(function () {
+Route::prefix('contacts')->group(function () {
+    Route::resource('supplier', SupplierController::class);
     Route::resource('/', ContactController::class);
 });
 
-// Route::get('
+Route::prefix('products')->group(function () {
+});
 
-// Route::get('/', function () {
-//     return Inertia::render('Welcome', [
-//         'canLogin' => Route::has('login'),
-//         'canRegister' => Route::has('register'),
-//         'laravelVersion' => Application::VERSION,
-//         'phpVersion' => PHP_VERSION,
-//     ]);
-// });
+
+Route::prefix('products')->group(function () {
+});
+
+Route::prefix('purchases')->group(function () {
+});
+
+Route::prefix('sell')->group(function () {
+});
+
+Route::prefix('stock-transfers')->group(function () {
+});
+
+
+Route::prefix('stock-adjustment')->group(function () {
+});
+
+
+Route::prefix('expenses')->group(function () {
+});
+
+
+Route::prefix('reports')->group(function () {
+});
+
+
+Route::prefix('settings')->group(function () {
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

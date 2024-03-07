@@ -13,6 +13,10 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
     setIsOpen(!isOpen)
   }
 
+  {
+    !isOpen ? console.log('sdsd') : null
+  }
+
   return (
     <>
       {/* header */}
@@ -58,7 +62,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
       </div>
 
       {/* sidebar */}
-      <div className={`z-10 h-screen w-48 top-0 bg-white fixed shadow-lg overflow-auto transition-all duration-300 ease-in-out ${isOpen ? 'left-[-250px]' : 'left-[0]'}`}>
+      <div className={`z-10 h-screen w-48 top-0 bg-white fixed shadow-lg overflow-auto transition-all duration-300 ease-in-out ${isOpen ? 'left-[0] ' : 'left-[-250px]'}`}>
         <div className="p-5 flex justify-between border-b-2">
           <h2>Logo</h2>
           <button onClick={toggleSidebar}>
