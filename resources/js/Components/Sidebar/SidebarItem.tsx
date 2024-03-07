@@ -6,7 +6,7 @@ interface SidebarItemProps {
     title: string
     url?: any
     icon: React.ReactNode // Adjust this type as per your needs
-    subMenuIcon: React.ReactNode // Adjust this type as per your needs
+    subMenuIcon?: React.ReactNode // Adjust this type as per your needs
     children?: Array<{
       title: string
       url: string

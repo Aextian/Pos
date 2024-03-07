@@ -94,7 +94,7 @@ const sidebarData: SidebarItemProps[] = [
       {
         title: 'Suppliers',
         icon: <FaUser />,
-        url: '/suppliers',
+        url: '/contacts/supplier',
       },
 
       {
