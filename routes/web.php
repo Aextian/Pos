@@ -51,7 +51,7 @@ Route::prefix('products')->group(function () {
 Route::prefix('purchases')->group(function () {
 });
 
-Route::prefix('sell')->group(function () {
+Route::prefix('sells')->group(function () {
 });
 
 Route::prefix('stock-transfers')->group(function () {
