@@ -66,7 +66,7 @@ Route::prefix('expenses')->group(function () {
 });
 
 
-Route::prefix('reports')->group(function () {
+Route::prefix('report')->group(function () {
 });
 
 
