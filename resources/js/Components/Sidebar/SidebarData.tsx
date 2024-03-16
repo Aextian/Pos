@@ -416,10 +416,29 @@ const sidebarData: SidebarItemProps[] = [
       },
     ],
   },
+
   {
     title: 'Settings',
     icon: <IoIosSettings />,
-    url: '',
+    subMenuIcon: <FiChevronDown />,
+    children: [
+      {
+        title: 'Business Settings',
+        icon: <FaAlignJustify />,
+        url: '/business/setting',
+      },
+
+      {
+        title: 'Business Location',
+        icon: <IoAddCircleSharp />,
+        url: '',
+      },
+      {
+        title: 'Invoice Setting',
+        icon: <FaRegCircle />,
+        url: '',
+      },
+    ],
   },
 ]
 

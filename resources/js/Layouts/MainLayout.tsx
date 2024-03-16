@@ -1,5 +1,6 @@
 import sidebarData from '@/Components/Sidebar/SidebarData'
 import SidebarItem from '@/Components/Sidebar/SidebarItem'
+import { Link } from '@inertiajs/react'
 import React, { PropsWithChildren, useState } from 'react'
 import { CiMenuBurger } from 'react-icons/ci'
 
@@ -18,7 +19,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
       {/* header */}
       <div className="w-screen h-[60px] bg-cyan-500">
         <div className="flex items-center justify-between  p-5">
-          <div className="flex gap-10 justify-center items-center">
+          <div className="flex gap-10 justify-center items-center text-white">
             <button onClick={toggleSidebar}>
               <CiMenuBurger size={24} />
             </button>
@@ -53,6 +54,11 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
             </a>
 
             <div className="text-white text-xs">POS</div>
+          </div>
+          <div>
+            <Link href={route('logout')} method="post" as="button" className="text-white bg-lime-700 hover:bg-lime-300 p-2 rounded-lg">
+              Logout
+            </Link>
           </div>
         </div>
       </div>

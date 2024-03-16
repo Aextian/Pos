@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserManagementController extends Controller
@@ -12,7 +13,12 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        return inertia('Users/Index');
+
+        return inertia('Users/Index', [
+
+            'users' => User::get(),
+
+        ]);
     }
 
     /**
