@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Users\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserManagementController extends Controller
 {
@@ -14,9 +16,9 @@ class UserManagementController extends Controller
     public function index()
     {
 
-        return inertia('Users/Index', [
 
-            'users' => User::get(),
+        return inertia('Users/Index', [
+            'users' => User::with('roles')->get(),
 
         ]);
     }
@@ -26,7 +28,9 @@ class UserManagementController extends Controller
      */
     public function create()
     {
-        return inertia('Users/Create');
+        return inertia('Users/Create', [
+            'roles' => Role::orderby('id', 'asc')->get(),
+        ]);
     }
 
     /**
@@ -34,7 +38,19 @@ class UserManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        return $request;
+        $user =  User::create($request->all());
+
+        $user->assignRole($request->input('roles'));
+
+
+
+
+        return redirect()->route('users.index')
+            ->with('success', 'User created successfully');
+
+        // return 'success';
     }
 
     /**

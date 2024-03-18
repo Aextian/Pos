@@ -41,30 +41,30 @@ class PermissionCategorySeeder extends Seeder
                 'Name' => 'Sell',
                 'permissions' => '[21, 22, 23, 24]'
             ],
-            [
-                'Name' => 'Brand',
-                'permissions' => '[36, 37, 38, 39]'
-            ],
-            [
-                'Name' => 'Tax rate',
-                'permissions' => '[40, 41, 42, 43]'
-            ],
-            [
-                'Name' => 'Category',
-                'permissions' => '[48, 49, 50, 51]'
-            ],
-            [
-                'Name' => 'Report',
-                'permissions' => '[25, 26, 27, 28, 29,30,32]'
-            ],
-            [
-                'Name' => 'Settings',
-                'permissions' => '[33, 34, 35, ]'
-            ],
-            [
-                'Name' => 'Access locations',
-                'permissions' => '[53,]'
-            ],
+            // [
+            //     'Name' => 'Brand',
+            //     'permissions' => '[36, 37, 38, 39]'
+            // ],
+            // [
+            //     'Name' => 'Tax rate',
+            //     'permissions' => '[40, 41, 42, 43]'
+            // ],
+            // [
+            //     'Name' => 'Category',
+            //     'permissions' => '[48, 49, 50, 51]'
+            // ],
+            // [
+            //     'Name' => 'Report',
+            //     'permissions' => '[25, 26, 27, 28, 29,30,32]'
+            // ],
+            // [
+            //     'Name' => 'Settings',
+            //     'permissions' => '[33, 34, 35, ]'
+            // ],
+            // [
+            //     'Name' => 'Access locations',
+            //     'permissions' => '[53,]'
+            // ],
         ];
 
 

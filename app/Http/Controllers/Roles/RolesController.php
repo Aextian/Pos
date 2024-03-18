@@ -34,7 +34,6 @@ class RolesController extends Controller
 
         $permissions = $permissionService->getPermission($categories);
 
-
         return Inertia('Roles/Create', [
             'permissions' => $permissions,
         ]);

@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PermissionCategory extends Model
 {
     use HasFactory;
+
+    protected $table = 'permission_categories';
+
     protected $guarded = ['id'];
 }

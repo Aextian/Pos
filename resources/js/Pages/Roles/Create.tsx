@@ -38,28 +38,20 @@ const Create: React.FC<Props> = ({ permissions, errors }) => {
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, checked } = e.target
-        if (name === 'permission') {
-            setValues((prevValues) => {
-                if (checked) {
-                    return {
-                        ...prevValues,
-                        permissions: [...prevValues.permissions, parseInt(value)],
-                    }
-                } else {
-                    return {
-                        ...prevValues,
-                        permissions: prevValues.permissions.filter((permissionId) => permissionId !== parseInt(value)),
-                    }
+        const { name, type, value, checked } = e.target
+
+        setValues((prevValues) => {
+            if (type === 'checkbox') {
+                return {
+                    ...prevValues,
+                    permissions: checked
+                        ? [...prevValues.permissions, parseInt(value)] // Add permission if checkbox is checked
+                        : prevValues.permissions.filter((permissionId) => permissionId !== parseInt(value)), // Remove permission if checkbox is unchecked,
                 }
-            })
-        } else {
-            // For other inputs, update the state normally
-            setValues((prevValues) => ({
-                ...prevValues,
-                [name]: value,
-            }))
-        }
+            } else {
+                return { ...prevValues, [name]: value }
+            }
+        })
     }
 
     const handleBulkChange = (e: React.ChangeEvent<HTMLInputElement>, permissions: Permission[]) => {

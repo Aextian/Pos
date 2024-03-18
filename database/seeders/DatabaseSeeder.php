@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\PermissionCategory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +25,7 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CurrenciesTableSeeder::class,
             AdminSeeder::class,
-            PermissionCategory::class,
+            PermissionCategorySeeder::class,
         ]);
     }
 }
