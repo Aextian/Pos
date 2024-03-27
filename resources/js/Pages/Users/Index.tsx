@@ -2,10 +2,12 @@ import DangerButton from '@/Components/DangerButton'
 import PrimaryButton from '@/Components/PrimaryButton'
 import UsersData from '@/Data/UsersData'
 import MainLayout from '@/Layouts/MainLayout'
-import { Link } from '@inertiajs/react'
-import React from 'react'
+import { Link, router } from '@inertiajs/react'
+import React, { useState } from 'react'
 import { PageProps } from '@/types'
 import ContentTitle from '@/Components/ContentTitle'
+import DeleteModal from '@/Components/DeleteModal'
+import { FaTrashAlt } from 'react-icons/fa'
 
 interface User {
     id: number
@@ -16,14 +18,35 @@ interface User {
     roles?: []
 }
 
-type UserArray = User[]
+type Props = {
+    users: User[]
+    successMessage: string
+}
 
-const Index: React.FC<{ users: UserArray }> = ({ users }) => {
+const Index: React.FC<Props> = ({ users, successMessage }) => {
+    const [isDelete, setDelete] = useState<number | null>(0)
+
+    const handleDelete = (id: number) => {
+        router.delete(route('users.destroy', id))
+        setDelete(null)
+    }
+
+    const handleShowDelete = (id: number) => {
+        setDelete(id)
+    }
+
     return (
         <MainLayout>
+            <DeleteModal isDelete={isDelete} handleDelete={handleDelete} handleShowDelete={handleShowDelete} onCloseRoute="users.index">
+                <FaTrashAlt size={35} />
+                <h2>Are you sure you want to delete this?</h2>
+            </DeleteModal>
+
             <ContentTitle>Manage users</ContentTitle>
 
-            <div className="relative flex flex-col gap-1 bg-white  border-t-4 border-cyan-500 text-xs overflow-x-auto mx-3 p-4 rounded-md">
+            <div className="flex flex-col gap-1 bg-white  border-t-4 border-cyan-500 text-xs overflow-x-auto mx-3 p-4 rounded-md">
+                <span>{successMessage ? successMessage : ''}</span>
+
                 <div className="flex flex-row justify-between items-center gap-2">
                     <h1 className="text-lg font-medium">All users</h1>
                     <Link href={route('users.create')} className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
@@ -93,8 +116,13 @@ const Index: React.FC<{ users: UserArray }> = ({ users }) => {
                                         <td className="px-6 py-4">{user.email}</td>
                                         <td className="px-6 py-4 text-right">
                                             <div className="flex gap-2 text-xs">
-                                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Delete</button>
-                                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Delete</button>
+                                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]" onClick={() => handleShowDelete(user.id)}>
+                                                    {' '}
+                                                    Delete
+                                                </button>
+                                                <Link href={route('users.edit', user.id)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-[10px]">
+                                                    Edit
+                                                </Link>
                                             </div>
                                         </td>
                                     </tr>

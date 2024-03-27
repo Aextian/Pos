@@ -18,8 +18,8 @@ class UserManagementController extends Controller
 
 
         return inertia('Users/Index', [
+            'successMessage' => session('success'),
             'users' => User::with('roles')->get(),
-
         ]);
     }
 
@@ -36,21 +36,14 @@ class UserManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
 
-        return $request;
         $user =  User::create($request->all());
-
         $user->assignRole($request->input('roles'));
-
-
-
 
         return redirect()->route('users.index')
             ->with('success', 'User created successfully');
-
-        // return 'success';
     }
 
     /**
@@ -64,24 +57,29 @@ class UserManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $user->load('roles');
+
+        return inertia('Users/Edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(User $user)
     {
-        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return back()->with('success', 'User deleted successfully');
     }
 }

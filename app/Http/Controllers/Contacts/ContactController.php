@@ -20,7 +20,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Contacts/Suppliers/Create');
     }
 
     /**
@@ -61,5 +61,10 @@ class ContactController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function import_contact()
+    {
+        return inertia('Contacts/ImportContact');
     }
 }

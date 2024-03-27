@@ -17,7 +17,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
     return (
         <>
             {/* header */}
-            <div className="w-screen h-[60px] bg-cyan-500">
+            <div className="w-screen h-[60px] bg-cyan-500 top-0 fixed z-10">
                 <div className="flex items-center justify-between  p-5">
                     <div className="flex gap-10 justify-center items-center text-white">
                         <button onClick={toggleSidebar}>
@@ -55,11 +55,11 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
 
                         <div className="text-white text-xs">POS</div>
                     </div>
-                    <div>
+                    {/* <div>
                         <Link href={route('logout')} method="post" as="button" className="text-white bg-lime-700 hover:bg-lime-300 p-2 rounded-lg">
                             Logout
                         </Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
                 </div>
             </div>
             {/* Main Content */}
-            <main className="bg-slate-200  h-screen bg-slate-200 w-screen py-5 md:px-10">{children}</main>
+            <main className="p-5 md:px-10 mt-14 grid gap-5">{children}</main>
         </>
     )
 }
