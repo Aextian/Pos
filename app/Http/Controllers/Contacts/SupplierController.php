@@ -20,7 +20,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('Contacts/Suppliers/Create');
     }
 
     /**

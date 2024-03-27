@@ -20,7 +20,6 @@ import MainLayout from "@/Layouts/MainLayout";
 const Dashboard = () => {
     return (
         <MainLayout>
-                <div className=" h-screen bg-slate-200 w-screen py-5 md:px-10">
                     <div className="mb-10 px-5 md:px-2">
                         <h1 className="text-lg">Welcome Mlya Pos</h1>
                     </div>
@@ -167,7 +166,6 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
-                </div>
         </MainLayout>
     );
 };
