@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react'
-import React, { PropsWithChildren, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 interface SidebarItemProps {
   item: {
@@ -17,9 +17,8 @@ interface SidebarItemProps {
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
   const [isOpen, setIsOpen] = React.useState(false)
-  const [submenu, setSubMenu] = React.useState(false)
 
-  const { url, component } = usePage()
+  const { url } = usePage()
 
   // TODO trigger Submenu
   useEffect(() => {
@@ -35,6 +34,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
   const toggle = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     setIsOpen(!isOpen)
+
+    return () => setIsOpen(false)
   }
 
   return (
@@ -56,11 +57,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
 
         {/* Submenu*/}
         {item.children && (
-          <div className={`overflow-hidden transition-all duration-[300] ease-in-out ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
-            <ul className="border-l-2 border-cyan-500 pl-7 py-2 text-xs space-y-3 bg-slate-100 ">
+          <div className={`overflow-hidden transition-all duration-[1000ms]  ${isOpen ? 'max-h-screen' : 'max-h-0'}`}>
+            <ul className="border-l-2 border-cyan-500 pl-7 py-2 text-xs space-y-3 bg-slate-100 dark:bg-slate-600 dark:text-white font-bold">
               {item.children.map((childrenItem, index) => (
                 <li key={index}>
-                  <Link href={childrenItem.url} className={`border-b-8  hover:text-cyan-600 hover:border-cyan-600 active:border-[#A5DD9B] ${url.startsWith(childrenItem.url) ? 'text-cyan-600' : ''}`}>
+                  <Link href={childrenItem.url} className={`border-b-8  hover:text-cyan-600 hover:border-cyan-600 active:border-[#A5DD9B] ${url === childrenItem.url ? 'text-cyan-600' : ''}`}>
                     <div className="flex gap-3">
                       <div className="text-[12px]">{childrenItem.icon}</div>
                       <div className="text-[10px]">{childrenItem.title}</div>

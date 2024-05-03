@@ -18,7 +18,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-
+    public function scopeSearch($query, $search)
+    {
+        return $query->when(function ($query) use ($search) {
+            $query->where('username', 'like', '%' . $search . '%')
+                ->orWhere('email', 'like', '%' . $search . '%')
+                ->orWhere('first_name', 'like', '%' . $search . '%')
+                ->orWhere('last_name', 'like', '%' . $search . '%');
+        });
+    }
 
     protected $fillable = [
         'surname',

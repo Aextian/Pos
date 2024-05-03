@@ -39,7 +39,7 @@ const Index = () => {
             </Modal>
             <div className="mb-10 px-5 md:px-2">
                 <h1 className="text-lg">
-                    Categories <span className="text-xs">Manage your brands</span>
+                    Brands <span className="text-xs">Manage your brands</span>
                 </h1>
             </div>
             <CardBorderTop>

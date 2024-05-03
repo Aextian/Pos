@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from 'react'
 
 const CardBorderTop: React.FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <>
-            <div className=" flex flex-col gap-1 bg-white border-t-4 border-cyan-500 text-xs overflow-x-auto  p-4 rounded-md shadow-lg">{children}</div>
-        </>
-    )
+  return (
+    <>
+      <div className=" grid gap-5 bg-white border-t-4 border-cyan-500  text-xs p-4 rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700 ">{children}</div>
+    </>
+  )
 }
 
 export default CardBorderTop

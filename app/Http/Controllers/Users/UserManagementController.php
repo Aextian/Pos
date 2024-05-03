@@ -15,11 +15,22 @@ class UserManagementController extends Controller
      */
     public function index()
     {
+        // sorting fields and direction
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
 
+        $users = User::query()
+            ->search($search)
+            ->with('roles')
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
 
         return inertia('Users/Index', [
             'successMessage' => session('success'),
-            'users' => User::with('roles')->get(),
+            'users' => $users,
+            'queryParams' => request()->query(),
         ]);
     }
 
