@@ -1,10 +1,20 @@
 import CardBorderTop from '@/Components/CardBorderTop'
+import CardHeader from '@/Components/CardHeader'
+import CardTitle from '@/Components/CardTitle'
+import ContentTitle from '@/Components/ContentTitle'
+import LabelRow from '@/Components/GlobalComponent/LabelRow'
+import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
+import NoDataAvailable from '@/Components/GlobalComponent/Table/NoDataAvailable'
+import Table from '@/Components/GlobalComponent/Table/Table'
+import TableHead from '@/Components/GlobalComponent/Table/TableHead'
 import Modal from '@/Components/Modal'
 import PrimaryButton from '@/Components/PrimaryButton'
+import SecondaryButton from '@/Components/SecondaryButton'
 import TextInput from '@/Components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link, router } from '@inertiajs/react'
 import React, { useState } from 'react'
+import { FaX } from 'react-icons/fa6'
 
 const Index = () => {
   const Thead = ['Category name', 'Category code', 'Action']
@@ -16,51 +26,46 @@ const Index = () => {
 
   return (
     <MainLayout>
-      
       <Modal show={open} maxWidth="2xl" closeable={true} onClose={() => router.visit(route('category.index'))}>
-        <div className="p-5 grid gap-5">
-          <div className="flex justify-between px-5 py-2 text-xs border-b">
-            <div>Add Expense Category</div>
-            <button className="text-red-500" onClick={handleShowModal}>
-              X
+        <div className="grid gap-3 p-3 dark:bg-gray-800 dark:border-gray-700">
+          <div className="flex justify-between">
+            <h1 className="font-bold dark:text-white">Add Tax Rate</h1>
+            <button onClick={() => setOpen(false)}>
+              <FaX className="dark:text-white" />
             </button>
           </div>
-
-          <div className="text-xs">
-            <label htmlFor="">Category name:*</label>
-            <TextInput className="p-2 text-xs w-full" placeholder="Category name" />
+          <hr />
+          <div>
+            <label>
+              <SpanLabel>Category name:*</SpanLabel>
+              <TextInput className="text-xs p-2 w-full" placeholder="Category name" />
+            </label>
+            <label>
+              <SpanLabel> Category code:*</SpanLabel>
+              <TextInput className="text-xs p-2 w-full" placeholder="Category code" />
+            </label>
           </div>
-          <div className="text-xs">
-            <label htmlFor="">Category code:*</label>
-            <TextInput className="p-2 text-xs w-full" placeholder="Category code" />
-          </div>
-          <div className="border-t">
-            <div className="flex justify-end gap-2">
-              <PrimaryButton>Save</PrimaryButton>
-              <PrimaryButton onClick={handleShowModal}>Cancel</PrimaryButton>
-            </div>
+          <div className="flex justify-end gap-3">
+            <SecondaryButton onClick={() => setOpen(false)}>Cancel</SecondaryButton>
+            <PrimaryButton>Save</PrimaryButton>
           </div>
         </div>
       </Modal>
-
-      <div className=" px-5 md:px-2">
-        <h1 className="text-lg">
-          Expense <span className="text-xs">Categories</span>
-        </h1>
-        <span className="text-xs text-gray-400">Manage your expense categories</span>
-      </div>
+      <ContentTitle>
+        Expense <span className="text-xs">Categories</span>
+      </ContentTitle>
+      <span className="text-xs text-gray-400">Manage your expense categories</span>
 
       <CardBorderTop>
         {/* <span>{successMessage ? successMessage : ''}</span> */}
-        <div className="flex flex-row justify-between items-center gap-2">
-          <h1 className="text-lg font-medium">All your expense categories</h1>
-          <button onClick={handleShowModal} className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
-            Add
-          </button>
-        </div>
+        <CardHeader>
+          <CardTitle>All your expense categories</CardTitle>
+          <SecondaryButton onClick={handleShowModal}>Add</SecondaryButton>
+        </CardHeader>
+
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-[8px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <Table>
+            <TableHead>
               <tr>
                 {Thead.map((item, index) => (
                   <th scope="col" className="px-4 py-3">
@@ -68,7 +73,7 @@ const Index = () => {
                   </th>
                 ))}
               </tr>
-            </thead>
+            </TableHead>
             <tbody>
               {/* {data.map((product, index) => (
               <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600" key={index}>
@@ -89,10 +94,10 @@ const Index = () => {
                 </td>
               </tr>
             ))} */}
+              <NoDataAvailable span={Thead.length} />
             </tbody>
-          </table>
+          </Table>
         </div>
-        <div className="flex justify-center items-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

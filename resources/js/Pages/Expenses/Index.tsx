@@ -1,5 +1,8 @@
 import CardBorderTop from '@/Components/CardBorderTop'
+import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/Components/ContentTitle'
+import LabelRow from '@/Components/GlobalComponent/LabelRow'
+import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
 import TextInput from '@/Components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
@@ -23,52 +26,52 @@ const Index = () => {
       <ContentTitle>Expenses</ContentTitle>
 
       <CardBorderTop>
-        <div className="flex flex-col justify-start items-start gap-5">
-          <h5>Filters</h5>
-          <hr className=" w-full" />
+        <CardTitle>Filters</CardTitle>
+        <hr className=" w-full" />
 
-          <label htmlFor="" className="w-full">
-            Business Location:
-            <select className="w-full p-3 text-xs" name="type" id="cars">
-              <option value="" selected>
-                All
-              </option>
-              <option value="">Single</option>
-              <option value="">Variable</option>
-            </select>
-          </label>
+        <LabelRow>
+          <SpanLabel>Business Location:</SpanLabel>
+          <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
+            <option value="" selected>
+              All
+            </option>
+            <option value="">Single</option>
+            <option value="">Variable</option>
+          </select>
+        </LabelRow>
 
-          <label htmlFor="" className="w-full">
-            Expense for:
-            <select className="w-full p-3 text-xs" name="type" id="cars">
-              <option value="" selected>
-                All
-              </option>
-              <option value="">Single</option>
-              <option value="">Variable</option>
-            </select>
-          </label>
-          <label htmlFor="" className="w-full">
-            Expense Category:
-            <select className="w-full p-3 text-xs" name="type" id="cars">
-              <option value="" selected>
-                All
-              </option>
-              <option value="">Single</option>
-              <option value="">Variable</option>
-            </select>
-          </label>
-          <label htmlFor="" className="w-full">
-            Date Range:
-            <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
-          </label>
-        </div>
+        <LabelRow>
+          <SpanLabel>Expense for:</SpanLabel>
+          <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
+            <option value="" selected>
+              All
+            </option>
+            <option value="">Single</option>
+            <option value="">Variable</option>
+          </select>
+        </LabelRow>
+        <LabelRow>
+          <SpanLabel>Expense Category:</SpanLabel>
+          <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
+            <option value="" selected>
+              All
+            </option>
+            <option value="">Single</option>
+            <option value="">Variable</option>
+          </select>
+        </LabelRow>
+        <LabelRow>
+          <SpanLabel>Date Range:</SpanLabel>
+          <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
+        </LabelRow>
       </CardBorderTop>
       <CardBorderTop>
         {/* <span>{successMessage ? successMessage : ''}</span> */}
         <div className="flex flex-row justify-between items-center gap-2">
-          <h1 className="text-lg font-medium">All Expenses</h1>
-          <Link href={route('users.create')} className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
+          <CardTitle>All Expenses</CardTitle>
+          <Link
+            href={route('users.create')}
+            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
             Add
           </Link>
         </div>
@@ -83,6 +86,7 @@ const Index = () => {
                 ))}
               </tr>
             </thead>
+            s
             <tbody>
               {/* {data.map((product, index) => (
                 <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600" key={index}>
