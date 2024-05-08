@@ -46,7 +46,9 @@ const Index = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           <LabelRow>
             <SpanLabel>Business Location</SpanLabel>
-            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -56,7 +58,9 @@ const Index = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Reference No</SpanLabel>
-            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -66,7 +70,9 @@ const Index = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Payment Status</SpanLabel>
-            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>

@@ -15,7 +15,6 @@ class PermissionService
             // Convert the string representation of array to an actual array
             $permissions = json_decode($category->permission_id, true);
 
-
             if (!empty($permissions)) {
                 // Retrieve permissions from the database
                 $categoryPermissions = Permission::whereIn('id', $permissions)->get();

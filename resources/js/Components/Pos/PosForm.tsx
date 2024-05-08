@@ -11,41 +11,43 @@ import PosTable from '@/Components/Pos/PosTable'
 const PosForm = () => {
   return (
     <>
-      <div className="flex flex-row">
-        <div className="border items-center grid p-2">
-          <FaLocationDot />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="flex flex-row">
+          <div className="border items-center grid p-2">
+            <FaLocationDot />
+          </div>
+          <select className="w-full p-1 text-[10px]" name="cars">
+            <option value="">Select Location</option>
+            <option value="">Mian</option>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
+          <div className="border grid items-center p-2">
+            <FaInfoCircle />
+          </div>
         </div>
-        <select className="w-full p-1 text-[10px]" name="cars">
-          <option value="">Select Location</option>
-          <option value="">Mian</option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-        <div className="border grid items-center p-2">
-          <FaInfoCircle />
+        <div className="flex flex-row">
+          <div className="border items-center grid p-2">
+            <FaUser />
+          </div>
+          <select className="w-full p-1 text-[10px]" name="cars">
+            <option value="">Walk-in Customer</option>
+            <option value="">Mian</option>
+            <option value=""></option>
+            <option value=""></option>
+          </select>
+          <div className="border grid items-center p-2">
+            <FaPlusCircle />
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row">
-        <div className="border items-center grid p-2">
-          <FaUser />
-        </div>
-        <select className="w-full p-1 text-[10px]" name="cars">
-          <option value="">Walk-in Customer</option>
-          <option value="">Mian</option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-        <div className="border grid items-center p-2">
-          <FaPlusCircle />
-        </div>
-      </div>
-      <div className="flex flex-row">
-        <div className="border items-center grid p-2">
-          <FaBarcode />
-        </div>
-        <TextInput className="w-full p-1 rounded-none text-xs" type="search" readOnly placeholder="Enter Product name /SKU/Scan bar" />
-        <div className="border grid items-center p-2">
-          <FaPlusCircle />
+        <div className="flex flex-row">
+          <div className="border items-center grid p-2">
+            <FaBarcode />
+          </div>
+          <TextInput className="w-full p-1 rounded-none text-xs" type="search" readOnly placeholder="Enter Product name /SKU/Scan bar" />
+          <div className="border grid items-center p-2">
+            <FaPlusCircle />
+          </div>
         </div>
       </div>
       <PosTable />

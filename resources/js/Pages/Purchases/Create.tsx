@@ -1,78 +1,91 @@
 import CardBorderTop from '@/Components/CardBorderTop'
+import CardTitle from '@/Components/CardTitle'
+import ContentTitle from '@/Components/ContentTitle'
+import LabelRow from '@/Components/GlobalComponent/LabelRow'
+import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
+import NoDataAvailable from '@/Components/GlobalComponent/Table/NoDataAvailable'
+import TextArea from '@/Components/GlobalComponent/TextArea'
 import PrimaryButton from '@/Components/PrimaryButton'
 import SecondaryButton from '@/Components/SecondaryButton'
 import TextInput from '@/Components/TextInput'
 import Tooltip from '@/Components/Tooltip'
 import MainLayout from '@/Layouts/MainLayout'
+import { useState } from 'react'
 import { FaMoneyBillWaveAlt, FaSearch, FaTrash, FaUser } from 'react-icons/fa'
 import { FaExclamationCircle, FaRegCalendarAlt } from 'react-icons/fa'
 import { IoIosAddCircle } from 'react-icons/io'
+import Datepicker from 'react-tailwindcss-datepicker'
 
 const Create = () => {
+  const Thead = [
+    '#',
+    'Product name',
+    'Purchases Quantity',
+    'Unit Cost(Before Discount)',
+    'Discount Percent',
+    'Unit Cost(Before Tax)',
+    'Subtotal(Before Tax)',
+    'Product Tax',
+    'Net cost',
+    'line total',
+    'profit margin %',
+    'unit selling price',
+    'MFG Date / EXP Date',
+  ]
   return (
     <MainLayout>
-      <div className="px-5 md:px-2">
-        <h1 className="text-lg">Add Purchase</h1>
-      </div>
+      <ContentTitle>Add Purchase</ContentTitle>
       <CardBorderTop>
-        <div className="flex flex-col justify-start items-start gap-5">
-          <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="name">Supplier:*</label>
-            <div className="flex w-full flex-nowrap">
-              <div className="border px-2 flex items-center">
-                <FaUser size={18} />
-              </div>
-              <select name="type" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full">
-                <option value="" selected>
-                  Please Select
-                </option>
-                <option value="">Suppliers</option>
-                <option value="">Customers</option>
-                <option value="">Both (Suppliers and Customer)</option>
-              </select>
-              <button className="bg-white-500 border px-2 text-cyan-600">
-                <IoIosAddCircle size={24} />
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="name">Reference No:</label>
-            <TextInput className="w-full rounded p-1" type="text" />
-          </div>
-          <div className="flex flex-col gap-1 w-full">
-            <label htmlFor="name">Purchase Date:*</label>
-            <div className="flex w-full flex-nowrap">
-              <div className="border px-2 flex items-center">
-                <FaRegCalendarAlt size={18} />
-              </div>
-              <TextInput className="w-full  p-1 rounded-none" type="date" />
-            </div>
-          </div>
-          <label className="w-full">
-            Purchase Status:*
-            <select className="w-full p-2 text-xs" name="type">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <LabelRow>
+            <SpanLabel>Supplier</SpanLabel>
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
               <option value="">Single</option>
               <option value="">Variable</option>
             </select>
-          </label>
-          <label className="w-full">
-            Business Location:*
-            <select className="w-full p-2 text-xs" name="type">
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Reference No</SpanLabel>
+            <TextInput placeholder="Reference No" className="p-3 text-xs w-full" />
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Purchase Date</SpanLabel>
+            <TextInput type="date" placeholder="Reference No" className="p-2 w-full" />
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Purchase Status</SpanLabel>
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
               <option value="">Single</option>
               <option value="">Variable</option>
             </select>
-          </label>
-          <label className="w-full">
-            Attach Document:
-            <input type="file" name="" id="" className="w-full border p-1" />
-          </label>
-          <span className="text-[10px]">Max File size:1MB</span>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Business Location</SpanLabel>
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
+              <option value="" selected>
+                Please Select
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Attach Document:</SpanLabel>
+            <TextInput type="file" name="" id="" className="w-full border p-2" />
+            <span className="text-[10px] dark:text-white">Max File size:1MB</span>
+          </LabelRow>
         </div>
       </CardBorderTop>
 
@@ -80,7 +93,7 @@ const Create = () => {
         <button className="text-left  text-cyan-600"> View Supplier Products</button>
 
         <div className="flex w-full flex-nowrap">
-          <div className="border px-2 grid place-items-center">
+          <div className="border dark:border-slate-500 px-2 grid place-items-center">
             <FaSearch size={15} />
           </div>
           <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
@@ -90,125 +103,106 @@ const Create = () => {
           <table className="w-full text-[8px] text-left  text-gray-500 dark:text-gray-400 ">
             <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr className="bg-cyan-600 text-white">
-                <th className="whitespace-nowrap border-r p-1">#</th>
-                <th className="whitespace-nowrap border-r p-1">Product Name</th>
-                <th className="whitespace-nowrap border-r p-1">Purchases Quantity</th>
-                <th className="whitespace-nowrap border-r p-1">Unit Cost(Before Discount)</th>
-                <th className="whitespace-nowrap border-r p-1">Discount Percent</th>
-                <th className="whitespace-nowrap border-r p-1">Unit Cost(Before Tax)</th>
-                <th className="whitespace-nowrap border-r p-1">Subtotal(Before Tax)</th>
-                <th className="whitespace-nowrap border-r p-1">Product Tax</th>
-                <th className="whitespace-nowrap border-r p-1">Net Cost</th>
-                <th className="whitespace-nowrap border-r p-1">Line Total</th>
-                <th className="whitespace-nowrap border-r p-1">Profit Margin %</th>
-                <th className="whitespace-nowrap border-r p-1">Unit Selling Price</th>
-                <th className="whitespace-nowrap border-r p-1">MFG Date / EXP Date</th>
-                <th className="whitespace-nowrap border-r p-1">
-                  <FaTrash size={10} />
-                </th>
+                {Thead.map((item, index) => (
+                  <th className="whitespace-nowrap border-r p-1" key={index}>
+                    {item}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white ">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              <NoDataAvailable span={Thead.length} />
             </tbody>
           </table>
         </div>
-
-        <div className="border-t text-right p-3 space-x-3">
+        <div className="border-t text-right p-3 space-x-3 dark:text-white">
           <h5 className="text-xs inline font-bold">Net Total Amount </h5> <span className="text-[10px]">0.00</span>
         </div>
       </CardBorderTop>
 
       <CardBorderTop>
-        <div className="grid gap-5">
-          <div className="flex gap-5 border-b pb-3">
-            <label>
-              Discount Type:
-              <select name="type" className="bg-gray-50 border border-gray-300 text-gray-900 text-xs  focus:ring-blue-500 focus:border-blue-500">
-                <option value="" selected>
-                  None
-                </option>
-              </select>
-            </label>
-            <label>
-              Discount Amount:
-              <TextInput className="rounded-none p-2 w-20 text-xs" value={0} />
-            </label>
-            <p>Discount:(-)</p>
-          </div>
-
-          <div className="flex justify-between gap-5 border-b pb-3">
-            <label>
-              Purchase Tax: <span className="text-red-500">(Not Required!)</span>
-              <select name="type" className="bg-gray-50 border border-gray-300 text-gray-900 text-xs  focus:ring-blue-500 focus:border-blue-500">
-                <option value="" selected>
-                  None
-                </option>
-              </select>
-            </label>
-            <p>Discount:(+) 0.00</p>
-          </div>
-
-          <div className="flex justify-between gap-5 border-b pb-3">
-            <label className="">
-              Shipping Details:
-              <TextInput className="rounded-none p-2 w-20 text-xs" />
-            </label>
-            <label className="">
-              (+) Additional Shipping charges:
-              <TextInput className="rounded-none p-2 w-20 text-xs" value={0} />
-            </label>
-          </div>
-
-          <label htmlFor="">
-            Additional Notes
-            <textarea className="w-full" name="" id="" cols={20}></textarea>
-          </label>
+        <div className="grid grid-cols-3 gap-3 w-full items-center">
+          <LabelRow>
+            <SpanLabel>Discount Type:</SpanLabel>
+            <select
+              name="type"
+              className=" p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 w-full">
+              <option value="" selected>
+                None
+              </option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Discount Amount:</SpanLabel>
+            <TextInput className=" p-2 rounded-md  text-xs w-full" value={0} />
+          </LabelRow>
+          <h5 className="dark:text-white">Discount:(-)0.00</h5>
         </div>
+        <hr />
+        <div className="flex justify-between gap-5  pb-3 mr-5 ">
+          <LabelRow>
+            <SpanLabel>
+              Purchase Tax: <span className="text-red-500">(Not Required!)</span>
+            </SpanLabel>
+            <select
+              name="type"
+              className="p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 w-full">
+              <option value="" selected>
+                None
+              </option>
+            </select>
+          </LabelRow>
+          <h5 className="dark:text-white">Purchase tax:(+) 0.00</h5>
+        </div>
+        <hr />
+        <div className="flex justify-between gap-5 border-b pb-3">
+          <LabelRow>
+            <SpanLabel>Shipping Details:</SpanLabel>
+            <TextInput className=" p-2  text-xs w-full rounded-md" />
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>(+) Additional Shipping charges:</SpanLabel>
+            <TextInput className="rounded-md p-2 text-xs w-full" value={0} />
+          </LabelRow>
+        </div>
+        <div className="flex justify-end">
+          <h5 className="dark:text-white">Purchase total:(+) 0.00</h5>
+        </div>
+        <hr />
+        <LabelRow>
+          <SpanLabel>Additional Notes</SpanLabel>
+          <TextArea className="w-full" cols={20}></TextArea>
+        </LabelRow>
       </CardBorderTop>
 
       <CardBorderTop>
+        <CardTitle> Add payment</CardTitle>
         <div className="grid gap-5">
-          <h5 className="text-lg"> Add payment</h5>
-          <label>
-            Amount
+          <LabelRow>
+            <SpanLabel>Amount</SpanLabel>
             <div className="flex w-full flex-nowrap">
-              <div className="border px-2 grid place-items-center">
+              <div className="border dark:border-slate-500 dark:text-white px-2 grid place-items-center">
                 <FaMoneyBillWaveAlt size={15} />
               </div>
               <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
             </div>
-          </label>
-          <label>
-            Payment Method"*
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Payment Method"*</SpanLabel>
             <div className="flex w-full flex-nowrap">
-              <div className="border px-2 grid place-items-center">
+              <div className="border  dark:border-slate-500 dark:text-white px-2 grid place-items-center">
                 <FaMoneyBillWaveAlt size={15} />
               </div>
               <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
             </div>
-          </label>
-          <label htmlFor="">
-            Payment Notes
-            <textarea className="w-full" name="" id="" cols={20}></textarea>
-          </label>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Payment Notes</SpanLabel>
+            <TextArea className="w-full" cols={20}></TextArea>
+          </LabelRow>
 
           <div className="border-t  p-3 gap-5 flex flex-col items-end justify-end">
-            <h5 className="text-xs inline font-bold">Payment due:0.00</h5>
+            <h5 className="text-xs inline font-bold dark:text-white">Payment due:0.00</h5>
             <PrimaryButton>Save</PrimaryButton>
           </div>
         </div>

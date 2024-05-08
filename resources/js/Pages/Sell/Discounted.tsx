@@ -1,80 +1,91 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
+import ContentTitle from '@/Components/ContentTitle'
+import LabelRow from '@/Components/GlobalComponent/LabelRow'
+import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
+import Table from '@/Components/GlobalComponent/Table/Table'
+import TableHead from '@/Components/GlobalComponent/Table/TableHead'
 import PosTitle from '@/Components/Pos/PosTitle'
 import PostLabel from '@/Components/PostLabel'
 import TextInput from '@/Components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
+import { useState } from 'react'
+import Datepicker from 'react-tailwindcss-datepicker'
 
 const Discounted = () => {
   const Thead = ['Date', 'Invoice No', 'Customer Name', 'Location', 'Payment Status', 'Total Amount', 'Discount', 'Discounted Amount', 'Payment due']
+  const [date, setDate] = useState<any>({
+    startDate: new Date(),
+    endDate: new Date().setMonth(11),
+  })
+
+  const handleValueChange = (newValue: any) => {
+    setDate(newValue)
+  }
+
   return (
     <MainLayout>
-      <div className="px-5 md:px-2">
-        <h1 className="text-lg">
-          Sell <span className="text-xs">Discounted</span>
-        </h1>{' '}
-      </div>
-
+      <ContentTitle>
+        Sell <span className="text-xs text-gray-300">Discounted</span>
+      </ContentTitle>
       <CardBorderTop>
-        <CardTitle>Filters</CardTitle>
-        <hr />
-        <PostLabel>
-          Business Location:
-          <select className="w-full p-2 text-xs" name="type">
-            <option value="" selected>
-              All
-            </option>
-            <option value="Single">Single</option>
-            <option value="Variable">Variable</option>
-          </select>
-        </PostLabel>
-
-        <PostLabel>
-          Customer:
-          <select className="w-full p-2 text-xs" name="type">
-            <option value="" selected>
-              All
-            </option>
-            <option value="">Single</option>
-            <option value="">Variable</option>
-          </select>
-        </PostLabel>
-
-        <PostLabel>
-          Payment Satus:
-          <select className="w-full p-2 text-xs" name="type">
-            <option value="" selected>
-              All
-            </option>
-            <option value="">Single</option>
-            <option value="">Variable</option>
-          </select>
-        </PostLabel>
-
-        <PostLabel>
-          Date Range:
-          <TextInput className="w-full p-2 text-xs" type="date" />
-        </PostLabel>
-      </CardBorderTop>
-
-      <CardBorderTop>
-        <div className="flex flex-row justify-between items-center gap-2">
-          <h1 className="text-lg font-medium">Discounted Sales</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <LabelRow>
+            <SpanLabel>Business Location</SpanLabel>
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
+              <option value="" selected>
+                Please Select
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Customer</SpanLabel>
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
+              <option value="" selected>
+                Please Select
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Payment Status</SpanLabel>
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              name="type">
+              <option value="" selected>
+                Please Select
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Date Range:</SpanLabel>
+            <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
+          </LabelRow>
         </div>
-
-        <div className="overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-[8px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className=" text-gray-700 uppercase bg-gray-50 border">
-              <tr>
-                {Thead.map((item, index) => (
-                  <th scope="col" className="px-4 py-3 border-r" key={index}>
-                    {item}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {/* {data.map((product, index) => (
+      </CardBorderTop>
+      <CardBorderTop>
+        <CardTitle>Discounted Sales</CardTitle>
+        <Table>
+          <TableHead>
+            <tr>
+              {Thead.map((item, index) => (
+                <th scope="col" className="px-4 py-3 border-r" key={index}>
+                  {item}
+                </th>
+              ))}
+            </tr>
+          </TableHead>
+          <tbody>
+            {/* {data.map((product, index) => (
                 <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600" key={index}>
                     <td className="rtl:text-center">02.03.2024</td>
                     <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -93,22 +104,8 @@ const Discounted = () => {
                     </td>
                 </tr>
             ))} */}
-            </tbody>
-            <tfoot className="bg-gray-300 text-black">
-              <tr className="text-[12px]">
-                <td className="text-center py-10 " colSpan={5}>
-                  Total
-                </td>
-                <td className="border-l">Received -1</td>
-                <td className="border-l">Due -1</td>
-                <td className="border-l">Php 17/86</td>
-                <td className="border-l">Purchase Due - Php 17.86 Purchase Return - Php 0.00</td>
-                <td></td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-
+          </tbody>
+        </Table>
         <div className="flex justify-center items-center">pagination</div>
       </CardBorderTop>
     </MainLayout>

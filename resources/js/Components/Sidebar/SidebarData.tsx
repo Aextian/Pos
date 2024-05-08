@@ -25,6 +25,11 @@ import {
   FaShoppingBag,
   FaCalendarTimes,
   FaDatabase,
+  FaMinusCircle,
+  FaTruck,
+  FaArrowAltCircleUp,
+  FaArrowCircleDown,
+  FaExclamationTriangle,
 } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
 import { FaArrowRotateLeft, FaArrowsLeftRightToLine, FaBoltLightning, FaBusinessTime, FaLocationPin } from 'react-icons/fa6'
@@ -54,7 +59,7 @@ interface SidebarItemProps {
 const sidebarData: SidebarItemProps[] = [
   {
     title: 'Dashboard',
-    url: null,
+    url: '/',
     icon: <FaChartArea />,
     subMenuIcon: <FiChevronDown />,
   },
@@ -62,7 +67,7 @@ const sidebarData: SidebarItemProps[] = [
   {
     title: 'Stock Alert',
     url: '/stock-alert',
-    icon: <FaChartArea />,
+    icon: <FaExclamationTriangle />,
     subMenuIcon: <FiChevronDown />,
   },
 
@@ -201,7 +206,7 @@ const sidebarData: SidebarItemProps[] = [
 
   {
     title: 'Purchases',
-    icon: <FaUsersLine />,
+    icon: <FaArrowCircleDown />,
     subMenuIcon: <FiChevronDown />,
     children: [
       {
@@ -225,7 +230,7 @@ const sidebarData: SidebarItemProps[] = [
 
   {
     title: 'Sell',
-    icon: <FaUsersLine />,
+    icon: <FaArrowAltCircleUp />,
     subMenuIcon: <FiChevronDown />,
     children: [
       {
@@ -290,7 +295,7 @@ const sidebarData: SidebarItemProps[] = [
 
   {
     title: 'Stock Transfer',
-    icon: <FaUsersLine />,
+    icon: <FaTruck />,
     subMenuIcon: <FiChevronDown />,
     children: [
       {
@@ -309,7 +314,7 @@ const sidebarData: SidebarItemProps[] = [
 
   {
     title: 'Stock Adjustment',
-    icon: <FaUsersLine />,
+    icon: <FaDatabase />,
     subMenuIcon: <FiChevronDown />,
     children: [
       {
@@ -328,7 +333,7 @@ const sidebarData: SidebarItemProps[] = [
 
   {
     title: 'Expenses',
-    icon: <FaUsersLine />,
+    icon: <FaMinusCircle />,
     subMenuIcon: <FiChevronDown />,
     children: [
       {

@@ -1,121 +1,124 @@
 import CardBorderTop from '@/Components/CardBorderTop'
+import CardTitle from '@/Components/CardTitle'
+import ContentTitle from '@/Components/ContentTitle'
+import Error from '@/Components/GlobalComponent/AlertMessage/Error'
+import LabelRow from '@/Components/GlobalComponent/LabelRow'
+import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
 import TextInput from '@/Components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { router, usePage } from '@inertiajs/react'
 import React, { useEffect, useState } from 'react'
 
 interface Permission {
-    id: number
-    name: number
+  id: number
+  name: number
 }
 interface Role {
-    id: number
-    name: string
-    permission: Permission
+  id: number
+  name: string
+  permission: Permission
 }
 
 interface Error {
-    name: string
+  name: string
 }
 
 type Props = {
-    permissions: Permission[]
-    role: Role
-    rolePermissions: number[]
-    errors: Error
+  permissions: Permission[]
+  role: Role
+  rolePermissions: number[]
+  errors: Error
 }
 
 const Edit: React.FC<Props> = ({ permissions, role, rolePermissions, errors }) => {
-    const [values, setValues] = useState({
-        name: '',
-        permissions: [] as number[], // Changed from permission to permissions and defined it as an array of numbers
-    })
+  const [values, setValues] = useState({
+    name: '',
+    permissions: [] as number[], // Changed from permission to permissions and defined it as an array of numbers
+  })
 
-    useEffect(() => {
-        setValues((prevValues) => ({
+  useEffect(() => {
+    setValues((prevValues) => ({
+      ...prevValues,
+      name: role.name,
+      permissions: rolePermissions,
+    }))
+  }, [])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked } = e.target
+
+    if (name === 'permission') {
+      setValues((prevValues) => {
+        if (checked) {
+          return {
             ...prevValues,
-            name: role.name,
-            permissions: rolePermissions,
-        }))
-    }, [])
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, checked } = e.target
-
-        if (name === 'permission') {
-            setValues((prevValues) => {
-                if (checked) {
-                    return {
-                        ...prevValues,
-                        permissions: [...prevValues.permissions, parseInt(value)],
-                    }
-                } else {
-                    console.log('not checked')
-
-                    return {
-                        ...prevValues,
-                        permissions: prevValues.permissions.filter((permissionId) => permissionId !== parseInt(value)),
-                    }
-                }
-            })
+            permissions: [...prevValues.permissions, parseInt(value)],
+          }
         } else {
-            // For other inputs, update the state normally
-            setValues((prevValues) => ({
-                ...prevValues,
-                [name]: value,
-            }))
-        }
-    }
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        try {
-            const url = route(`roles.update`, role.id)
-            const response = router.put(url, values)
-            console.log(url)
-        } catch (error) {
-            console.error('Error:', error)
-        }
-    }
-    return (
-        <MainLayout>
-            <div className="mb-10 px-5 md:px-2">
-                <h1 className="text-lg">Add Role</h1>
-            </div>
-            <CardBorderTop>
-                <div className="">
-                    <h1 className="text-lg font-medium">All roles</h1>
-                </div>
-                {errors['name'] && <span className="text-red-500 bg-red-200 rounded-lg p-2 text-md">{errors['name']}</span>}
+          console.log('not checked')
 
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="name">Role Names</label>
-                        <TextInput type="text" className="mb-3 w-full" onChange={(e) => handleChange(e)} value={values.name} name="name" placeholder="Role Name" />
-                    </div>
+          return {
+            ...prevValues,
+            permissions: prevValues.permissions.filter((permissionId) => permissionId !== parseInt(value)),
+          }
+        }
+      })
+    } else {
+      // For other inputs, update the state normally
+      setValues((prevValues) => ({
+        ...prevValues,
+        [name]: value,
+      }))
+    }
+  }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    try {
+      const url = route(`roles.update`, role.id)
+      const response = router.put(url, values)
+      console.log(url)
+    } catch (error) {
+      console.error('Error:', error)
+    }
+  }
+  return (
+    <MainLayout>
+      <ContentTitle>Add Role</ContentTitle>
+      <CardBorderTop>
+        <CardTitle>All roles</CardTitle>
+        {errors['name'] && <Error message={errors['name']} />}
 
-                    <div className="flex flex-col justify-center gap-5">
-                        {permissions.map((data, index) => (
-                            <label key={index}>
-                                <TextInput
-                                    type="checkbox"
-                                    defaultChecked={rolePermissions.includes(data.id)}
-                                    name="permission"
-                                    value={data.id}
-                                    onChange={(e) => handleChange(e)}
-                                    className="mr-5 p-2 "
-                                    placeholder="Role Name"
-                                />
-                                {data.name}
-                            </label>
-                        ))}
-                    </div>
-                    <button className="rounded px-5 bg-cyan-600" type="submit">
-                        Submit
-                    </button>
-                </form>
-            </CardBorderTop>
-        </MainLayout>
-    )
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <LabelRow>
+            <SpanLabel>Role Names</SpanLabel>
+            <TextInput type="text" className="w-full text-xs" onChange={(e) => handleChange(e)} value={values.name} name="name" placeholder="Role Name" />
+          </LabelRow>
+          <div className="flex flex-col justify-center gap-5 dark:text-white mt-3">
+            {permissions.map((data, index) => (
+              <label key={index}>
+                <TextInput
+                  type="checkbox"
+                  defaultChecked={rolePermissions.includes(data.id)}
+                  name="permission"
+                  value={data.id}
+                  onChange={(e) => handleChange(e)}
+                  className="mr-5 p-2 "
+                  placeholder="Role Name"
+                />
+                {data.name}
+              </label>
+            ))}
+          </div>
+
+          <div className="flex justify-content-end flex-col mt-5">
+            <button className="rounded-lg px-5 text-lg bg-cyan-600" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </CardBorderTop>
+    </MainLayout>
+  )
 }
 
 export default Edit

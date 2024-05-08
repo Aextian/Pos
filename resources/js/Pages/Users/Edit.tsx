@@ -1,4 +1,9 @@
+import CardBorderTop from '@/Components/CardBorderTop'
+import ContentTitle from '@/Components/ContentTitle'
+import LabelRow from '@/Components/GlobalComponent/LabelRow'
+import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
 import PrimaryButton from '@/Components/PrimaryButton'
+import TextInput from '@/Components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { router } from '@inertiajs/react'
 import React, { useState } from 'react'
@@ -50,7 +55,7 @@ const Edit: React.FC<Props> = ({ user }) => {
         [name]: selectedOptions,
       }))
     } else {
-      // Handle other input types, such as checkbox
+      // Handle other TextInput types, such as checkbox
       setValues((prevValues) => ({
         ...prevValues,
         [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
@@ -60,74 +65,80 @@ const Edit: React.FC<Props> = ({ user }) => {
 
   return (
     <MainLayout>
-      <div className="px-5 md:px-2">
-        <h1 className="text-lg">Edit user</h1>
-      </div>
-      <div className=" flex flex-col gap-1 bg-white  border-t-4 border-cyan-500 text-xs overflow-x-auto mx-3 p-4 rounded-md">
+      <ContentTitle>Edit user</ContentTitle>
+      <CardBorderTop>
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-col gap-1">
-              <label htmlFor=""> Prefix</label>
-              <input type="text" name="prefix" className="mb-3 rounded-md p-1" placeholder="Mr/Mrs/Miss" onChange={handleChage} value={user.prefix} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor=""> First Name:*</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <LabelRow>
+              <SpanLabel>Prefix</SpanLabel>
+              <TextInput type="text" name="prefix" className="w-full text-xs" placeholder="Mr/Mrs/Miss" onChange={handleChage} value={user.prefix} />
+            </LabelRow>
 
-              <input type="text" name="first_name" className="mb-3 rounded-md p-1" placeholder="First Name" onChange={handleChage} value={user.first_name} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor=""> Last Name:</label>
+            <LabelRow>
+              <SpanLabel>First Name:*</SpanLabel>
+              <TextInput type="text" name="first_name" className="w-full text-xs" placeholder="First Name" onChange={handleChage} value={user.first_name} />
+            </LabelRow>
 
-              <input type="text" name="last_name" className="mb-3 rounded-md p-1" placeholder="Last Name" onChange={handleChage} value={user.last_name} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="">Email:*</label>
+            <LabelRow>
+              <SpanLabel>Last Name:</SpanLabel>
+              <TextInput type="text" name="last_name" className="w-full text-xs" placeholder="Last Name" onChange={handleChage} value={user.last_name} />
+            </LabelRow>
 
-              <input type="text" name="email" className="mb-3 rounded-md p-1" placeholder="Email" onChange={handleChage} value={user.email} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="">Role:*</label>
-              <select className="p-1 rounded-md" name="roles" onChange={handleChage} multiple>
+            <LabelRow>
+              <SpanLabel>Email:*</SpanLabel>
+              <TextInput type="text" name="email" className="w-full text-xs" placeholder="Email" onChange={handleChage} value={user.email} />
+            </LabelRow>
+
+            <LabelRow>
+              <SpanLabel>Role:*</SpanLabel>
+              <select
+                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+                name="roles"
+                onChange={handleChage}
+                multiple>
                 {user.roles?.map((role, index) => (
                   <option key={index} value={role.name}>
                     {role.name}
                   </option>
                 ))}
               </select>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="">Username:</label>
-              <input type="text" name="username" className="mb-3 rounded-md p-1" placeholder="Username" onChange={handleChage} value={user.username} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="">Password:</label>
-              <input type="text" name="password" className="mb-3 rounded-md p-1" placeholder="Password" onChange={handleChage} />
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="">Current Password:*:</label>
-              <input type="text" name="current_password" className="mb-3 rounded-md p-1" placeholder="Current Password" onChange={handleChage} />
-            </div>
+            </LabelRow>
 
-            <div className="flex flex-col gap-1">
-              <label htmlFor="">Sales Commision Percentage(%):</label>
-              <input type="text" name="commision" className="mb-3 rounded-md p-1" placeholder="Sales Commission Percentage (%)" onChange={handleChage} />
-            </div>
-            <div className="flex flex-col gap-3">
-              <div className="space-x-3">
-                <input className="rounded p-2" id="restricted_commision" type="checkbox" name="restricted_commision" onChange={handleChage} />
-                <label htmlFor="restricted_commision">Restricted Commision Percentage</label>
-              </div>
-              <div className="space-x-3">
-                <input className="rounded p-2" id="is_active" type="checkbox" name="status" onChange={handleChage} defaultChecked={user.status} />
-                <label htmlFor="is_active">Is active</label>
-              </div>
-            </div>
+            <LabelRow>
+              <SpanLabel>Username:</SpanLabel>
+              <TextInput type="text" name="username" className="w-full text-xs" placeholder="Username" onChange={handleChage} value={user.username} />
+            </LabelRow>
+
+            <LabelRow>
+              <SpanLabel>Password:</SpanLabel>
+              <TextInput type="text" name="password" className="w-full text-xs" placeholder="Password" onChange={handleChage} />
+            </LabelRow>
+
+            <LabelRow>
+              <SpanLabel>Current Password:*:</SpanLabel>
+              <TextInput type="text" name="current_password" className="w-full text-xs" placeholder="Current Password" onChange={handleChage} />
+            </LabelRow>
+
+            <LabelRow>
+              <SpanLabel>Sales Commision Percentage(%):</SpanLabel>
+              <TextInput type="text" name="commision" className="w-full text-xs" placeholder="Sales Commission Percentage (%)" onChange={handleChage} />
+            </LabelRow>
+
+            <label className="inline-flex gap-3 items-center dark:text-white">
+              <TextInput className="rounded p-2" id="restricted_commision" type="checkbox" name="restricted_commision" onChange={handleChage} />
+              Restricted Commision Percentage
+            </label>
+
+            <label className="inline-flex gap-3 items-center dark:text-white">
+              <TextInput className="rounded p-2" id="is_active" type="checkbox" name="status" onChange={handleChage} defaultChecked={user.status} />
+              Is active{' '}
+            </label>
           </div>
           <div className="flex justify-end">
             <PrimaryButton type="submit">Save</PrimaryButton>
           </div>
         </form>
-      </div>
+      </CardBorderTop>
     </MainLayout>
   )
 }

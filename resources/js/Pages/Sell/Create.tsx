@@ -126,7 +126,7 @@ const Create = () => {
       </CardBorderTop>
 
       <CardBorderTop>
-        <div className="grid grid-cols-1 gap-3">
+        <div className="grid md:grid-cols-1 lg:grid-cols-3 items-center gap-3">
           <LabelRow>
             <SpanLabel>Discount Type:</SpanLabel>
             <select name="type" className=" w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
@@ -139,30 +139,35 @@ const Create = () => {
             <SpanLabel>Discount Amount:</SpanLabel>
             <TextInput className="rounded-none p-2 w-full text-xs" value={0} />
           </LabelRow>
-          <p className="font-bold dark:text-white">Discount Amount(-)0.00</p>
 
-          <LabelRow>
-            <SpanLabel>Order Tax:</SpanLabel>
-            <select name="type" className=" w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-              <option value="" selected>
-                None
-              </option>
-            </select>
-          </LabelRow>
-          <p className="font-bold dark:text-white">Discount Amount(-)0.00</p>
+          <h5 className="font-bold dark:text-white">Discount Amount(-)0.00</h5>
 
+          {/* Order Tax */}
+          <div className="lg:col-span-2">
+            <LabelRow>
+              <SpanLabel>Order Tax:</SpanLabel>
+              <select
+                name="type"
+                className=" w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                <option value="" selected>
+                  None
+                </option>
+              </select>
+            </LabelRow>
+          </div>
+          <h5 className="font-bold dark:text-white">Order Tax(+)0.00</h5>
           <LabelRow>
             <SpanLabel>Shipping Details:</SpanLabel>
             <TextInput className="rounded-none p-2  w-full text-xs" />
           </LabelRow>
-
           <LabelRow>
             <SpanLabel>(+) Shipping charges:</SpanLabel>
             <TextInput className="rounded-none p-2  w-full text-xs" value={0} />
           </LabelRow>
+          <h5 className="font-bold dark:text-white">Total payable</h5>
         </div>
+
         <LabelRow>
-          <h5 className="dark:text-white">Total payable</h5>
           <SpanLabel>Sell Notes</SpanLabel>
           <TextArea className="w-full" cols={20}></TextArea>
         </LabelRow>
@@ -195,8 +200,8 @@ const Create = () => {
           </LabelRow>
 
           <div className="border-t  p-3 gap-5 flex flex-col items-end justify-end">
-            <h5 className="text-xs inline font-bold dark:text-white">Payment due:0.00</h5>
-            <PrimaryButton>Save</PrimaryButton>
+            <h5 className="text-xs inline font-bold dark:text-white">Balance:0.00</h5>
+            <PrimaryButton>Submit</PrimaryButton>
           </div>
         </div>
       </CardBorderTop>

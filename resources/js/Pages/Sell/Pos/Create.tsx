@@ -9,8 +9,10 @@ const Create = () => {
   return (
     <PosCard>
       <PosContent>
-        <PosTitle />
-        <PosButtonIcon />
+        <div className="md:flex justify-between items-center grid">
+          <PosTitle />
+          <PosButtonIcon />
+        </div>
         <PosForm />
       </PosContent>
     </PosCard>

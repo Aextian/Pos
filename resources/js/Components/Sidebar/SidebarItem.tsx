@@ -41,7 +41,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
   return (
     <>
       {/* Main menu */}
-      <li className="w-[100%]">
+      <li className="w-full">
         <Link
           className={`flex flex-row py-2 justify-between gap-2  hover:border-l-2 hover:text-white hover:border-yellow-600 hover:bg-cyan-600 active:border-cyan-600 px-4 ${
             url === item.url || isOpen ? 'border-yellow-600 border-l-2 bg-cyan-600 text-white' : ''
@@ -49,7 +49,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
           href={item.url || '#'}
           onClick={item.children ? (e) => toggle(e) : undefined}>
           <div className="flex gap-3">
-            <div className="text-[12px]">{item.icon}</div>
+            <div className="text-[15px]">{item.icon}</div>
             <div className="text-[12px]">{item.title}</div>
           </div>
           <div className={isOpen ? 'rotate-180' : 'null'}>{item.children ? item.subMenuIcon : null}</div>

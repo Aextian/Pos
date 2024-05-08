@@ -11,13 +11,15 @@ type Props = {
 const SearchBar: React.FC<Props> = ({ queryParams, handleSearchChange }) => {
   return (
     <>
-      <div className="self-end relative">
-        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-          <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
-            <FaSearch size={20} />
+      <div className="flex justify-end">
+        <div className="relative">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
+              <FaSearch size={20} />
+            </div>
           </div>
+          <TextInput className="rounded-lg px-5 py-1 bg-slate-200 ps-10 " defaultValue={queryParams.search} onChange={handleSearchChange} type="search" name="search" tabIndex={0} isFocused />
         </div>
-        <TextInput className="rounded-lg px-5 py-1 bg-slate-200 ps-10 " defaultValue={queryParams.search} onChange={handleSearchChange} type="search" name="search" />
       </div>
     </>
   )
