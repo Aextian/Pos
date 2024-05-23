@@ -7,7 +7,7 @@ import { TbReportSearch } from 'react-icons/tb'
 import { IoIosNotificationsOutline, IoIosWarning } from 'react-icons/io'
 import { FiChevronDown } from 'react-icons/fi'
 import { FaUsersLine } from 'react-icons/fa6'
-import TextInput from '@/Components/TextInput'
+import TextInput from '@/Components/Shared/ui/TextInput'
 const Post = () => {
   const [isOpen, setIsOpen] = useState(false)
 

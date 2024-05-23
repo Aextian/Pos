@@ -1,4 +1,4 @@
-import TextInput from '@/Components/TextInput'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import React from 'react'
 
 const Purchases: React.FC<{ open: string }> = ({ open }) => {

@@ -1,6 +1,6 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import ContentTitle from '@/Components/ContentTitle'
-import TextInput from '@/Components/TextInput'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'

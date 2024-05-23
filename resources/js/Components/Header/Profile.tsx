@@ -1,5 +1,5 @@
 import React from 'react'
-import SecondaryButton from '../SecondaryButton'
+import SecondaryButton from '../Shared/ui/Button/SecondaryButton'
 import { Link } from '@inertiajs/react'
 
 const Profile: React.FC<{ profile: boolean }> = ({ profile }) => {

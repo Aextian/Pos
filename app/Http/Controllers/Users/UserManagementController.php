@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\StoreUserRequest;
+use App\Http\Requests\Users\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -22,10 +23,11 @@ class UserManagementController extends Controller
 
         $users = User::query()
             ->search($search)
-            ->with('roles')
             ->orderBy($sortFields, $sortDirection)
             ->paginate(10)
             ->onEachSide(1);
+
+        $users->load('roles');
 
         return inertia('Users/Index', [
             'successMessage' => session('success'),
@@ -47,10 +49,12 @@ class UserManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
-    {
 
-        $user =  User::create($request->all());
+
+    public function store(UserRequest $request)
+    {
+        $user =  User::create($request->validated());
+
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
@@ -70,20 +74,29 @@ class UserManagementController extends Controller
      */
     public function edit(User $user)
     {
-        $user->load('roles');
 
         return inertia('Users/Edit', [
-            'user' => $user,
+            'user' => $user->load('roles'),
+            'roles' => Role::orderby('id', 'asc')->get(),
         ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $user)
-    {
-    }
 
+    public function update(UserRequest $request, string $id)
+    {
+        $user = User::findorfail($id);
+
+        $user->Update($request->validated());
+
+        $user->assignRole($request->input('roles'));
+
+        return redirect()->route('users.index')
+            ->with('success', 'User updated successfully');
+    }
     /**
      * Remove the specified resource from storage.
      */

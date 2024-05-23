@@ -1,9 +1,10 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/ContentTitle'
-import LabelRow from '@/Components/GlobalComponent/LabelRow'
-import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
-import TextInput from '@/Components/TextInput'
+import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import LabelRow from '@/Components/Shared/ui/LabelRow'
+import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import Table from '@/Components/Shared/ui/Table/Table'
+import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React, { useState } from 'react'
@@ -26,58 +27,61 @@ const Index = () => {
       <ContentTitle>Expenses</ContentTitle>
 
       <CardBorderTop>
-        <CardTitle>Filters</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>Filters</CardBorderTop.Title>
+        </CardBorderTop.Header>
         <hr className=" w-full" />
+        <CardBorderTop.Content>
+          <LabelRow>
+            <SpanLabel>Business Location:</SpanLabel>
+            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
+              <option value="" selected>
+                All
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
 
-        <LabelRow>
-          <SpanLabel>Business Location:</SpanLabel>
-          <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
-            <option value="" selected>
-              All
-            </option>
-            <option value="">Single</option>
-            <option value="">Variable</option>
-          </select>
-        </LabelRow>
-
-        <LabelRow>
-          <SpanLabel>Expense for:</SpanLabel>
-          <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
-            <option value="" selected>
-              All
-            </option>
-            <option value="">Single</option>
-            <option value="">Variable</option>
-          </select>
-        </LabelRow>
-        <LabelRow>
-          <SpanLabel>Expense Category:</SpanLabel>
-          <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
-            <option value="" selected>
-              All
-            </option>
-            <option value="">Single</option>
-            <option value="">Variable</option>
-          </select>
-        </LabelRow>
-        <LabelRow>
-          <SpanLabel>Date Range:</SpanLabel>
-          <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
-        </LabelRow>
+          <LabelRow>
+            <SpanLabel>Expense for:</SpanLabel>
+            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
+              <option value="" selected>
+                All
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Expense Category:</SpanLabel>
+            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type" id="cars">
+              <option value="" selected>
+                All
+              </option>
+              <option value="">Single</option>
+              <option value="">Variable</option>
+            </select>
+          </LabelRow>
+          <LabelRow>
+            <SpanLabel>Date Range:</SpanLabel>
+            <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
+          </LabelRow>
+        </CardBorderTop.Content>
       </CardBorderTop>
       <CardBorderTop>
         {/* <span>{successMessage ? successMessage : ''}</span> */}
-        <div className="flex flex-row justify-between items-center gap-2">
-          <CardTitle>All Expenses</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>All Expenses</CardBorderTop.Title>
           <Link
             href={route('users.create')}
             className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
             Add
           </Link>
-        </div>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-[8px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        </CardBorderTop.Header>
+        <CardBorderTop.Content>
+          <Table>
+            <TableHead>
               <tr>
                 {Thead.map((item, index) => (
                   <th scope="col" className="px-4 py-3">
@@ -85,8 +89,7 @@ const Index = () => {
                   </th>
                 ))}
               </tr>
-            </thead>
-            s
+            </TableHead>
             <tbody>
               {/* {data.map((product, index) => (
                 <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600" key={index}>
@@ -119,8 +122,8 @@ const Index = () => {
                 <td className="border-l">Purchase Due - Php 17.86 Purchase Return - Php 0.00</td>
               </tr>
             </tfoot>
-          </table>
-        </div>
+          </Table>
+        </CardBorderTop.Content>
         <div className="flex justify-center items-center">pagination</div>
       </CardBorderTop>
     </MainLayout>

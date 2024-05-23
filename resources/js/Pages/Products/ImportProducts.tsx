@@ -1,8 +1,8 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import ContentTitle from '@/Components/ContentTitle'
-import Table from '@/Components/GlobalComponent/Table/Table'
-import TableHead from '@/Components/GlobalComponent/Table/TableHead'
-import TextInput from '@/Components/TextInput'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import Table from '@/Components/Shared/ui/Table/Table'
+import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 

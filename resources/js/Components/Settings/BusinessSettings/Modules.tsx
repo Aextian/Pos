@@ -1,5 +1,5 @@
-import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
-import TextInput from '@/Components/TextInput'
+import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import React from 'react'
 
 const Modules: React.FC<{ open: string }> = ({ open }) => {

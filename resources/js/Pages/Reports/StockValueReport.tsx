@@ -1,9 +1,9 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/ContentTitle'
-import NoDataAvailable from '@/Components/GlobalComponent/Table/NoDataAvailable'
-import Table from '@/Components/GlobalComponent/Table/Table'
-import TableHead from '@/Components/GlobalComponent/Table/TableHead'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
+import Table from '@/Components/Shared/ui/Table/Table'
+import TableHead from '@/Components/Shared/ui/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 

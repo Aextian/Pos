@@ -1,4 +1,4 @@
-import TextInput from '@/Components/TextInput'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import { router } from '@inertiajs/react'
@@ -6,9 +6,9 @@ import { GiClawString } from 'react-icons/gi'
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import LabelRow from '@/Components/GlobalComponent/LabelRow'
-import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
-import Error from '@/Components/GlobalComponent/AlertMessage/Error'
+import LabelRow from '@/Components/Shared/ui/LabelRow'
+import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import Error from '@/Components/Shared/ui/Alert/Error'
 import { error } from 'console'
 
 interface Permission {

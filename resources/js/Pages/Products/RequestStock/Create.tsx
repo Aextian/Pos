@@ -1,12 +1,12 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import TextInput from '@/Components/TextInput'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { MdOutlineCalendarMonth } from 'react-icons/md'
 import { IoIosSearch } from 'react-icons/io'
 import { BiTrashAlt } from 'react-icons/bi'
-import ContentTitle from '@/Components/ContentTitle'
-import LabelRow from '@/Components/GlobalComponent/LabelRow'
-import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import LabelRow from '@/Components/Shared/ui/LabelRow'
+import SpanLabel from '@/Components/Shared/ui/SpanLabel'
 import CardTitle from '@/Components/CardTitle'
 
 const Create = () => {

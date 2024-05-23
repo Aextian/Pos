@@ -1,18 +1,19 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/ContentTitle'
-import Table from '@/Components/GlobalComponent/Table/Table'
-import TableHead from '@/Components/GlobalComponent/Table/TableHead'
-import TextInput from '@/Components/TextInput'
-import Tooltip from '@/Components/Tooltip'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import Table from '@/Components/Shared/ui/Table/Table'
+import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import TextInput from '@/Components/Shared/ui/TextInput'
+import Tooltip from '@/Components/Shared/ui/Tooltip'
 import StockData from '@/Data/StockAlertData'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-const StockAlert = () => {
+const StockAlert: React.FC<{ props: any }> = ({ props }) => {
+  console.log('sds', props)
   return (
     <MainLayout>
       <ContentTitle>Welcome Mlya Pos</ContentTitle>

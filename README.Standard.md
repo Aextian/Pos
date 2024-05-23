@@ -1,66 +1,64 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Standards
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Naming conventions
 
-## About Laravel
+- `kebab-case` - for all folders/files.
+- `PascalCase` - for classes and types.
+- `snake_case` - for database tables and columns.
+- `camelCase` - for functions, zod schemas and etc.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Folder structure
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- `src` - main source code.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Router
 
-## Learning Laravel
+- `src/app` - for app router.
+  - `src/app/<route-name>/page.tsx` - for route page component.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- `src/features` - for feature modules.
+  - `src/features/<feature-name>` - for feature module.
+    - `src/features/<feature-name>/actions` - for server actions.
+    - `src/features/<feature-name>/components` - for components.
+    - `src/features/<feature-name>/constants` - for constants.
+    - `src/features/<feature-name>/utils` - for utilities.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Shared
 
-## Laravel Sponsors
+- `src/shared` - shared modules.
+  - `src/shared/components` - for shared components.
+    - `src/shared/components/ui/*` - for shared ui components (`button`, `input` & etc).
+  - `src/shared/constants` - for shared constants.
+  - `src/shared/data` - for data access layer. (e.g. `api`, `database`).
+  - `src/shared/mutation` - for shared `react-query` mutation. **(Only if needed)**
+  - `src/shared/query` - for shared `react-query` query. **(Only if needed)**
+  - `src/shared/stores` - for shared zustand stores.
+  - `src/shared/types` - for shared types.
+  - `src/shared/utils` - for shared utilities.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Sample Flow(s)
 
-### Premium Partners
+1. Creating new feature with API/DB calls using **RSC**.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+   1. Create a new feature module in `src/features`.
+   2. Create a new page component in `src/app`.
+   3. Create a new shared component in `src/shared/components`. **(Only if needed)**
+   4. Create a data access layer in `src/shared/data`.
+      1. Create a function for fetching data through API or directly to DB.
+   5. Create a server action in `src/features/<feature-name>/actions`.
+      1. Create a function with `use server` directive for calling the data access layer. (normally, it will be a WRITE operation such as `create`, `update`, `delete`).
+   6. Lastly, you can call data access layer directly from the RSC component or RSC page component.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. Creating new feature with API/DB calls using `TanStack React Query`.
+   1. Create a new feature module in `src/features`.
+   2. Create a new page component in `src/app`.
+   3. Create a new shared component in `src/shared/components`. **(Only if needed)**
+   4. Create a data access layer in `src/shared/data`.
+      1. Create a function for fetching data through API or directly to DB.
+   5. Create a query in `src/shared/query`.
+      1. Create a query function with `useQuery` from `react-query`. (e.g. `useSamplesQuery`).
+   6. Create a mutation in `src/shared/mutation`.
+      1. Create a mutation function with `useMutation` from `react-query`. (e.g. `useSampleCreateMutation`).
+   7. Lastly, you can call query/mutation directly from the client component or client page component using `use-client` directive.

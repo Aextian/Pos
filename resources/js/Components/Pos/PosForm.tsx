@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaLocationDot } from 'react-icons/fa6'
 import { FaInfoCircle, FaUser, FaPlusCircle, FaBarcode, FaEdit } from 'react-icons/fa'
-import TextInput from '../TextInput'
+import TextInput from '../Shared/ui/TextInput'
 import ButtonCancel from '@/Components/Pos/ButtonCancel'
 import ButtonMakePayment from '@/Components/Pos/ButtonMakePayment'
 import ButtonSupend from '@/Components/Pos/ButtonSupend'

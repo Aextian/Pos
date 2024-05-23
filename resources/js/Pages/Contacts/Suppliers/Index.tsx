@@ -1,68 +1,113 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/ContentTitle'
-import Table from '@/Components/GlobalComponent/Table/Table'
-import TableHead from '@/Components/GlobalComponent/Table/TableHead'
-import TextInput from '@/Components/TextInput'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
+import Success from '@/Components/Shared/ui/Alert/Success'
+import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
+import Table from '@/Components/Shared/ui/Table/Table'
+import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import Pagination from '@/Components/Shared/ui/Table/Pagination'
+import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
+import TableRow from '@/Components/Suppliers/TableRow'
+import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
+import useSort from '@/Hooks/useSort'
 import MainLayout from '@/Layouts/MainLayout'
-import { Link } from '@inertiajs/react'
-import React from 'react'
-import { FaPlus, FaSearch } from 'react-icons/fa'
+import { Link, router } from '@inertiajs/react'
+import React, { useState } from 'react'
+import { FaPlus } from 'react-icons/fa'
 
-const Index = () => {
-  const Thead = ['Contact ID', 'Business name', 'Name', 'contact', 'Total Purchase Due', 'action']
+interface Supplier {
+  id: number
+  contact_id: number
+  supplier_business_name: string
+  name: string
+  mobile: string
+}
+
+type Props = {
+  suppliers: {
+    data: Supplier[]
+    links: []
+    sort_field: string
+    sort_direction: string
+  }
+  queryParams: {
+    sort_field: string
+    sort_direction: 'asc' | 'desc'
+    search: string
+  }
+  successMessage: string
+}
+
+let debounceTimer: NodeJS.Timeout
+
+const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Clear the previous timer if it exists
+  clearTimeout(debounceTimer)
+
+  debounceTimer = setTimeout(() => {
+    router.get(route('supplier.index'), { search: e.target.value })
+  }, 800) // Adjust the delay as needed
+}
+
+const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
+  const Thead = [
+    { name: 'Contact ID', sort_field: 'contact_Id' },
+    { name: 'Business name', sort_field: 'supplier_business_name' },
+    { name: 'Name', sort_field: 'name' }, // Assuming no sort field for this column
+    { name: 'Contact', sort_field: 'email' },
+    { name: 'Total Purchase Due', sort_field: '' }, // Assuming no sort field for this column
+    { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
+  ]
+
+  // handle delete modal
+  const [isDelete, setDelete] = useState<number | null>(0)
+
+  const handleDelete = (id: number) => {
+    router.delete(route('supplier.destroy', id))
+    setDelete(null)
+  }
+
+  const handleShowDelete = (id: number) => {
+    setDelete(id)
+  }
+  // function for sorting
+  const url = 'supplier.index'
+  const sortChanged = useSort(queryParams, url)
   return (
     <MainLayout>
+      <DeleteModal isDelete={isDelete} handleDelete={handleDelete} handleShowDelete={handleShowDelete} onCloseRoute="supplier.index" />
       <ContentTitle>
         Suppliers <span className="text-xs text-gray-300">Manage your suppliers</span>
       </ContentTitle>
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>All your Suppliers</CardTitle>
+        {successMessage && <Success message={successMessage} />}
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>All your Suppliers</CardBorderTop.Title>
           <Link
             href={route('supplier.create')}
             className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
             <FaPlus /> Add
           </Link>
-        </CardHeader>
-        <div className="flex justify-end">
-          <div className="relative">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
-                <FaSearch size={20} />
-              </div>
-            </div>
-            <TextInput className="rounded-lg px-5 py-1 bg-slate-200 ps-10 " type="search" name="" id="" />
-          </div>
-        </div>
-        <Table>
-          <TableHead>
-            <tr>
-              {Thead.map((item, index) => (
-                <th scope="col" className="px-6 py-3" key={index}>
-                  {item}
-                </th>
+        </CardBorderTop.Header>
+        <SearchBar queryParams={queryParams} handleSearchChange={handleSearchChange} />
+        <CardBorderTop.Content>
+          <Table>
+            <TableHead>
+              <tr>
+                {Thead.map((item, index) => (
+                  <TableHeading sort_field={queryParams.sort_field || ''} sortChanged={sortChanged} key={index} sort_direction={queryParams.sort_direction} name={item.sort_field}>
+                    {item.name}
+                  </TableHeading>
+                ))}
+              </tr>
+            </TableHead>
+            <tbody>
+              {suppliers.data.map((supplier, index) => (
+                <TableRow key={index} supplier={supplier} handleShowDelete={handleShowDelete} />
               ))}
-            </tr>
-          </TableHead>
-          <tbody>
-            <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
-              <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right">
-                <div className="flex gap-2 text-xs">
-                  <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Edit</button>
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Delete</button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-        <div className="flex justify-center items-center">pagination</div>
+            </tbody>
+          </Table>
+        </CardBorderTop.Content>
+        <Pagination links={suppliers.links} />
       </CardBorderTop>
     </MainLayout>
   )

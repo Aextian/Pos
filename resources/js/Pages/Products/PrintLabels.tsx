@@ -1,10 +1,10 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import TextInput from '@/Components/TextInput'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { IoSearch } from 'react-icons/io5'
 import { FaInfo } from 'react-icons/fa'
 import { CiSettings } from 'react-icons/ci'
-import ContentTitle from '@/Components/ContentTitle'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
 import CardTitle from '@/Components/CardTitle'
 
 const PrintLabels = () => {

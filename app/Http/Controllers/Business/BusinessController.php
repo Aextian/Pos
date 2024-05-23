@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Http\Controllers\Controller;
+use App\Models\Business;
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -12,6 +13,7 @@ class BusinessController extends Controller
      */
     public function index()
     {
+
         return inertia('Business/Index');
     }
 

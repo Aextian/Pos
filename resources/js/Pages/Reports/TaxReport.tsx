@@ -1,5 +1,5 @@
-import ContentTitle from '@/Components/ContentTitle'
-import PrimaryButton from '@/Components/PrimaryButton'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import { FaLocationPin } from 'react-icons/fa6'

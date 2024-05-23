@@ -1,6 +1,6 @@
-import LabelRow from '@/Components/GlobalComponent/LabelRow'
-import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
-import TextInput from '@/Components/TextInput'
+import LabelRow from '@/Components/Shared/ui/LabelRow'
+import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import React from 'react'
 
 const SmsSetting: React.FC<{ open: string }> = ({ open }) => {

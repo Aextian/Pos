@@ -2,10 +2,8 @@ import Business from '@/Components/Settings/BusinessSettings/Business'
 import Product from '@/Components/Settings/BusinessSettings/Product'
 import Sale from '@/Components/Settings/BusinessSettings/Sale'
 import Tax from '@/Components/Settings/BusinessSettings/Tax'
-import TextInput from '@/Components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
-import { FaInfo } from 'react-icons/fa'
 import Pos from '@/Components/Settings/BusinessSettings/Pos'
 import Purchases from '@/Components/Settings/BusinessSettings/Purchases'
 import Dashboard from '@/Components/Settings/BusinessSettings/Dashboard'
@@ -14,9 +12,24 @@ import Prefixes from '@/Components/Settings/BusinessSettings/Prefixes'
 import EmailSetting from '@/Components/Settings/BusinessSettings/EmailSetting'
 import SmsSetting from '@/Components/Settings/BusinessSettings/SmsSetting'
 import Modules from '@/Components/Settings/BusinessSettings/Modules'
-import SecondaryButton from '@/Components/SecondaryButton'
+import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
 
-const Index = () => {
+interface Props {
+  business: {
+    name: string
+    currency: [
+      {
+        country: string
+      },
+    ]
+  }
+  currencies: {
+    id: number
+    currency: string
+  }[]
+}
+
+const Index: React.FC<Props> = ({ business, currencies }) => {
   const list = ['Bussiness', 'Tax', 'Product', 'Sale', 'POS', 'Purchases', 'Dashboard', 'System', 'Prefixes', 'Email Settings', 'SMS Settings', 'Modules']
   const [open, setOpen] = useState('Bussiness')
 
@@ -44,7 +57,7 @@ const Index = () => {
             ))}
           </ul>
           <div className="p-5">
-            <Business open={open} />
+            <Business open={open} business={business} currencies={currencies} />
             <Tax open={open} />
             <Product open={open} />
             <Pos open={open} />

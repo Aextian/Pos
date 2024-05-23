@@ -16,11 +16,12 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $user = User::create([
-            'surname' => 'Admin',
+            'prefix' => 'Admin',
             'first_name' => 'Admin',
             'last_name' => 'adminlast',
             'username' => 'admin',
             'email' => 'test@example.com',
+            // 'business_-id' => 1,
             'password' => '123456',
             'contact_no' => '123456',
             'address' => 'test',

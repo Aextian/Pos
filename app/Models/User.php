@@ -20,13 +20,26 @@ class User extends Authenticatable
      */
     public function scopeSearch($query, $search)
     {
-        return $query->when(function ($query) use ($search) {
-            $query->where('username', 'like', '%' . $search . '%')
-                ->orWhere('email', 'like', '%' . $search . '%')
-                ->orWhere('first_name', 'like', '%' . $search . '%')
-                ->orWhere('last_name', 'like', '%' . $search . '%');
-        });
+        if ($search) {
+            return $query->when(function ($query) use ($search) {
+                $query->where('username', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('first_name', 'like', '%' . $search . '%')
+                    ->orWhere('last_name', 'like', '%' . $search . '%');
+            });
+        }
+
+        return $query;
     }
+
+    protected $appends = ['full_name'];
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+
 
     protected $fillable = [
         'surname',
@@ -44,6 +57,8 @@ class User extends Authenticatable
         'language',
         'password',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.

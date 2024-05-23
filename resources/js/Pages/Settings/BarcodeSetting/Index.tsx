@@ -5,10 +5,10 @@ import CardTitle from '@/Components/CardTitle'
 import { Link } from '@inertiajs/react'
 import CardHeader from '@/Components/CardHeader'
 import CardContent from '@/Components/CardContent'
-import ContentTitle from '@/Components/ContentTitle'
+import ContentTitle from '@/Components/Shared/ui/ContentTitle'
 import { FaPlus } from 'react-icons/fa'
-import Table from '@/Components/GlobalComponent/Table/Table'
-import TableHead from '@/Components/GlobalComponent/Table/TableHead'
+import Table from '@/Components/Shared/ui/Table/Table'
+import TableHead from '@/Components/Shared/ui/Table/TableHead'
 const Index = () => {
   return (
     <>

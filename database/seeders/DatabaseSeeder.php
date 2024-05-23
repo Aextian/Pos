@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             CurrenciesTableSeeder::class,
             AdminSeeder::class,
             PermissionCategorySeeder::class,
+            BusinessInfo::class,
+
         ]);
     }
 }

@@ -1,19 +1,30 @@
-import LabelRow from '@/Components/GlobalComponent/LabelRow'
-import SpanLabel from '@/Components/GlobalComponent/SpanLabel'
-import TextInput from '@/Components/TextInput'
+import LabelRow from '@/Components/Shared/ui/LabelRow'
+import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import TextInput from '@/Components/Shared/ui/TextInput'
 import React from 'react'
 import { BiCalendar } from 'react-icons/bi'
 import { BsPlus } from 'react-icons/bs'
 import { FaClock, FaDollarSign } from 'react-icons/fa'
 import { PiEnvelope } from 'react-icons/pi'
 
-const Business: React.FC<{ open?: string }> = ({ open }) => {
+interface Props {
+  open?: string
+  business?: {
+    name: string
+  }
+  currencies: {
+    currency: string
+    id: number
+  }[]
+}
+
+const Business: React.FC<Props> = ({ open, business, currencies }) => {
   return (
     <>
       <div className={`${open === 'Bussiness' ? '' : 'hidden'}  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 `}>
         <LabelRow>
           <SpanLabel>Business Name: *</SpanLabel>
-          <TextInput className="p-2 text-xs mt-2 w-full rounded-none" placeholder="Business Name" />
+          <TextInput className="p-2 text-xs mt-2 w-full rounded-none" placeholder="Business Name" defaultValue={business?.name} />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Start Date: *</SpanLabel>
@@ -40,7 +51,13 @@ const Business: React.FC<{ open?: string }> = ({ open }) => {
             <div className="border border-r-0  p-2 dark:border-slate-500  dark:text-white">
               <FaDollarSign size={16} />
             </div>
-            <TextInput type="date" className="text-xs p-2  w-full rounded-none" />
+            <select name="time_format" className="text-xs p-2  w-full rounded-none  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white ">
+              {currencies.map((item, index) => (
+                <option value={item.id} key={index}>
+                  {item.currency}
+                </option>
+              ))}
+            </select>
           </div>
         </LabelRow>
 
