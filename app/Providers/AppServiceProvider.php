@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\ProductCategory;
 use App\Models\Supplier;
+use App\Observers\ProductCategoryObserver;
 use App\Observers\SupplierObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Supplier::observe(SupplierObserver::class);
+        ProductCategory::observe(ProductCategoryObserver::class);
     }
 }

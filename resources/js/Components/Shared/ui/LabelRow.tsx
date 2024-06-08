@@ -1,9 +1,12 @@
 import React, { PropsWithChildren } from 'react'
-
-const LabelRow: React.FC<PropsWithChildren> = ({ children }) => {
+type Props = {
+  className?: string
+  children?: React.ReactNode
+}
+const LabelRow: React.FC<Props> = ({ children, className }) => {
   return (
     <>
-      <label className="space-y-2">{children}</label>
+      <label className={`space-y-2 ` + className}>{children}</label>
     </>
   )
 }

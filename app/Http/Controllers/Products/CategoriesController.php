@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductCategory\ProductCategoryRequest;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CategoriesController extends Controller
 {
@@ -12,7 +15,23 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return inertia('Products/Categories/Index');
+
+        // sorting fields and direction
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
+
+        $categories = ProductCategory::query()
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+        return inertia('Products/Categories/Index', [
+            'categories' => $categories,
+            'successMessage' => session('success'),
+            'queryParams' => request()->query(),
+        ]);
     }
 
     /**
@@ -26,9 +45,21 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductCategoryRequest $request)
     {
-        //
+        $category = new ProductCategory();
+        $category->name = $request->input('name');
+        $category->short_code = $request->input('short_code');
+
+        if ($request->input('parent_id')) {
+            $category->parent_id = $request->parent_id;
+        } else {
+            $category->parent_id = $category->id;
+        }
+
+        $category->save();
+
+        return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
 
     /**
@@ -44,15 +75,20 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = ProductCategory::findorfail($id);
+
+        return inertia('Compoents/Categories/Edit', []);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductCategoryRequest $request, string $id)
     {
-        //
+        ProductCategory::findorfail($id)->update($request->all());
+
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
     /**
@@ -60,6 +96,8 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ProductCategory::findorfail($id)->delete();
+
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
     }
 }

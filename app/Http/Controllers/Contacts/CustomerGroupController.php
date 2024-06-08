@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Contacts;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerGroupRequest;
+use App\Models\CustomerGroup;
 use Illuminate\Http\Request;
 
 class CustomerGroupController extends Controller
@@ -12,7 +14,23 @@ class CustomerGroupController extends Controller
      */
     public function index()
     {
-        return inertia('Contacts/CustomerGroups/Index');
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
+
+        $groups = CustomerGroup::query()
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+
+        return inertia('Contacts/CustomerGroups/Index', [
+            'groups' => $groups,
+            'successMessage' => session('success'),
+            'queryParams' => request()->query(),
+
+        ]);
     }
 
     /**
@@ -26,9 +44,16 @@ class CustomerGroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CustomerGroupRequest $request)
     {
-        //
+
+        $auth = auth()->user();
+        $group = new CustomerGroup($request->validated());
+        $group->created_by = $auth->id;
+        $group->business_id = $auth->business_id;
+        $group->save();
+
+        return back()->with('success', 'Customer Group created successfully');
     }
 
     /**
@@ -50,9 +75,12 @@ class CustomerGroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CustomerGroupRequest $request, string $id)
     {
-        //
+
+        CustomerGroup::findorFail($id)->update($request->validated());
+
+        return back()->with('success', 'Customer Group updated successfully');
     }
 
     /**
@@ -60,6 +88,9 @@ class CustomerGroupController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $group = CustomerGroup::findorFail($id);
+        $group->delete();
+        return back()->with('success', 'Customer Group deleted successfully');
     }
 }

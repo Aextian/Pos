@@ -1,4 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
 import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
 import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
 import TextInput from '@/Components/Shared/ui/TextInput'
@@ -11,7 +10,7 @@ import ContentTitle from '@/Components/Shared/ui/ContentTitle'
 import LabelRow from '@/Components/Shared/ui/LabelRow'
 import SpanLabel from '@/Components/Shared/ui/SpanLabel'
 import TextArea from '@/Components/Shared/ui/TextArea'
-import CardContent from '@/Components/CardContent'
+import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
 
 const Create = () => {
   const [image, setImage] = useState<string | null>(null)
@@ -154,7 +153,7 @@ const Create = () => {
           <div className="md:col-span-2">
             <LabelRow>
               <SpanLabel>Product Description:*</SpanLabel>
-              <TextArea className="w-full rounded" rows={5}></TextArea>
+              <TextArea className="w-full rounded"></TextArea>
             </LabelRow>
           </div>
           <LabelRow>
@@ -165,7 +164,12 @@ const Create = () => {
                 {fileSize && <span className="dark:text-white text-[10px]">{formatBytes(fileSize)} MB</span>}
               </div>
             )}
-            <TextInput className="border p-1 rounded-none w-full" type="file" accept="image/*" onChange={handleImageChange} />
+            <TextInput
+              className="border p-1 rounded-none w-full"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
             <h6 className="text-[10px] dark:text-white">Max File:1MB</h6>
             <h6 className="text-[10px] dark:text-white">Aspect ratio should be 1:1</h6>
           </LabelRow>
@@ -173,7 +177,7 @@ const Create = () => {
       </CardBorderTop>
 
       <CardBorderTop>
-        <CardContent>
+        <CardBorderTop.Content>
           <div className="grid grid-flow-row-dense md:grid-cols-3 gap-3">
             <LabelRow>
               <SpanLabel>Applicable Tax::</SpanLabel>
@@ -203,7 +207,9 @@ const Create = () => {
             <LabelRow>
               <div className="flex items-center gap-3">
                 <SpanLabel> Product Type:* :</SpanLabel>
-                <Tooltip title="Default profit margin for the product" content="(You can manage default profit margin in Business Settings.)">
+                <Tooltip
+                  title="Default profit margin for the product"
+                  content="(You can manage default profit margin in Business Settings.)">
                   <FaExclamationCircle size={15} />
                 </Tooltip>
               </div>
@@ -228,7 +234,9 @@ const Create = () => {
                   </th>
                   <th scope="col" className="py-3 flex items-center gap-3 md:px-2">
                     <span>x Margin(%)</span>
-                    <Tooltip title="Default profit margin for the product" content="(You can manage default profit margin in Business Settings.)">
+                    <Tooltip
+                      title="Default profit margin for the product"
+                      content="(You can manage default profit margin in Business Settings.)">
                       <FaExclamationCircle size={15} />
                     </Tooltip>
                   </th>
@@ -269,7 +277,7 @@ const Create = () => {
               </tbody>
             </table>
           </div>
-        </CardContent>
+        </CardBorderTop.Content>
       </CardBorderTop>
 
       <div className="flex items-center justify-center gap-2 ">

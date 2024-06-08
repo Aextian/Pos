@@ -45,6 +45,7 @@ class SupplierController extends Controller
      */
     public function store(SupplierStoreRequest $request)
     {
+
         Supplier::create($request->all());
 
         return redirect()->route('supplier.index')->with('success', 'Supplier created successfully');
@@ -75,7 +76,7 @@ class SupplierController extends Controller
      */
     public function update(SupplierStoreRequest $request, string $id)
     {
-        Supplier::findorfail($id)->update($request->validated());
+        Supplier::findorfail($id)->update($request->all());
 
         return redirect()->route('supplier.index')->with('success', 'Supplier updated successfully');
     }

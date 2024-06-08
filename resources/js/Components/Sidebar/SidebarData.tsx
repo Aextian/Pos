@@ -32,7 +32,13 @@ import {
   FaExclamationTriangle,
 } from 'react-icons/fa'
 import { IoIosSettings } from 'react-icons/io'
-import { FaArrowRotateLeft, FaArrowsLeftRightToLine, FaBoltLightning, FaBusinessTime, FaLocationPin } from 'react-icons/fa6'
+import {
+  FaArrowRotateLeft,
+  FaArrowsLeftRightToLine,
+  FaBoltLightning,
+  FaBusinessTime,
+  FaLocationPin,
+} from 'react-icons/fa6'
 import { MdContactPhone } from 'react-icons/md'
 import { MdOutlineSell, MdOutlineDiscount } from 'react-icons/md'
 import { IoAddCircleSharp } from 'react-icons/io5'
@@ -91,7 +97,7 @@ const sidebarData: SidebarItemProps[] = [
       {
         title: 'Sales Commission Agents',
         icon: <FaMoneyCheckAlt />,
-        url: '/agents',
+        url: '/sales-commission-agents',
       },
     ],
   },
@@ -116,7 +122,7 @@ const sidebarData: SidebarItemProps[] = [
       {
         title: 'Customer Groups',
         icon: <FaMoneyCheckAlt />,
-        url: '/contacts/group',
+        url: '/contacts/customer-group',
       },
 
       {

@@ -1,77 +1,129 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
+import CreateGroup from '@/Components/CustomerGroup/CreateGroup'
+import EditGroup from '@/Components/CustomerGroup/EditGroup'
+import Success from '@/Components/Shared/ui/Alert/Success'
+import DangerButton from '@/Components/Shared/ui/Button/DangerButton'
+import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
+import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
+import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
 import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
+import Pagination from '@/Components/Shared/ui/Table/Pagination'
+import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
 import Table from '@/Components/Shared/ui/Table/Table'
+import TableBody from '@/Components/Shared/ui/Table/TableBody'
 import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
+import useSort from '@/Hooks/useSort'
 import MainLayout from '@/Layouts/MainLayout'
-import { Link } from '@inertiajs/react'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa'
 
-const Index = () => {
-  const Thead = ['Contact ID', 'Business name', 'name', 'contact', 'Total Purchase due', 'action']
+interface Group {
+  id: number
+  name: string
+  amount: string
+}
+
+type Props = {
+  groups: { data: Group[]; links: []; sort_field: string; sort_direction: string }
+  successMessage: string
+  queryParams: { sort_field: string; sort_direction: 'asc' | 'desc'; search: string }
+}
+
+const Index: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
+  const Thead = [
+    { name: 'Name', sort_field: 'name' }, // Assuming no sort field for this column
+    { name: 'Amount', sort_field: 'amount' },
+    { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
+  ]
+
+  const [isCreatemodal, setCreateModal] = useState<boolean>(false)
+  const [isEditModal, setEditModal] = useState<boolean>(false)
+  const [isDelete, setDelete] = useState<number | null>(0)
+
+  const [isEdit, setEdit] = useState<Group>({
+    id: 0,
+    name: '',
+    amount: '',
+  })
+
+  const handleShowCreateModal = useCallback(() => {
+    setCreateModal((prevState) => !isCreatemodal)
+  }, [isCreatemodal])
+
+  const handleShowEditModal = useCallback(
+    (data: Group) => {
+      setEditModal((prevState) => !isEditModal)
+      setEdit(data)
+    },
+    [isEditModal],
+  )
+
+  // function for sorting
+  const url = 'customer-group.index'
+  const sortChanged = useSort(queryParams, url)
+
   return (
     <MainLayout>
+      {/* modal */}
+      <CreateGroup showModal={isCreatemodal} handleShowModal={handleShowCreateModal} />
+      <EditGroup showModal={isEditModal} group={isEdit} handleShowModal={handleShowEditModal} />
+      <DeleteModal
+        setDelete={setDelete}
+        isDelete={isDelete}
+        url="customer-group.destroy"
+        onCloseRoute="customer-group.index"
+      />
+      <Success message={successMessage} />
+
       <ContentTitle>Customer Groups</ContentTitle>
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>All Customer Group</CardTitle>
-          <Link
-            href={route('supplier.create')}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>All Customer Group</CardBorderTop.Title>
+          <SecondaryButton className="gap-3" onClick={handleShowCreateModal}>
             <FaPlus /> Add
-          </Link>
-        </CardHeader>
-        <div className="flex justify-end">
-          <div className="relative">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
-                <FaSearch size={20} />
-              </div>
-            </div>
-            <TextInput className="rounded-lg px-5 py-1 bg-slate-200 ps-10 " type="search" name="" id="" />
-          </div>
-        </div>
-
-        <div className=" overflow-x-auto shadow-md sm:rounded-lg">
+          </SecondaryButton>
+        </CardBorderTop.Header>
+        <SearchBar queryParams={queryParams} url={url} />
+        <CardBorderTop.Content>
           <Table>
             <TableHead>
-              <tr>
+              <TableHead.Row>
                 {Thead.map((item, index) => (
-                  <th scope="col" className="px-6 py-3" key={index}>
-                    {item}
-                  </th>
+                  <TableHeading
+                    sort_field={queryParams.sort_field || ''}
+                    sortChanged={sortChanged}
+                    key={index}
+                    sort_direction={queryParams.sort_direction}
+                    name={item.sort_field}>
+                    {item.name}
+                  </TableHeading>
                 ))}
-              </tr>
+              </TableHead.Row>
             </TableHead>
-            <tbody>
-              <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
-                <td className="px-6 py-4 text-right"></td>
-                <td className="px-6 py-4 text-right"></td>
-                <td className="px-6 py-4 text-right"></td>
-                <td className="px-6 py-4 text-right"></td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex gap-2 text-xs">
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Edit</button>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Delete</button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <TableBody>
+              {groups.data.map((item) => (
+                <TableBody.Row key={item.id}>
+                  <td className="px-6 py-3">{item.name}</td>
+                  <td className="px-6 py-3">{item.amount}</td>
+                  <td className="px-6 py-3 space-x-3 whitespace-nowrap">
+                    <PrimaryButton onClick={() => handleShowEditModal(item)}>Edit</PrimaryButton>
+                    <DangerButton onClick={() => setDelete(item.id)}>Delete</DangerButton>
+                  </td>
+                </TableBody.Row>
+              ))}
+            </TableBody>
             <tfoot>
               <tr className="bg-gray-100 text-black">
-                <td colSpan={4} className="px-6 py-4 text-right font-bold">
+                <td colSpan={2} className="px-6 py-4 text-right font-bold">
                   Total
                 </td>
                 <td className="px-6 py-4 text-right font-bold">00</td>
-                <td></td>
               </tr>
             </tfoot>
           </Table>
-        </div>
+          <Pagination links={groups.links} />
+        </CardBorderTop.Content>
       </CardBorderTop>
     </MainLayout>
   )

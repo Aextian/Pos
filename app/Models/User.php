@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -13,6 +15,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+
+    protected $appends = ['full_name'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,28 +26,30 @@ class User extends Authenticatable
     public function scopeSearch($query, $search)
     {
         if ($search) {
-            return $query->when(function ($query) use ($search) {
-                $query->where('username', 'like', '%' . $search . '%')
-                    ->orWhere('email', 'like', '%' . $search . '%')
-                    ->orWhere('first_name', 'like', '%' . $search . '%')
-                    ->orWhere('last_name', 'like', '%' . $search . '%');
-            });
+            $query->whereAny(
+                [
+                    'username', 'email', 'first_name', 'last_name'
+                ],
+                'LIKE',
+                "%$search%"
+            );
         }
 
         return $query;
     }
-
-    protected $appends = ['full_name'];
-
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function contacts(): BelongsToMany
+    {
+        return $this->belongsToMany(Supplier::class, 'user_contact_access', 'user_id', 'contact_id');
+    }
 
 
     protected $fillable = [
-        'surname',
+        'prefix',
         'first_name',
         'last_name',
         'username',
@@ -53,6 +60,7 @@ class User extends Authenticatable
         'is_cmmsn_agnt',
         'cmmsn_percent',
         'selected_contacts',
+        'business_id',
         'is_active',
         'language',
         'password',

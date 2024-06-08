@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Users\StoreUserRequest;
 use App\Http\Requests\Users\UserRequest;
+use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserManagementController extends Controller
@@ -22,6 +23,8 @@ class UserManagementController extends Controller
         $search = request('search');
 
         $users = User::query()
+            ->where('is_cmmsn_agnt', 0)
+            ->where('business_id', auth()->user()->business_id)
             ->search($search)
             ->orderBy($sortFields, $sortDirection)
             ->paginate(10)
@@ -43,6 +46,8 @@ class UserManagementController extends Controller
     {
         return inertia('Users/Create', [
             'roles' => Role::orderby('id', 'asc')->get(),
+            'contacts' =>  Supplier::get(),
+
         ]);
     }
 
@@ -53,9 +58,28 @@ class UserManagementController extends Controller
 
     public function store(UserRequest $request)
     {
-        $user =  User::create($request->validated());
+
+
+        $auth = auth()->user();
+
+        $contacts = collect($request->contacts)->pluck('id')->toArray() ?? [];
+        $is_selected = json_encode($contacts) !== '[]' ? true : false;
+
+        $user = User::create(
+            [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'username' => $request->input('username'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'status' => $request->input('status') ?? 'inactive',
+                'selected_contacts' => $is_selected,
+                'business_id' => $auth->business_id,
+            ]
+        );
 
         $user->assignRole($request->input('roles'));
+        $user->contacts()->attach($contacts);
 
         return redirect()->route('users.index')
             ->with('success', 'User created successfully');
@@ -75,8 +99,10 @@ class UserManagementController extends Controller
     public function edit(User $user)
     {
 
+
         return inertia('Users/Edit', [
-            'user' => $user->load('roles'),
+            'user' => $user->load('roles', 'contacts'),
+            'contacts' => Supplier::get(),
             'roles' => Role::orderby('id', 'asc')->get(),
         ]);
     }
@@ -88,11 +114,26 @@ class UserManagementController extends Controller
 
     public function update(UserRequest $request, string $id)
     {
+        $auth = auth()->user();
         $user = User::findorfail($id);
+        $contacts = collect($request->input('contacts'))->pluck('id')->toArray() ?? [];
+        $is_selected = json_encode($contacts) !== '[]' ? true : false;
 
-        $user->Update($request->validated());
+        $user->Update(
+            [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'username' => $request->input('username'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+                'status' => $request->input('status'),
+                'selected_contacts' => $is_selected,
+                'business_id' => $auth->business_id,
+            ]
+        );
 
-        $user->assignRole($request->input('roles'));
+        $user->syncRoles($request->input('roles'));
+        $user->contacts()->sync($contacts);
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully');
@@ -103,7 +144,8 @@ class UserManagementController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        $user->contacts()->detach();
 
-        return back()->with('success', 'User deleted successfully');
+        return back();
     }
 }

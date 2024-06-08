@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Agents\AgentController;
 use App\Http\Controllers\Business\LocationController;
 use App\Http\Controllers\Contacts\ContactController;
 use App\Http\Controllers\Contacts\SupplierController;
@@ -29,6 +28,7 @@ use App\Http\Controllers\Reports\ProfitController;
 use App\Http\Controllers\Reports\ReadingController;
 use App\Http\Controllers\Reports\ReportController;
 use App\Http\Controllers\Roles\RolesController;
+use App\Http\Controllers\SaleCommission\SaleCommissionController;
 use App\Http\Controllers\Settings\BarcodeController;
 use App\Http\Controllers\Settings\BusinessSettingController;
 use App\Http\Controllers\Settings\InvoiceController;
@@ -53,6 +53,7 @@ use Inertia\Inertia;
 |
 */
 
+
 Route::get('stock-alert', [StockController::class, 'stock_alert'])->name('stock.alert');
 
 Route::middleware('auth')->group(function () {
@@ -62,6 +63,21 @@ Route::middleware('auth')->group(function () {
     Route::resource('/', DashboardController::class);
     Route::resource('/roles', RolesController::class);
     Route::resource('users', UserManagementController::class);
+
+    Route::prefix('products')->group(function () {
+        Route::get('label', [PrintController::class, 'label']);
+        Route::resource('price-group', ProductPriceGroupController::class);
+        Route::resource('product', ProductController::class);
+        Route::resource('categories', CategoriesController::class);
+        Route::resource('variation-template', VariationTemplateController::class);
+        Route::resource('unit', UnitController::class);
+        Route::resource('brand', BrandController::class);
+        Route::resource('discount-categories', ProductCategoriesDiscountController::class);
+        Route::resource('request-stock', ProductRequestStockController::class);
+        Route::get('stock-requested', [ProductRequestStockController::class, 'stock_requested']);
+    });
+
+    Route::resource('sales-commission-agents', SaleCommissionController::class);
 });
 
 // purchases
@@ -100,10 +116,10 @@ Route::prefix('expense')->group(function () {
 });
 
 Route::prefix('contacts')->group(function () {
-    Route::resource('contact', ContactController::class);
+    Route::resource('contacts', ContactController::class);
     Route::resource('supplier', SupplierController::class);
     Route::resource('customer', CustomerController::class);
-    Route::resource('group', CustomerGroupController::class);
+    Route::resource('customer-group', CustomerGroupController::class);
 });
 
 Route::prefix('import')->group(function () {
@@ -112,19 +128,7 @@ Route::prefix('import')->group(function () {
     Route::get('/contact', [ContactController::class, 'import_contact']);
 });
 
-Route::prefix('products')->group(function () {
-    Route::get('label', [PrintController::class, 'label']);
-    Route::resource('price-group', ProductPriceGroupController::class);
 
-    Route::resource('product', ProductController::class);
-    Route::resource('categories', CategoriesController::class);
-    Route::resource('variation-template', VariationTemplateController::class);
-    Route::resource('unit', UnitController::class);
-    Route::resource('brand', BrandController::class);
-    Route::resource('discount-categories', ProductCategoriesDiscountController::class);
-    Route::resource('request-stock', ProductRequestStockController::class);
-    Route::get('stock-requested', [ProductRequestStockController::class, 'stock_requested']);
-});
 
 Route::prefix('reports')->group(function () {
     Route::get('x-reading', [ReadingController::class, 'x_reading']);
@@ -132,7 +136,7 @@ Route::prefix('reports')->group(function () {
     Route::get('profit-loss', [ProfitController::class, 'profit_loss']);
     Route::get('purchase-sell', [ReportController::class, 'purchase_sell']);
     Route::get('purchase-report', [ReportController::class, 'purchase_report']);
-    Route::get('customer-group', [ReportController::class, 'group_report']);
+    Route::get('customer-group-report', [ReportController::class, 'group_report']);
     Route::get('tax-report', [ReportController::class, 'tax_report']);
     Route::get('stock-report', [ReportController::class, 'stock_report']);
 

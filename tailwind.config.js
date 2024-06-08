@@ -17,6 +17,10 @@ export default {
       fontFamily: {
         sans: ['Helvetica', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'custom-gradient':
+          'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,108,0.37298669467787116) 51%, rgba(0,212,255,1) 100%)',
+      },
     },
   },
 

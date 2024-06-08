@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Supplier;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SupplierStoreRequest extends FormRequest
 {
@@ -21,11 +22,24 @@ class SupplierStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $contactID = $this->route('supplier');
+
         return [
             'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('contacts')->ignore($contactID)],
+            'mobile' => ['required'],
+            'pay_term_number' => ['numeric'],
+            'status' => ['string', Rule::in(['true', 'false'])],
             'supplier_business_name' => ['required', 'string', 'max:255'],
             'type' => ['required']
 
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'mobile' => __('mobile number'),
         ];
     }
 }

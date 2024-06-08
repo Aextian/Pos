@@ -10,15 +10,17 @@ interface ButtonProps {
 const Sidebar: React.FC<ButtonProps> = ({ handleClick, isOpen }) => {
   return (
     <div
-      className={`z-10 h-screen w-48 md:w-64 top-0 bg-white dark:text-white dark:bg-slate-700 fixed shadow-lg scrollbar-thin overflow-auto transition-all duration-700 ease-in-out ${
+      className={`z-10 h-screen w-48 md:w-64 top-[58px] bg-white dark:text-white dark:bg-slate-700 fixed shadow-lg scrollbar-thin overflow-auto transition-all duration-700 ease-in-out  ${
         isOpen ? 'left-[0] ' : 'left-[-280px]'
       }`}>
-      <div className="p-5 flex justify-between border-b-2">
+      {/* sidebar title */}
+      <div className="p-4 flex justify-between border-b-2">
         <h2>Logo</h2>
-        <button onClick={handleClick}>
+        {/* <button onClick={handleClick}>
           <FaWindowClose size={24} />
-        </button>
+        </button> */}
       </div>
+      {/* sidebar item */}
       <div className="mt-5">
         <ul className="flex flex-col gap-3 items-start justify-start  ">
           {sidebarData.map((item, index) => (

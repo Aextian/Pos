@@ -13,6 +13,7 @@ import MainLayout from '@/Layouts/MainLayout'
 import { Link, router } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { FaPlus } from 'react-icons/fa'
+import TableBody from '@/Components/Shared/ui/Table/TableBody'
 
 interface Supplier {
   id: number
@@ -35,17 +36,6 @@ type Props = {
     search: string
   }
   successMessage: string
-}
-
-let debounceTimer: NodeJS.Timeout
-
-const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  // Clear the previous timer if it exists
-  clearTimeout(debounceTimer)
-
-  debounceTimer = setTimeout(() => {
-    router.get(route('supplier.index'), { search: e.target.value })
-  }, 800) // Adjust the delay as needed
 }
 
 const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
@@ -74,12 +64,19 @@ const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
   const sortChanged = useSort(queryParams, url)
   return (
     <MainLayout>
-      <DeleteModal isDelete={isDelete} handleDelete={handleDelete} handleShowDelete={handleShowDelete} onCloseRoute="supplier.index" />
+      <Success message={successMessage} />
+      <DeleteModal
+        isDelete={isDelete}
+        setDelete={setDelete}
+        url="supplier.destroy"
+        onCloseRoute="supplier.index"
+      />
+
       <ContentTitle>
         Suppliers <span className="text-xs text-gray-300">Manage your suppliers</span>
       </ContentTitle>
+
       <CardBorderTop>
-        {successMessage && <Success message={successMessage} />}
         <CardBorderTop.Header>
           <CardBorderTop.Title>All your Suppliers</CardBorderTop.Title>
           <Link
@@ -88,23 +85,30 @@ const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
             <FaPlus /> Add
           </Link>
         </CardBorderTop.Header>
-        <SearchBar queryParams={queryParams} handleSearchChange={handleSearchChange} />
+
+        <SearchBar queryParams={queryParams} url="supplier.index" />
+
         <CardBorderTop.Content>
           <Table>
             <TableHead>
-              <tr>
+              <TableHead.Row>
                 {Thead.map((item, index) => (
-                  <TableHeading sort_field={queryParams.sort_field || ''} sortChanged={sortChanged} key={index} sort_direction={queryParams.sort_direction} name={item.sort_field}>
+                  <TableHeading
+                    sort_field={queryParams.sort_field || ''}
+                    sortChanged={sortChanged}
+                    key={index}
+                    sort_direction={queryParams.sort_direction}
+                    name={item.sort_field}>
                     {item.name}
                   </TableHeading>
                 ))}
-              </tr>
+              </TableHead.Row>
             </TableHead>
-            <tbody>
+            <TableBody>
               {suppliers.data.map((supplier, index) => (
                 <TableRow key={index} supplier={supplier} handleShowDelete={handleShowDelete} />
               ))}
-            </tbody>
+            </TableBody>
           </Table>
         </CardBorderTop.Content>
         <Pagination links={suppliers.links} />

@@ -1,3 +1,4 @@
+import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
 import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
 import ContentTitle from '@/Components/Shared/ui/ContentTitle'
 import InputError from '@/Components/Shared/ui/InputError'
@@ -5,22 +6,17 @@ import LabelRow from '@/Components/Shared/ui/LabelRow'
 import SpanLabel from '@/Components/Shared/ui/SpanLabel'
 import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
-import { router } from '@inertiajs/react'
+import { router, useForm } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { FaPersonArrowUpFromLine, FaUser } from 'react-icons/fa6'
 
-interface Error {
-  name: string
-  supplier_business_name: string
-  type: string
-}
 interface Supplier {
   id: number
   name: string
   email: string
   supplier_business_name: string
   contact_id: string
-  points_status: string
+  points_status: boolean
   type: string
   tax_number: string
   city: string
@@ -41,17 +37,16 @@ interface Supplier {
 
 type Props = {
   supplier: Supplier
-  errors: Error
 }
 
-const Edit: React.FC<Props> = ({ supplier, errors }) => {
-  const [values, setValues] = useState({
+const Edit: React.FC<Props> = ({ supplier }) => {
+  const { reset, setData, put, processing, errors, data } = useForm({
     name: supplier.name,
     email: supplier.email,
     supplier_business_name: supplier.supplier_business_name,
     contact_id: supplier.contact_id,
     contact_type: supplier.type,
-    points_status: supplier.points_status,
+    points_status: Number(supplier.points_status) == 1 ? true : false,
     type: supplier.type,
     tax_number: supplier.tax_number,
     city: supplier.city,
@@ -70,12 +65,12 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
     custom_field4: supplier.custom_field4,
   })
 
-  console.log('values', values)
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setValues((prevValues) => ({
+    const { name, value, type } = e.target
+
+    setData((prevValues) => ({
       ...prevValues,
-      [e.target.name]: e.target.value,
+      [name]: type === 'checkbox' ? ((e.target as HTMLInputElement).checked ? true : false) : value,
     }))
   }
 
@@ -83,11 +78,19 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
     e.preventDefault()
     try {
       const url = route('supplier.update', supplier.id)
-      const response = router.put(url, values)
+      const response = put(url, {
+        preserveState: true,
+        preserveScroll: true,
+        onSuccess: () => {
+          reset()
+        },
+      })
     } catch (error) {
       console.error('Error:', error)
     }
   }
+
+  console.log(data)
 
   return (
     <MainLayout>
@@ -97,7 +100,7 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
 
       <CardBorderTop>
         <CardBorderTop.Header>
-          <CardBorderTop.Title>Add new contact</CardBorderTop.Title>
+          <CardBorderTop.Title>Edit contact</CardBorderTop.Title>
         </CardBorderTop.Header>
         <CardBorderTop.Content>
           <form onSubmit={handleSubmit} className="space-y-3">
@@ -114,7 +117,7 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                     onChange={handleChange}
                     name="type"
                     className="ps-10 w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-                    value={values.contact_type}>
+                    value={data.contact_type}>
                     <option value="">Please Select</option>
                     <option value="supplier">Suppliers</option>
                     <option value="customer">Customers</option>
@@ -132,7 +135,12 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaUser size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.name} name="name" className=" ps-10 w-full p-2 text-xs" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.name}
+                    name="name"
+                    className=" ps-10 w-full p-2 text-xs"
+                  />
                 </div>
                 <InputError message={errors.name} className="mt-2" />
               </LabelRow>
@@ -147,7 +155,12 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.supplier_business_name} name="supplier_business_name" className="ps-10 w-full text-xs" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.supplier_business_name}
+                    name="supplier_business_name"
+                    className="ps-10 w-full text-xs"
+                  />
                 </div>
                 <InputError message={errors.supplier_business_name} className="mt-2" />
               </LabelRow>
@@ -160,8 +173,14 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.contact_id} name="contact_id" className="ps-10 w-full text-xs" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.contact_id}
+                    name="contact_id"
+                    className="ps-10 w-full text-xs"
+                  />
                 </div>
+                <InputError message={errors.contact_id} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -172,8 +191,14 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.tax_number} name="tax_number" className="ps-10 w-full text-xs" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.tax_number}
+                    name="tax_number"
+                    className="ps-10 w-full text-xs"
+                  />
                 </div>
+                <InputError message={errors.tax_number} className="mt-2" />
               </LabelRow>
             </div>
 
@@ -186,29 +211,50 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.opening_balance} name="opening_balance" className="ps-10 w-full text-xs" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.opening_balance}
+                    name="opening_balance"
+                    className="ps-10 w-full text-xs"
+                  />
                 </div>
+                <InputError message={errors.opening_balance} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Pay term:</SpanLabel>
                 <div className="flex">
-                  <TextInput onChange={handleChange} value={values.pay_term_number} name="pay_term_number" className="w-full text-xs rounded-none" placeholder="Pay term" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.pay_term_number}
+                    name="pay_term_number"
+                    className="w-full text-xs rounded-none"
+                    placeholder="Pay term"
+                  />
                   <select
+                    onChange={handleChange}
                     name="pay_term_type"
                     className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-xs focus:ring-blue-500 focus:border-blue-500  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    value={values.pay_term_type}>
+                    value={data.pay_term_type}>
                     <option value="">Please Select</option>
                     <option value="days">Days</option>
                     <option value="months">Months</option>
                   </select>
                 </div>
+                <InputError message={errors.pay_term_type} className="mt-2" />
               </LabelRow>
 
               <label className="inline-flex items-center gap-3 ">
-                <TextInput onChange={handleChange} value={values.points_status} className="mt-2 rounded" type="checkbox" name="points_status" />
+                <TextInput
+                  onChange={handleChange}
+                  className="mt-2 rounded"
+                  type="checkbox"
+                  name="points_status"
+                  checked={data.points_status}
+                />
                 <span className="dark:text-white">Allow gain points</span>
               </label>
+              <InputError message={errors.points_status} className="mt-2" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -220,8 +266,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.email} name="email" className="ps-10 w-full text-xs" placeholder="Email" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.email}
+                    name="email"
+                    className="ps-10 w-full text-xs"
+                    placeholder="Email"
+                  />
                 </div>
+                <InputError message={errors.email} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -232,8 +285,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.mobile} name="mobile" className="ps-10 w-full text-xs" placeholder="Mobile" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.mobile}
+                    name="mobile"
+                    className="ps-10 w-full text-xs"
+                    placeholder="Mobile"
+                  />
                 </div>
+                <InputError message={errors.mobile} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -244,8 +304,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.alternate_number} name="alternate_number" className="ps-10 w-full text-xs" placeholder="Alternate contact number" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.alternate_number}
+                    name="alternate_number"
+                    className="ps-10 w-full text-xs"
+                    placeholder="Alternate contact number"
+                  />
                 </div>
+                <InputError message={errors.alternate_number} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -256,8 +323,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.landline} name="landline" className="ps-10 w-full text-xs" placeholder="Landline" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.landline}
+                    name="landline"
+                    className="ps-10 w-full text-xs"
+                    placeholder="Landline"
+                  />
                 </div>
+                <InputError message={errors.landline} className="mt-2" />
               </LabelRow>
             </div>
 
@@ -270,8 +344,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.city} name="city" className="ps-10 w-full text-xs" placeholder="City" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.city}
+                    name="city"
+                    className="ps-10 w-full text-xs"
+                    placeholder="City"
+                  />
                 </div>
+                <InputError message={errors.city} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -282,8 +363,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.state} name="state" className="ps-10 w-full text-xs" placeholder="State" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.state}
+                    name="state"
+                    className="ps-10 w-full text-xs"
+                    placeholder="State"
+                  />
                 </div>
+                <InputError message={errors.state} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -294,8 +382,15 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.country} name="country" className="ps-10 w-full text-xs" placeholder="Country" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.country}
+                    name="country"
+                    className="ps-10 w-full text-xs"
+                    placeholder="Country"
+                  />
                 </div>
+                <InputError message={errors.country} className="mt-2" />
               </LabelRow>
 
               <LabelRow>
@@ -306,45 +401,76 @@ const Edit: React.FC<Props> = ({ supplier, errors }) => {
                       <FaPersonArrowUpFromLine size={20} />
                     </div>
                   </div>
-                  <TextInput onChange={handleChange} value={values.landmark} name="landmark" className="ps-10 w-full text-xs" placeholder="Landmark" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.landmark}
+                    name="landmark"
+                    className="ps-10 w-full text-xs"
+                    placeholder="Landmark"
+                  />
                 </div>
+                <InputError message={errors.landmark} className="mt-2" />
               </LabelRow>
 
-              <hr className="col-span-2 my-5" />
+              <hr className="md:col-span-4 my-5" />
 
               <LabelRow>
                 <SpanLabel>Custom Field 1:</SpanLabel>
                 <div className="relative">
-                  <TextInput onChange={handleChange} value={values.custom_field1} name="custom_field1" className=" w-full text-xs" placeholder="Custom Field 1" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.custom_field1}
+                    name="custom_field1"
+                    className=" w-full text-xs"
+                    placeholder="Custom Field 1"
+                  />
                 </div>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Custom Field 2:</SpanLabel>
                 <div className="relative">
-                  <TextInput onChange={handleChange} value={values.custom_field2} name="custom_field2" className=" w-full text-xs" placeholder="Custom Field 2" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.custom_field2}
+                    name="custom_field2"
+                    className=" w-full text-xs"
+                    placeholder="Custom Field 2"
+                  />
                 </div>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Custom Field 3:</SpanLabel>
                 <div className="relative">
-                  <TextInput onChange={handleChange} value={values.custom_field3} name="custom_field3" className=" w-full text-xs" placeholder="Custom Field 1" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.custom_field3}
+                    name="custom_field3"
+                    className=" w-full text-xs"
+                    placeholder="Custom Field 3"
+                  />
                 </div>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Custom Field 4:</SpanLabel>
                 <div className="relative">
-                  <TextInput onChange={handleChange} name="custom_field4" className=" w-full text-xs" placeholder="Custom Field 1" />
+                  <TextInput
+                    onChange={handleChange}
+                    value={data.custom_field4}
+                    name="custom_field4"
+                    className=" w-full text-xs"
+                    placeholder="Custom Field 4"
+                  />
                 </div>
               </LabelRow>
             </div>
 
-            <div className="flex justify-content-end flex-col mt-5">
-              <button className="rounded-lg px-5 text-lg bg-cyan-600 text-white" type="submit">
-                Submit
-              </button>
+            <div className="flex justify-end">
+              <PrimaryButton type="submit" className=" md:px-10" disabled={processing}>
+                {processing ? 'Updating...' : 'Update'}
+              </PrimaryButton>
             </div>
           </form>
         </CardBorderTop.Content>

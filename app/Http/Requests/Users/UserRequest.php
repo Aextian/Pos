@@ -22,8 +22,9 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = $this->route('user');
 
+
+        $userId = $this->route('user');
 
         $rules = [
             'first_name' => ['required', 'string', 'max:255'],
@@ -31,6 +32,8 @@ class UserRequest extends FormRequest
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255',  Rule::unique('users')->ignore($userId)],
             'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($userId)],
             'roles' => ['required'],
+            'cmmsn_percent' => ['numeric', 'min:0', 'max:99.99'],
+
         ];
 
         // Add password validation only for create requests
@@ -44,7 +47,14 @@ class UserRequest extends FormRequest
         }
 
 
-
         return $rules;
+    }
+
+    public function attributes()
+    {
+
+        return [
+            'cmmsn_percent' => 'commission percent',
+        ];
     }
 }

@@ -1,10 +1,9 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
+import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
 import ContentTitle from '@/Components/Shared/ui/ContentTitle'
 import LabelRow from '@/Components/Shared/ui/LabelRow'
 import SpanLabel from '@/Components/Shared/ui/SpanLabel'
 import Table from '@/Components/Shared/ui/Table/Table'
+import TableBody from '@/Components/Shared/ui/Table/TableBody'
 import TableHead from '@/Components/Shared/ui/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
@@ -37,14 +36,14 @@ const Index = () => {
   return (
     <MainLayout>
       <ContentTitle>
-        Products <span className="text-xs text-gray-300">Manage your products</span>
+        Products <span className="text-xs text-slate-300">Manage your products</span>
       </ContentTitle>
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           <LabelRow>
             <SpanLabel>Product Type:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
               name="type">
               <option value="" selected>
                 Please Select
@@ -53,10 +52,11 @@ const Index = () => {
               <option value="">Variable</option>
             </select>
           </LabelRow>
+
           <LabelRow>
             <SpanLabel>Category:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
               name="type">
               <option value="" selected>
                 Please Select
@@ -65,10 +65,11 @@ const Index = () => {
               <option value="">Variable</option>
             </select>
           </LabelRow>
+
           <LabelRow>
             <SpanLabel>Unit:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
               name="type">
               <option value="" selected>
                 Please Select
@@ -80,7 +81,7 @@ const Index = () => {
           <LabelRow>
             <SpanLabel>Tax:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
               name="type">
               <option value="" selected>
                 Please Select
@@ -92,7 +93,7 @@ const Index = () => {
           <LabelRow>
             <SpanLabel>Brand:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
               name="type">
               <option value="" selected>
                 Please Select
@@ -105,19 +106,19 @@ const Index = () => {
       </CardBorderTop>
       <CardBorderTop>
         {/* <span>{successMessage ? successMessage : ''}</span> */}
-        <CardHeader>
-          <CardTitle>All Products</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>All Products</CardBorderTop.Title>
           <Link
             href={route('users.create')}
             className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-3">
             <FaPlus /> Add
           </Link>
-        </CardHeader>
+        </CardBorderTop.Header>
 
         <Table>
           <TableHead>
             <tr>
-              <th>
+              <th className="pl-4">
                 <input className="rounded" type="checkbox" name="" id="" />
               </th>
               {Thead.map((item, index) => (
@@ -127,13 +128,15 @@ const Index = () => {
               ))}
             </tr>
           </TableHead>
-          <tbody>
+          <TableBody>
             {data.map((product, index) => (
-              <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600" key={index}>
-                <td className="rtl:text-center">
+              <TableBody.Row key={index}>
+                <td className="rtl:text-center pl-4">
                   <input className="rounded" type="checkbox" name="" id="" />
                 </td>
-                <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <td
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {product.sku}
                 </td>
                 <td className="px-6 py-4">{product.product}</td>
@@ -145,9 +148,9 @@ const Index = () => {
                 <td className="px-6 py-4">
                   <button className="px-2 text-white rounded bg-cyan-500">Action</button>
                 </td>
-              </tr>
+              </TableBody.Row>
             ))}
-          </tbody>
+          </TableBody>
         </Table>
         <div className="my-2 text-white space-x-3 ml-2">
           <button className="bg-red-500 px-3 rounded">Delete Selected</button>

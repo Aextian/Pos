@@ -1,6 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/Components/Shared/ui/ContentTitle'
 import LabelRow from '@/Components/Shared/ui/LabelRow'
 import SpanLabel from '@/Components/Shared/ui/SpanLabel'
@@ -26,7 +23,11 @@ const Index = () => {
 
   return (
     <MainLayout>
-      <Modal show={open} maxWidth="2xl" closeable={true} onClose={() => router.visit(route('category.index'))}>
+      <Modal
+        show={open}
+        maxWidth="2xl"
+        closeable={true}
+        onClose={() => router.visit(route('category.index'))}>
         <div className="grid gap-3 p-3 dark:bg-gray-800 dark:border-gray-700">
           <div className="flex justify-between">
             <h1 className="font-bold dark:text-white">Add Tax Rate</h1>

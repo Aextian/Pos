@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Supplier extends Model
 {
@@ -13,10 +14,10 @@ class Supplier extends Model
 
     protected $guarded = ['id'];
 
-    protected $filliable = [
+    protected $fillable = [
         'business_id',
         'type',
-        'suppier_business_name',
+        'supplier_business_name',
         'name',
         'email',
         'contact_id',
@@ -27,11 +28,13 @@ class Supplier extends Model
         'landmark', 'mobile',
         'landline',
         'alternative_number',
+        'points_status',
         'pay_term_number',
-        'pay_term_type',
+        'alternate_number',        'pay_term_type',
         'custom_field1',
         'custom_field2',
-        'custome_field3',
+        'custom_field3',
+        'custom_field4',
         'customer_group_id',
         'is_default',
         'created_by ',
@@ -56,5 +59,11 @@ class Supplier extends Model
             });
         }
         return $query;
+    }
+
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_contact_access', 'contact_id', 'user_id');
     }
 }

@@ -24,9 +24,10 @@ class DatabaseSeeder extends Seeder
             BarcodesTableSeeder::class,
             PermissionTableSeeder::class,
             CurrenciesTableSeeder::class,
-            AdminSeeder::class,
             PermissionCategorySeeder::class,
+            AdminSeeder::class,
             BusinessInfo::class,
+
 
         ]);
     }

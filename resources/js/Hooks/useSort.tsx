@@ -13,11 +13,18 @@ const useSort = (queryParams: QueryParams, url: string) => {
       const sortField = name
       const sortDirection = name === queryParams.sort_field ? (queryParams.sort_direction === 'asc' ? 'desc' : 'asc') : 'asc'
 
-      router.get(route(url), {
-        ...queryParams,
-        sort_field: sortField,
-        sort_direction: sortDirection,
-      })
+      router.get(
+        route(url),
+        {
+          ...queryParams,
+          sort_field: sortField,
+          sort_direction: sortDirection,
+        },
+        {
+          preserveState: true,
+          preserveScroll: true,
+        },
+      )
     },
 
     [queryParams, url],

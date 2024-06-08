@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             'last_name' => 'adminlast',
             'username' => 'admin',
             'email' => 'test@example.com',
-            // 'business_-id' => 1,
+            // 'business_id' => 1,
             'password' => '123456',
             'contact_no' => '123456',
             'address' => 'test',

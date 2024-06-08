@@ -96,7 +96,11 @@ const Create = () => {
           <div className="border dark:border-slate-500 px-2 grid place-items-center">
             <FaSearch size={15} />
           </div>
-          <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
+          <TextInput
+            className="w-full  p-2 rounded-none text-xs "
+            type="search"
+            placeholder="Enter Product name/Sku/Scan bar code"
+          />
         </div>
 
         <div className="overflow-x-auto">
@@ -184,7 +188,11 @@ const Create = () => {
               <div className="border dark:border-slate-500 dark:text-white px-2 grid place-items-center">
                 <FaMoneyBillWaveAlt size={15} />
               </div>
-              <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
+              <TextInput
+                className="w-full  p-2 rounded-none text-xs "
+                type="search"
+                placeholder="Enter Product name/Sku/Scan bar code"
+              />
             </div>
           </LabelRow>
           <LabelRow>
@@ -193,7 +201,11 @@ const Create = () => {
               <div className="border  dark:border-slate-500 dark:text-white px-2 grid place-items-center">
                 <FaMoneyBillWaveAlt size={15} />
               </div>
-              <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
+              <TextInput
+                className="w-full  p-2 rounded-none text-xs "
+                type="search"
+                placeholder="Enter Product name/Sku/Scan bar code"
+              />
             </div>
           </LabelRow>
           <LabelRow>

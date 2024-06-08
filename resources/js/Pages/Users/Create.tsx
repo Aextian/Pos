@@ -7,12 +7,14 @@ import MainLayout from '@/Layouts/MainLayout'
 import { router } from '@inertiajs/react'
 import React, { useState } from 'react'
 import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
+import Select from 'react-dropdown-select'
+import { toast } from 'react-toastify'
+import { _readValueToProps } from 'chart.js/helpers'
 
 interface Roles {
   id: number
   name: string
 }
-
 interface Errors {
   first_name: string
   last_name: string
@@ -22,13 +24,20 @@ interface Errors {
   password_confirmation: string
   roles: string
   status: string
+  cmmsn_percent: string
+}
+interface Contact {
+  id: number
+  name: string
+  contact_id: string
 }
 type Props = {
   roles: Roles[]
   errors: Errors
+  contacts: Contact[]
 }
 
-const Create: React.FC<Props> = ({ roles, errors }) => {
+const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
   const [values, setValues] = useState({
     prefix: '',
     first_name: '',
@@ -38,19 +47,23 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
     password: '',
     password_confirmation: '',
     roles: [],
-    commision: '',
+    cmmsn_percent: 0 as number | null,
     restricted_commision: '',
+    selected_contacts: '',
+    contacts: [] as any,
     status: '',
   })
+  const [processing, setProgress] = useState(false)
+  const [showContacs, setContacts] = useState(false)
 
-  const handleChage = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target
+
     // Handle select element separately
     if (type === 'select-multiple') {
       const selectedOptions = Array.from((e.target as HTMLSelectElement).options)
         .filter((option) => option.selected)
         .map((option) => option.value)
-
       setValues((prevValues) => ({
         ...prevValues,
         [name]: selectedOptions,
@@ -61,6 +74,14 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
         ...prevValues,
         [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value,
       }))
+
+      if (type === 'checkbox' && e.target.name === 'show_contacts') {
+        setContacts((prevValue) => !prevValue)
+        setValues((prevValues) => ({
+          ...prevValues,
+          contacts: (e.target as HTMLInputElement).checked ? prevValues.contacts : [],
+        }))
+      }
     }
   }
 
@@ -68,7 +89,29 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
     e.preventDefault()
     try {
       const url = route('users.store')
-      const response = router.post(url, values)
+      const response = router.post(url, values, {
+        preserveScroll: true,
+        preserveState: true,
+        onStart: () => setProgress(true),
+        onFinish: () => setProgress(false),
+        onSuccess: () => {
+          setValues({
+            prefix: '',
+            first_name: '',
+            last_name: '',
+            email: '',
+            username: '',
+            password: '',
+            password_confirmation: '',
+            roles: [],
+            cmmsn_percent: 0 as number | null,
+            contacts: [],
+            selected_contacts: '',
+            restricted_commision: '',
+            status: '',
+          })
+        },
+      })
     } catch (error) {
       console.error('Error:', error)
     }
@@ -83,24 +126,48 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <LabelRow>
                 <SpanLabel>Prefix</SpanLabel>
-                <TextInput type="text" name="prefix" className="w-full text-xs" placeholder="Mr/Mrs/Miss" onChange={handleChage} />
+                <TextInput
+                  type="text"
+                  name="prefix"
+                  className="w-full text-xs"
+                  placeholder="Mr/Mrs/Miss"
+                  onChange={handleChange}
+                />
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>First Name:*</SpanLabel>
-                <TextInput type="text" name="first_name" className={`w-full text-xs ${errors.first_name ? ' border-red-500' : ''}`} placeholder="First Name" onChange={handleChage} />
+                <TextInput
+                  type="text"
+                  name="first_name"
+                  className={`w-full text-xs ${errors.first_name ? ' border-red-500' : ''}`}
+                  placeholder="First Name"
+                  onChange={handleChange}
+                />
                 <span className="text-red-600">{errors.first_name ? errors.first_name : ''}</span>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Last Name:*</SpanLabel>
-                <TextInput type="text" name="last_name" className={`w-full text-xs ${errors.last_name ? ' border-red-500' : ''}`} placeholder="Last Name" onChange={handleChage} />
+                <TextInput
+                  type="text"
+                  name="last_name"
+                  className={`w-full text-xs ${errors.last_name ? ' border-red-500' : ''}`}
+                  placeholder="Last Name"
+                  onChange={handleChange}
+                />
                 <span className="text-red-600">{errors.last_name ? errors.last_name : ''}</span>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Email:*</SpanLabel>
-                <TextInput type="text" name="email" className={`w-full text-xs ${errors.email ? ' border-red-500' : ''}`} placeholder="Email" onChange={handleChage} />
+                <TextInput
+                  type="text"
+                  name="email"
+                  className={`w-full text-xs ${errors.email ? ' border-red-500' : ''}`}
+                  placeholder="Email"
+                  onChange={handleChange}
+                />
                 <span className="text-red-600">{errors.email ? errors.email : ''}</span>
               </LabelRow>
 
@@ -109,7 +176,7 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
                 <select
                   className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
                   name="roles"
-                  onChange={handleChage}
+                  onChange={handleChange}
                   multiple>
                   {roles?.map((role, index) => (
                     <option key={index} value={role.name}>
@@ -122,13 +189,25 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
 
               <LabelRow>
                 <SpanLabel>Username:</SpanLabel>
-                <TextInput type="text" name="username" className={`w-full text-xs ${errors.username ? ' border-red-500' : ''}`} placeholder="Username" onChange={handleChage} />
+                <TextInput
+                  type="text"
+                  name="username"
+                  className={`w-full text-xs ${errors.username ? ' border-red-500' : ''}`}
+                  placeholder="Username"
+                  onChange={handleChange}
+                />
                 <span className="text-red-600">{errors.username ? errors.username : ''}</span>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Password:</SpanLabel>
-                <TextInput type="text" name="password" className={`w-full text-xs ${errors.password ? ' border-red-500' : ''}`} placeholder="Password" onChange={handleChage} />
+                <TextInput
+                  type="text"
+                  name="password"
+                  className={`w-full text-xs ${errors.password ? ' border-red-500' : ''}`}
+                  placeholder="Password"
+                  onChange={handleChange}
+                />
                 <span className="text-red-600">{errors.password ? errors.password : ''}</span>
               </LabelRow>
 
@@ -139,29 +218,60 @@ const Create: React.FC<Props> = ({ roles, errors }) => {
                   name="password_confirmation"
                   className={`w-full text-xs  ${errors.password_confirmation ? ' border-red-500' : ''}`}
                   placeholder="Confirm Password"
-                  onChange={handleChage}
+                  onChange={handleChange}
                 />
-                <span className="text-red-600">{errors.password_confirmation ? errors.password_confirmation : ''}</span>
+                <span className="text-red-600">
+                  {errors.password_confirmation ? errors.password_confirmation : ''}
+                </span>
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Sales Commision Percentage(%):</SpanLabel>
-                <TextInput type="text" name="commision" className="w-full text-xs" placeholder="Sales Commission Percentage (%)" onChange={handleChage} />
+                <TextInput
+                  type="number"
+                  step={0.01}
+                  name="cmmsn_percent"
+                  className="w-full text-xs"
+                  placeholder="Sales Commission Percentage (%)"
+                  onChange={handleChange}
+                />
+                <span className="text-red-600">{errors.cmmsn_percent ? errors.cmmsn_percent : ''}</span>
               </LabelRow>
 
               <label className="inline-flex gap-3 items-center dark:text-white">
                 Restricted Commision Percentage
-                <TextInput className="rounded p-2" id="restricted_commision" type="checkbox" name="restricted_commision" onChange={handleChage} />
+                <TextInput
+                  className="rounded p-2"
+                  type="checkbox"
+                  name="show_contacts"
+                  onChange={handleChange}
+                  checked={showContacs}
+                />
               </label>
 
+              {showContacs && (
+                <LabelRow>
+                  <SpanLabel>Select Contacts:</SpanLabel>
+                  <Select
+                    multi={true}
+                    options={contacts}
+                    labelField="name"
+                    values={values.contacts}
+                    valueField="id"
+                    onChange={(selected) => setValues({ ...values, contacts: selected })}
+                  />
+                </LabelRow>
+              )}
+
               <label className="inline-flex gap-3 items-center dark:text-white">
-                <TextInput className="rounded p-2" id="is_active" type="checkbox" name="status" onChange={handleChage} />
+                <TextInput className="rounded p-2" type="checkbox" name="status" onChange={handleChange} />
                 Is active
               </label>
             </div>
-
             <div className="flex justify-end">
-              <PrimaryButton type="submit">Save</PrimaryButton>
+              <PrimaryButton type="submit" disabled={processing}>
+                {processing ? <span className="animate-pulse">Saving...</span> : 'Save'}
+              </PrimaryButton>
             </div>
           </form>
         </CardBorderTop.Content>

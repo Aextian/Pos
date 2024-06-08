@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UnitRequest;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class UnitController extends Controller
@@ -12,7 +14,22 @@ class UnitController extends Controller
      */
     public function index()
     {
-        return inertia('Products/Units/Index');
+
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
+
+        $units = Unit::query()
+            ->where('business_id', auth()->user()->business_id)
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+        return inertia('Products/Units/Index', [
+            'units' => $units,
+            'queryParams' => request()->query(),
+        ]);
     }
 
     /**
@@ -26,9 +43,17 @@ class UnitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UnitRequest $request)
     {
-        //
+
+        $auth = auth()->user();
+
+        $unit = new Unit($request->all());
+        $unit->business_id = $auth->business_id;
+        $unit->created_by = $auth->id;
+        $unit->save();
+
+        return back()->with('success', 'Unit created successfully');
     }
 
     /**
@@ -50,9 +75,10 @@ class UnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UnitRequest $request, string $id)
     {
-        //
+        Unit::find($id)->update($request->all());
+        return back();
     }
 
     /**
@@ -60,6 +86,7 @@ class UnitController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Unit::find($id)->delete();
+        return back();
     }
 }

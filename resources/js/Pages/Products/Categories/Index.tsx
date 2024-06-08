@@ -1,80 +1,167 @@
 import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
 import Table from '@/Components/Shared/ui/Table/Table'
 import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import Modal from '@/Components/Shared/ui/Modal/Modal'
 import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
-import { Link, router } from '@inertiajs/react'
-import React, { useState } from 'react'
-import { FaPlus, FaSearch } from 'react-icons/fa'
-import { FaX } from 'react-icons/fa6'
+import React, { useCallback, useEffect, useState } from 'react'
+import { FaPlus } from 'react-icons/fa'
 import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
 import CreateCategoryModal from '@/Components/Categories/Create'
+import Success from '@/Components/Shared/ui/Alert/Success'
+import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
+import useSort from '@/Hooks/useSort'
+import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
+import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
+import DangerButton from '@/Components/Shared/ui/Button/DangerButton'
+import EditCategoryModal from '@/Components/Categories/Edit'
+import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
+import Pagination from '@/Components/Shared/ui/Table/Pagination'
 
-const Index = () => {
-  const [showModal, setShowModal] = useState<boolean>(false)
-  const [showParentCategory, setParentCategory] = useState<boolean>(false)
+interface Category {
+  id: any
+  name: string
+  short_code: string
+  parent_id: string
+}
 
-  const handleShowModal = () => {
-    setShowModal(!showModal)
+type Props = {
+  categories: {
+    data: Category[]
+    links: []
+    sort_field: string
+    sort_direction: string
   }
+  successMessage: string
+  queryParams: {
+    sort_field: string
+    sort_direction: 'asc' | 'desc'
+    search: string
+  }
+}
+
+const Index: React.FC<Props> = ({ successMessage, categories, queryParams }) => {
+  const [isCreateModal, showCreateModal] = useState<boolean>(false)
+
+  const [isEditModal, showEdiModal] = useState<boolean>(false)
+
+  const [isEdit, setEdit] = useState<Category>({
+    id: '',
+    name: '',
+    short_code: '',
+    parent_id: '',
+  })
+
+  const [isDelete, setDelete] = useState<number | null>(0)
+
+  const handleCreateModal = useCallback(() => {
+    showCreateModal((prevState) => !isCreateModal)
+  }, [isCreateModal])
+
+  const handleEditModal = useCallback(
+    (data: Category) => {
+      showEdiModal((prevState) => !isEditModal)
+      setEdit(data)
+    },
+    [isEditModal],
+  )
+
+  // table Head
+  const Thead = [
+    { name: 'Category', sort_field: 'name' },
+    {
+      name: 'Category Code',
+      sort_field: 'short_code',
+    },
+    { name: 'Action', sort_field: '' },
+  ]
+  // function for sorting
+  const url = 'categories.index'
+
+  const sortChanged = useSort(queryParams, url)
 
   return (
     <MainLayout>
-      <CreateCategoryModal showModal={showModal} handleShowModal={handleShowModal} />
+      {/* modal */}
+      <CreateCategoryModal
+        showModal={isCreateModal}
+        handleShowModal={handleCreateModal}
+        data={categories.data}
+      />
+
+      <EditCategoryModal
+        categories={categories.data}
+        showModal={isEditModal}
+        category={isEdit}
+        handleShowModal={handleEditModal}
+      />
+
+      <DeleteModal
+        url="categories.destroy"
+        setDelete={setDelete}
+        isDelete={isDelete}
+        onCloseRoute="categories.index"
+        message="This category along with all sub-categories under it will be deleted."
+      />
+
+      <Success message={successMessage} />
 
       <ContentTitle>
         Categories <span className="text-xs text-gray-300">Manage your categories</span>
       </ContentTitle>
+
       <CardBorderTop>
+        {/*success message */}
+
         <CardBorderTop.Header>
           <CardBorderTop.Title>Manage your categories</CardBorderTop.Title>
-          <SecondaryButton type="button" onClick={handleShowModal} className="rounded-lg px-5 py-1 bg-cyan-500  font-medium gap-2">
+          <SecondaryButton
+            type="button"
+            onClick={handleCreateModal}
+            className="rounded-lg px-5 py-1 bg-cyan-500  font-medium gap-2">
             <FaPlus /> Add
           </SecondaryButton>
         </CardBorderTop.Header>
+
+        <SearchBar queryParams={queryParams} url={url} />
+
         <CardBorderTop.Content>
           <Table>
             <TableHead>
               <tr>
-                <th scope="col" className="px-6 py-3">
-                  Category
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  <div className="flex items-center">
-                    Category Code
-                    <a href="#">
-                      <svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                      </svg>
-                    </a>
-                  </div>
-                </th>
-
-                <th scope="col" className="px-6 py-3">
-                  <div className="flex items-center">
-                    <span></span>
-                  </div>
-                </th>
+                {Thead.map((item, index) => (
+                  <TableHeading
+                    sort_field={queryParams.sort_field || ''}
+                    sortChanged={sortChanged}
+                    key={index}
+                    sort_direction={queryParams.sort_direction}
+                    name={item.sort_field}>
+                    {item.name}
+                  </TableHeading>
+                ))}
               </tr>
             </TableHead>
             <tbody>
-              <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
-                <td className="px-6 py-4 text-right"></td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex gap-2 text-xs">
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Edit</button>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Delete</button>
-                  </div>
-                </td>
-              </tr>
+              {categories.data.map((category, index) => (
+                <tr
+                  className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600"
+                  key={index}>
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {category.name}
+                  </th>
+                  <td className="px-6 py-4">{category.short_code} </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex gap-2 text-xs">
+                      <DangerButton onClick={() => setDelete(category.id)}>Delete</DangerButton>
+                      <PrimaryButton onClick={() => handleEditModal(category)}>Edit</PrimaryButton>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
+          <Pagination links={categories.links} />
         </CardBorderTop.Content>
       </CardBorderTop>
     </MainLayout>
