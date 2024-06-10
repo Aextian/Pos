@@ -1,14 +1,14 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
-import Success from '@/Components/Shared/ui/Alert/Success'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import ContentTitle from '@/shared/components/ContentTitle'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
+import Success from '@/shared/components/Alert/Success'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link, router, usePage } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { FaPlus, FaTrashAlt } from 'react-icons/fa'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import DangerButton from '@/Components/Shared/ui/Button/DangerButton'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import DangerButton from '@/shared/components/Button/DangerButton'
 
 interface Role {
   id: number
@@ -22,15 +22,6 @@ type Props = {
 
 const Index: React.FC<Props> = ({ roles, successMessage }) => {
   const [isDelete, setDelete] = useState<number | null>(0)
-
-  const handleDelete = (id: number) => {
-    router.delete(route('roles.destroy', id))
-    setDelete(null)
-  }
-
-  const handleShowDelete = (id: number) => {
-    setDelete(id)
-  }
 
   return (
     <>
@@ -79,7 +70,7 @@ const Index: React.FC<Props> = ({ roles, successMessage }) => {
                     </th>
                     <td className="px-6 py-4 text-right">
                       <div className="flex gap-2 text-xs">
-                        <DangerButton onClick={() => handleShowDelete(role.id)}>Delete</DangerButton>
+                        <DangerButton onClick={() => setDelete(role.id)}>Delete</DangerButton>
                         <Link
                           href={route('roles.edit', role.id)}
                           className="

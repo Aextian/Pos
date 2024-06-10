@@ -23,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Supplier::observe(SupplierObserver::class);
         ProductCategory::observe(ProductCategoryObserver::class);
     }
 }

@@ -1,6 +1,6 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React, { useState } from 'react'
@@ -17,10 +17,18 @@ const Index = () => {
         </ContentTitle>
         <div className="grid border gap-3 shadow-lg dark:bg-gray-800 dark:border-gray-700">
           <div className="grid grid-flow-col dark:text-white">
-            <button className={`border font-bold p-3 ${show ? 'border-b-0  border-x-0 md:border-t-2 border-t-cyan-600' : ''}`} onClick={() => setShow(true)}>
+            <button
+              className={`border font-bold p-3 ${
+                show ? 'border-b-0  border-x-0 md:border-t-2 border-t-cyan-600' : ''
+              }`}
+              onClick={() => setShow(true)}>
               Invoice Schemes
             </button>
-            <button className={`border font-bold  p-3 ${show ? '' : 'border-b-0 border-x-0 md:border-t-2 border-t-cyan-600'}`} onClick={() => setShow(false)}>
+            <button
+              className={`border font-bold  p-3 ${
+                show ? '' : 'border-b-0 border-x-0 md:border-t-2 border-t-cyan-600'
+              }`}
+              onClick={() => setShow(false)}>
               Invoice Layouts
             </button>
           </div>

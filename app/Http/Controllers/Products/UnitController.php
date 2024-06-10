@@ -53,7 +53,7 @@ class UnitController extends Controller
         $unit->created_by = $auth->id;
         $unit->save();
 
-        return back()->with('success', 'Unit created successfully');
+        return back();
     }
 
     /**

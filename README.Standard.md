@@ -11,10 +11,10 @@
 
 - `src` - main source code.
 
-### Router
+<!-- ### Router
 
 - `src/app` - for app router.
-  - `src/app/<route-name>/page.tsx` - for route page component.
+  - `src/app/<route-name>/page.tsx` - for route page component. -->
 
 ### Features
 
@@ -24,12 +24,13 @@
     - `src/features/<feature-name>/components` - for components.
     - `src/features/<feature-name>/constants` - for constants.
     - `src/features/<feature-name>/utils` - for utilities.
+    - `src/features/<feature-name>/hooks` - for hoooks.
 
 ### Shared
 
-- `src/shared` - shared modules.
+- `src/shared` - shared modules.\*\*\*\*
   - `src/shared/components` - for shared components.
-    - `src/shared/components/ui/*` - for shared ui components (`button`, `input` & etc).
+  - `src/shared/components` - for shared ui components (`button`, `input` & etc).
   - `src/shared/constants` - for shared constants.
   - `src/shared/data` - for data access layer. (e.g. `api`, `database`).
   - `src/shared/mutation` - for shared `react-query` mutation. **(Only if needed)**
@@ -37,6 +38,8 @@
   - `src/shared/stores` - for shared zustand stores.
   - `src/shared/types` - for shared types.
   - `src/shared/utils` - for shared utilities.
+
+---
 
 ### Sample Flow(s)
 

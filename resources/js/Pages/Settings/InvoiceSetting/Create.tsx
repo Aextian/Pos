@@ -1,12 +1,12 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import TextArea from '@/Components/Shared/ui/TextArea'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import TextArea from '@/shared/components/TextArea'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 
@@ -115,7 +115,10 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Date time format</SpanLabel>
               <TextInput placeholder="Date time format" className="text-xs p-2 w-full" />
-              <span className="text-[10px]">Enter date and time format in PHP datetime format. If blank business date time format will be applied</span>
+              <span className="text-[10px]">
+                Enter date and time format in PHP datetime format. If blank business date time format will be
+                applied
+              </span>
             </LabelRow>
             <LabelRow>
               <SpanLabel>Sales Person Label</SpanLabel>

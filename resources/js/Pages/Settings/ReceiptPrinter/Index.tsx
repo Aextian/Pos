@@ -2,16 +2,25 @@ import CardBorderTop from '@/Components/CardBorderTop'
 import CardContent from '@/Components/CardContent'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 
 const Index = () => {
-  const Thead = ['Printer Name', 'Connection Type', 'Capability Profile', ' Character per line', 'IP Address', 'Port', 'Path', 'Action']
+  const Thead = [
+    'Printer Name',
+    'Connection Type',
+    'Capability Profile',
+    ' Character per line',
+    'IP Address',
+    'Port',
+    'Path',
+    'Action',
+  ]
   return (
     <>
       <MainLayout>

@@ -1,14 +1,14 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import TextArea from '@/Components/Shared/ui/TextArea'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
-import Tooltip from '@/Components/Shared/ui/Tooltip'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import TextArea from '@/shared/components/TextArea'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import SecondaryButton from '@/shared/components/Button/SecondaryButton'
+import TextInput from '@/shared/components/TextInput'
+import Tooltip from '@/shared/components/Tooltip'
 import MainLayout from '@/Layouts/MainLayout'
 import { useState } from 'react'
 import { FaMoneyBillWaveAlt, FaSearch, FaTrash, FaUser } from 'react-icons/fa'
@@ -120,7 +120,8 @@ const Create = () => {
           </table>
         </div>
         <div className="border-t text-right p-3 space-x-3 dark:text-white">
-          <h5 className="text-xs inline font-bold">Net Total Amount </h5> <span className="text-[10px]">0.00</span>
+          <h5 className="text-xs inline font-bold">Net Total Amount </h5>{' '}
+          <span className="text-[10px]">0.00</span>
         </div>
       </CardBorderTop>
 

@@ -1,18 +1,27 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import Datepicker from 'react-tailwindcss-datepicker'
 
 const ProductPurchaseReport = () => {
-  const Thead = ['Product', 'Supplier', 'Reference code', 'Date', 'Quantity', 'Total Unit Adjusted', 'Unit Purchase Price', 'SubTotal']
+  const Thead = [
+    'Product',
+    'Supplier',
+    'Reference code',
+    'Date',
+    'Quantity',
+    'Total Unit Adjusted',
+    'Unit Purchase Price',
+    'SubTotal',
+  ]
   const [date, setDate] = useState<any>({
     startDate: new Date(),
     endDate: new Date().setMonth(11),
@@ -38,7 +47,9 @@ const ProductPurchaseReport = () => {
 
               <LabelRow>
                 <SpanLabel>Supplier:</SpanLabel>
-                <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+                <select
+                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+                  name="type">
                   <option value="" selected>
                     All
                   </option>
@@ -48,7 +59,9 @@ const ProductPurchaseReport = () => {
               </LabelRow>
               <LabelRow>
                 <SpanLabel>Business Location:</SpanLabel>
-                <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+                <select
+                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+                  name="type">
                   <option value="" selected>
                     All
                   </option>
@@ -59,7 +72,12 @@ const ProductPurchaseReport = () => {
 
               <LabelRow>
                 <SpanLabel>Date Range:</SpanLabel>
-                <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
+                <Datepicker
+                  primaryColor="cyan"
+                  value={date}
+                  onChange={handleValueChange}
+                  showShortcuts={true}
+                />
               </LabelRow>
             </div>
           </div>

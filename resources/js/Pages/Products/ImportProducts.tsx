@@ -1,8 +1,8 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 
@@ -15,13 +15,18 @@ const ImportProducts = () => {
           <h5 className="dark:text-white">File to Import</h5>
           <TextInput type="file" name="" id="" />
           <button className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">Upload</button>
-          <button className="rounded-lg px-5 py-1 bg-emerald-400 text-white font-medium">Download CSV file template</button>
+          <button className="rounded-lg px-5 py-1 bg-emerald-400 text-white font-medium">
+            Download CSV file template
+          </button>
         </div>
       </CardBorderTop>
       <CardBorderTop>
         <div className="space-y-5 dark:text-white">
           <h3>Instructions</h3>
-          <p>Follow the instructions carefully before importing the file. The columns of the CSV file should be in the following order.</p>
+          <p>
+            Follow the instructions carefully before importing the file. The columns of the CSV file should be
+            in the following order.
+          </p>
           <Table>
             <TableHead>
               <tr>

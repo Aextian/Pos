@@ -1,19 +1,20 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
-import Success from '@/Components/Shared/ui/Alert/Success'
-import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import Pagination from '@/Components/Shared/ui/Table/Pagination'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import TableRow from '@/Components/Suppliers/TableRow'
-import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
-import useSort from '@/Hooks/useSort'
+import ContentTitle from '@/shared/components/ContentTitle'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
+import Success from '@/shared/components/Alert/Success'
+import SearchBar from '@/shared/components/Table/SearchBar'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import Pagination from '@/shared/components/Table/Pagination'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import TableRow from '@/features/Suppliers/TableRow'
+import TableHeading from '@/shared/components/Table/TableHeading'
 import MainLayout from '@/Layouts/MainLayout'
-import { Link, router } from '@inertiajs/react'
-import React, { useState } from 'react'
+import { Link } from '@inertiajs/react'
+import React from 'react'
 import { FaPlus } from 'react-icons/fa'
-import TableBody from '@/Components/Shared/ui/Table/TableBody'
+import TableBody from '@/shared/components/Table/TableBody'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
+import { QueryParam } from '@/shared/types/queryparams'
 
 interface Supplier {
   id: number
@@ -30,11 +31,7 @@ type Props = {
     sort_field: string
     sort_direction: string
   }
-  queryParams: {
-    sort_field: string
-    sort_direction: 'asc' | 'desc'
-    search: string
-  }
+  queryParams: QueryParam
   successMessage: string
 }
 
@@ -48,28 +45,20 @@ const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
     { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
   ]
 
-  // handle delete modal
-  const [isDelete, setDelete] = useState<number | null>(0)
+  const url = 'contacts.supplier'
 
-  const handleDelete = (id: number) => {
-    router.delete(route('supplier.destroy', id))
-    setDelete(null)
-  }
+  const { isDelete, setDelete, sortChanged } = useGlobalModalSortControl(queryParams, url)
 
-  const handleShowDelete = (id: number) => {
-    setDelete(id)
-  }
-  // function for sorting
-  const url = 'supplier.index'
-  const sortChanged = useSort(queryParams, url)
   return (
     <MainLayout>
       <Success message={successMessage} />
+
       <DeleteModal
         isDelete={isDelete}
         setDelete={setDelete}
         url="supplier.destroy"
         onCloseRoute="supplier.index"
+        success="Supplier deleted successfully"
       />
 
       <ContentTitle>
@@ -80,7 +69,7 @@ const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
         <CardBorderTop.Header>
           <CardBorderTop.Title>All your Suppliers</CardBorderTop.Title>
           <Link
-            href={route('supplier.create')}
+            href={route('contacts.create')}
             className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
             <FaPlus /> Add
           </Link>
@@ -106,7 +95,7 @@ const Index: React.FC<Props> = ({ successMessage, suppliers, queryParams }) => {
             </TableHead>
             <TableBody>
               {suppliers.data.map((supplier, index) => (
-                <TableRow key={index} supplier={supplier} handleShowDelete={handleShowDelete} />
+                <TableRow key={index} supplier={supplier} setDelete={setDelete} />
               ))}
             </TableBody>
           </Table>

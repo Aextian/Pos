@@ -1,12 +1,12 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import TextArea from '@/Components/Shared/ui/TextArea'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import TextArea from '@/shared/components/TextArea'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaInfo, FaMoneyBill, FaRegCalendar, FaSearch, FaTrash, FaUser } from 'react-icons/fa'
@@ -23,7 +23,9 @@ const Create = () => {
           <div className="border dark:border-slate-500 dark:text-white px-2 flex items-center">
             <FaLocationPin size={15} />
           </div>
-          <select name="type" className="focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+          <select
+            name="type"
+            className="focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
             <option value="" selected>
               Select Location
             </option>
@@ -64,7 +66,9 @@ const Create = () => {
             <SpanLabel>Pay term:</SpanLabel>
             <div className="flex">
               <TextInput className="w-full rounded-none p-2 text-xs" type="text" placeholder="Pay term" />
-              <select name="type" className="focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+              <select
+                name="type"
+                className="focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                 <option value="" selected>
                   Please Select
                 </option>
@@ -84,7 +88,9 @@ const Create = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Status:*</SpanLabel>
-            <select className="w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" name="type">
+            <select
+              className="w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -101,7 +107,11 @@ const Create = () => {
           <div className="border dark:text-white dark:border-slate-500 px-2 grid place-items-center">
             <FaSearch size={15} />
           </div>
-          <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
+          <TextInput
+            className="w-full  p-2 rounded-none text-xs "
+            type="search"
+            placeholder="Enter Product name/Sku/Scan bar code"
+          />
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-[8px] text-left  text-gray-500 dark:text-gray-400 ">
@@ -121,7 +131,8 @@ const Create = () => {
           </table>
         </div>
         <div className="border-t text-right p-3 space-x-3">
-          <h5 className="text-xs inline font-bold">Net Total Amount </h5> <span className="text-[10px]">0.00</span>
+          <h5 className="text-xs inline font-bold">Net Total Amount </h5>{' '}
+          <span className="text-[10px]">0.00</span>
         </div>
       </CardBorderTop>
 
@@ -129,7 +140,9 @@ const Create = () => {
         <div className="grid md:grid-cols-1 lg:grid-cols-3 items-center gap-3">
           <LabelRow>
             <SpanLabel>Discount Type:</SpanLabel>
-            <select name="type" className=" w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+            <select
+              name="type"
+              className=" w-full focus:border-cyan-600 border-slate-300 text-xs focus:ring-cyan-600 dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
               <option value="" selected>
                 None
               </option>
@@ -182,7 +195,11 @@ const Create = () => {
               <div className="border dark:border-slate-500 dark:text-white px-2 grid place-items-center">
                 <FaMoneyBill size={15} />
               </div>
-              <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
+              <TextInput
+                className="w-full  p-2 rounded-none text-xs "
+                type="search"
+                placeholder="Enter Product name/Sku/Scan bar code"
+              />
             </div>
           </LabelRow>
           <LabelRow>
@@ -191,7 +208,11 @@ const Create = () => {
               <div className="border  dark:border-slate-500 dark:text-white px-2 grid place-items-center">
                 <FaMoneyBill1Wave size={15} />
               </div>
-              <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Enter Product name/Sku/Scan bar code" />
+              <TextInput
+                className="w-full  p-2 rounded-none text-xs "
+                type="search"
+                placeholder="Enter Product name/Sku/Scan bar code"
+              />
             </div>
           </LabelRow>
           <LabelRow>

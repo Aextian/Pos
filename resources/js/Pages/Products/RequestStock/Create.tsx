@@ -1,12 +1,12 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { MdOutlineCalendarMonth } from 'react-icons/md'
 import { IoIosSearch } from 'react-icons/io'
 import { BiTrashAlt } from 'react-icons/bi'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
 import CardTitle from '@/Components/CardTitle'
 
 const Create = () => {
@@ -68,7 +68,11 @@ const Create = () => {
           <div className="px-2 border dark:border-slate-500 dark:text-white items-center justify-center inline-flex">
             <IoIosSearch size={22} />
           </div>
-          <TextInput className="w-full p-2 text-xs rounded-none" type="search" placeholder="Search products for stock adjustment" />
+          <TextInput
+            className="w-full p-2 text-xs rounded-none"
+            type="search"
+            placeholder="Search products for stock adjustment"
+          />
         </div>
         <table className="text-[10px] dark:text-white">
           <thead>

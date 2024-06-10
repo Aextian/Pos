@@ -1,21 +1,21 @@
-import AddCommissionAgentModal from '@/Components/SalesCommissionAgent/Create'
-import EditCommissionAgent from '@/Components/SalesCommissionAgent/Edit'
-import Success from '@/Components/Shared/ui/Alert/Success'
-import DangerButton from '@/Components/Shared/ui/Button/DangerButton'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableBody from '@/Components/Shared/ui/Table/TableBody'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
-import useSort from '@/Hooks/useSort'
+import AddCommissionAgentModal from '@/features/SalesCommissionAgent/components/CreateSalesCommission'
+import EditCommissionAgent from '@/features/SalesCommissionAgent/components/EditSalesCommission'
+import DangerButton from '@/shared/components/Button/DangerButton'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import SecondaryButton from '@/shared/components/Button/SecondaryButton'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import ContentTitle from '@/shared/components/ContentTitle'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
+import Table from '@/shared/components/Table/Table'
+import TableBody from '@/shared/components/Table/TableBody'
+import TableHead from '@/shared/components/Table/TableHead'
+import TableHeading from '@/shared/components/Table/TableHeading'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useCallback, useState } from 'react'
 import { FaPlus } from 'react-icons/fa6'
-import { isStringObject } from 'util/types'
+import useSort from '@/shared/hooks/useSort'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
+import { QueryParam } from '@/shared/types/queryparams'
 
 interface User {
   id: string
@@ -31,10 +31,9 @@ interface User {
 
 type Props = {
   users: { data: User[]; links: []; sort_field: string; sort_direction: string }
-  successMessage: string
-  queryParams: { sort_field: string; sort_direction: 'asc' | 'desc'; search: string }
+  queryParams: QueryParam
 }
-const Index: React.FC<Props> = ({ queryParams, users, successMessage }) => {
+const Index: React.FC<Props> = ({ queryParams, users }) => {
   const Thead = [
     { name: 'Name', sort_field: 'username' },
     { name: 'Email', sort_field: 'first_name' },
@@ -43,14 +42,9 @@ const Index: React.FC<Props> = ({ queryParams, users, successMessage }) => {
     { name: 'Sales Commission Percentage', sort_field: '' }, // Assuming no sort field for this column
     { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
   ]
+  const url = 'sales-commission-agents.index'
 
-  const [isDelete, setDelete] = useState<number | null | string>(0)
-
-  const [isCreateModal, showCreateModal] = useState<boolean>(false)
-
-  const [isEditModal, showEditModal] = useState<boolean>(false)
-
-  const [isEdit, setEdit] = useState<User>({
+  const initialEditState = {
     id: '',
     full_name: '',
     first_name: '',
@@ -60,23 +54,18 @@ const Index: React.FC<Props> = ({ queryParams, users, successMessage }) => {
     prefix: '',
     address: '',
     cmmsn_percent: '',
-  })
+  }
 
-  const url = 'sales-commission-agents.index'
-
-  const sortChanged = useSort(queryParams, url)
-
-  const handleCreateModal = useCallback(() => {
-    showCreateModal((prevState) => !isCreateModal)
-  }, [isCreateModal])
-
-  const handleEditModal = useCallback(
-    (data: User) => {
-      showEditModal((prevState) => !isEditModal)
-      setEdit(data)
-    },
-    [isEditModal],
-  )
+  const {
+    isDelete,
+    setDelete,
+    isCreateModal,
+    handleShowCreateModal,
+    isEditModal,
+    handleShowEditModal,
+    isEdit,
+    sortChanged,
+  } = useGlobalModalSortControl(queryParams, url, initialEditState)
 
   return (
     <>
@@ -89,15 +78,15 @@ const Index: React.FC<Props> = ({ queryParams, users, successMessage }) => {
           success="Commission Agent deleted successfully"
         />
 
-        <AddCommissionAgentModal handleShowModal={handleCreateModal} showModal={isCreateModal} />
+        <AddCommissionAgentModal handleShowModal={handleShowCreateModal} showModal={isCreateModal} />
 
-        <EditCommissionAgent handleShowModal={handleEditModal} user={isEdit} showModal={isEditModal} />
+        <EditCommissionAgent handleShowModal={handleShowEditModal} user={isEdit} showModal={isEditModal} />
 
         <ContentTitle>Sales Commission Agents</ContentTitle>
         <CardBorderTop>
           <CardBorderTop.Header>
             <CardBorderTop.Title></CardBorderTop.Title>
-            <SecondaryButton onClick={handleCreateModal} className="gap-3">
+            <SecondaryButton onClick={handleShowCreateModal} className="gap-3">
               <FaPlus /> Add
             </SecondaryButton>
           </CardBorderTop.Header>
@@ -132,7 +121,7 @@ const Index: React.FC<Props> = ({ queryParams, users, successMessage }) => {
                     <td className="px-6 py-4 text-right">
                       <div className="flex gap-2 text-xs">
                         <DangerButton onClick={() => setDelete(user.id)}>Delete</DangerButton>
-                        <PrimaryButton onClick={() => handleEditModal(user)}>Edit</PrimaryButton>
+                        <PrimaryButton onClick={() => handleShowEditModal(user)}>Edit</PrimaryButton>
                       </div>
                     </td>
                   </TableBody.Row>

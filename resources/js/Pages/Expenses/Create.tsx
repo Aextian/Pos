@@ -1,10 +1,10 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import TextArea from '@/Components/Shared/ui/TextArea'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import TextArea from '@/shared/components/TextArea'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
@@ -21,7 +21,9 @@ const Create = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <LabelRow>
             <SpanLabel>Business Location (To):*</SpanLabel>
-            <select className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -31,7 +33,9 @@ const Create = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Expense Category:*</SpanLabel>
-            <select className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -68,7 +72,9 @@ const Create = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Expense for:*</SpanLabel>
-            <select className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -78,7 +84,10 @@ const Create = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Attach Document:</SpanLabel>
-            <TextInput className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" type="file" />
+            <TextInput
+              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              type="file"
+            />
             <span className="text-xs dark:text-white">Max file size: 1 MB</span>
           </LabelRow>
           <div className="grid gap-5 w-full">

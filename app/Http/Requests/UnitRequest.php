@@ -25,7 +25,7 @@ class UnitRequest extends FormRequest
         return [
             'actual_name' => ['required', 'string', 'max:255'],
             'short_name' => ['required', 'string', 'max:255'],
-            'allow_decimal' => ['required', 'string', Rule::in([1, 0])],
+            'allow_decimal' => ['required',  Rule::in([1, 0])],
         ];
     }
 }

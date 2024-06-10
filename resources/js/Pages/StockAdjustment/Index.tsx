@@ -1,16 +1,24 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 
 const Index = () => {
-  const Thead = ['Date', 'Reference No', 'Location(From)', 'Adjustment type', 'Total Amount', 'Total amount recovered', 'action']
+  const Thead = [
+    'Date',
+    'Reference No',
+    'Location(From)',
+    'Adjustment type',
+    'Total Amount',
+    'Total amount recovered',
+    'action',
+  ]
   return (
     <MainLayout>
       <ContentTitle>

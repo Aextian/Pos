@@ -1,9 +1,9 @@
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React, { useState } from 'react'
@@ -111,7 +111,12 @@ function Index() {
 
             <LabelRow>
               <SpanLabel>Date Range:</SpanLabel>
-              <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
+              <Datepicker
+                primaryColor="cyan"
+                value={date}
+                onChange={handleValueChange}
+                showShortcuts={true}
+              />
             </LabelRow>
           </div>
         </CardBorderTop.Content>
@@ -144,7 +149,9 @@ function Index() {
                     className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600"
                     key={index}>
                     <td className="rtl:text-center">02.03.2024</td>
-                    <td scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <td
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       {product.sku}
                     </td>
                     <td className="px-6 py-4">{product.product}</td>

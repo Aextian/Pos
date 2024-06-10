@@ -1,33 +1,29 @@
-import CreateGroup from '@/Components/CustomerGroup/CreateGroup'
-import EditGroup from '@/Components/CustomerGroup/EditGroup'
-import Success from '@/Components/Shared/ui/Alert/Success'
-import DangerButton from '@/Components/Shared/ui/Button/DangerButton'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
-import Pagination from '@/Components/Shared/ui/Table/Pagination'
-import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableBody from '@/Components/Shared/ui/Table/TableBody'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
-import useSort from '@/Hooks/useSort'
+import CreateGroup from '@/features/CustomerGroup/CreateGroup'
+import EditGroup from '@/features/CustomerGroup/EditGroup'
+import Success from '@/shared/components/Alert/Success'
+import DangerButton from '@/shared/components/Button/DangerButton'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import SecondaryButton from '@/shared/components/Button/SecondaryButton'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import ContentTitle from '@/shared/components/ContentTitle'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
+import Pagination from '@/shared/components/Table/Pagination'
+import SearchBar from '@/shared/components/Table/SearchBar'
+import Table from '@/shared/components/Table/Table'
+import TableBody from '@/shared/components/Table/TableBody'
+import TableHead from '@/shared/components/Table/TableHead'
+import TableHeading from '@/shared/components/Table/TableHeading'
 import MainLayout from '@/Layouts/MainLayout'
-import React, { useCallback, useState } from 'react'
-import { FaPlus, FaSearch } from 'react-icons/fa'
-
-interface Group {
-  id: number
-  name: string
-  amount: string
-}
+import React from 'react'
+import { FaPlus } from 'react-icons/fa'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
+import { QueryParam } from '@/shared/types/queryparams'
+import { Group } from '@/features/CustomerGroup/types/group-types'
 
 type Props = {
   groups: { data: Group[]; links: []; sort_field: string; sort_direction: string }
   successMessage: string
-  queryParams: { sort_field: string; sort_direction: 'asc' | 'desc'; search: string }
+  queryParams: QueryParam
 }
 
 const Index: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
@@ -37,45 +33,38 @@ const Index: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
     { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
   ]
 
-  const [isCreatemodal, setCreateModal] = useState<boolean>(false)
-  const [isEditModal, setEditModal] = useState<boolean>(false)
-  const [isDelete, setDelete] = useState<number | null>(0)
+  const url = 'customer-group.index'
 
-  const [isEdit, setEdit] = useState<Group>({
-    id: 0,
+  const initialEditState = {
+    id: null as number | null,
     name: '',
     amount: '',
-  })
+  }
 
-  const handleShowCreateModal = useCallback(() => {
-    setCreateModal((prevState) => !isCreatemodal)
-  }, [isCreatemodal])
-
-  const handleShowEditModal = useCallback(
-    (data: Group) => {
-      setEditModal((prevState) => !isEditModal)
-      setEdit(data)
-    },
-    [isEditModal],
-  )
-
-  // function for sorting
-  const url = 'customer-group.index'
-  const sortChanged = useSort(queryParams, url)
+  const {
+    isDelete,
+    setDelete,
+    isCreateModal,
+    handleShowCreateModal,
+    isEditModal,
+    handleShowEditModal,
+    isEdit,
+    sortChanged,
+  } = useGlobalModalSortControl(queryParams, url, initialEditState)
 
   return (
     <MainLayout>
       {/* modal */}
-      <CreateGroup showModal={isCreatemodal} handleShowModal={handleShowCreateModal} />
+      <CreateGroup showModal={isCreateModal} handleShowModal={handleShowCreateModal} />
       <EditGroup showModal={isEditModal} group={isEdit} handleShowModal={handleShowEditModal} />
       <DeleteModal
         setDelete={setDelete}
         isDelete={isDelete}
         url="customer-group.destroy"
         onCloseRoute="customer-group.index"
+        success="Customer Group deleted successfully" // TODO: Custom Success Message
       />
       <Success message={successMessage} />
-
       <ContentTitle>Customer Groups</ContentTitle>
       <CardBorderTop>
         <CardBorderTop.Header>

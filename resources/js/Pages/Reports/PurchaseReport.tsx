@@ -1,5 +1,5 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
+import ContentTitle from '@/shared/components/ContentTitle'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import { FaPrint } from 'react-icons/fa'
@@ -80,7 +80,9 @@ const PurchaseReport = () => {
           </div>
         </div>
         <div className="shadow-lg  col-span-2 p-5 space-y-5 ">
-          <h3 className="font-bold text-xs md:text-lg">OverAll (Sale-Sale Return-Purchase-Purchase Return)</h3>
+          <h3 className="font-bold text-xs md:text-lg">
+            OverAll (Sale-Sale Return-Purchase-Purchase Return)
+          </h3>
           <p className=" text-xs md:text-lg ">
             Sale-Purchase: <span className="text-red-600 md:text-lg">Php-1786</span>
           </p>

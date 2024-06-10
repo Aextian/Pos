@@ -1,11 +1,11 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardContent from '@/Components/CardContent'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import { FaPrint } from 'react-icons/fa'
@@ -13,7 +13,16 @@ import { FaLocationPin } from 'react-icons/fa6'
 import Datepicker from 'react-tailwindcss-datepicker'
 
 const StockAdjustmentReport = () => {
-  const Thead = ['Date', 'Reference No', 'Location', 'Adjustment Type', 'Total Amount', 'Total Amount Recovered', ' Reason', 'Action']
+  const Thead = [
+    'Date',
+    'Reference No',
+    'Location',
+    'Adjustment Type',
+    'Total Amount',
+    'Total Amount Recovered',
+    ' Reason',
+    'Action',
+  ]
   const [date, setDate] = useState<any>({
     startDate: new Date(),
     endDate: new Date().setMonth(11),

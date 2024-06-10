@@ -1,12 +1,12 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { router } from '@inertiajs/react'
 import React, { useEffect, useState } from 'react'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 import Select from 'react-dropdown-select'
 
 interface Contact {
@@ -245,7 +245,9 @@ const Edit: React.FC<Props> = ({ user, roles, errors, contacts }) => {
                   placeholder="Current Password"
                   onChange={handleChange}
                 />
-                <span className="text-red-600">{errors.password_confirmation ? errors.password_confirmation : ''}</span>
+                <span className="text-red-600">
+                  {errors.password_confirmation ? errors.password_confirmation : ''}
+                </span>
               </LabelRow>
 
               <LabelRow>

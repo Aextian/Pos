@@ -1,9 +1,9 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 
@@ -51,7 +51,9 @@ const StockValueReport = () => {
             </tbody>
             <tfoot className=" dark:bg-gray-600 dark:border-gray-70">
               <tr className="">
-                <td className="p-16 font-bold text-black text-xs md:text-lg border-r dark:text-white">Total</td>
+                <td className="p-16 font-bold text-black text-xs md:text-lg border-r dark:text-white">
+                  Total
+                </td>
                 <td className="border-r text-xs md:text-lg">
                   <ul>
                     <li>16,316.00 Pc(s)</li>

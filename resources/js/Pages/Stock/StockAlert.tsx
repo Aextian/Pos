@@ -1,16 +1,14 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
-import Tooltip from '@/Components/Shared/ui/Tooltip'
-import StockData from '@/Data/StockAlertData'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
+import Tooltip from '@/shared/components/Tooltip'
+import StockData from '@/shared/data/StockAlertData'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { RiErrorWarningFill } from 'react-icons/ri'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 
 const StockAlert: React.FC<{ props: any }> = ({ props }) => {
   console.log('sds', props)
@@ -19,8 +17,8 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
       <ContentTitle>Welcome Mlya Pos</ContentTitle>
 
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>Product Stock Alert</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>Product Stock Alert</CardBorderTop.Title>
           <Tooltip
             title="Product with low stock."
             content="
@@ -28,7 +26,7 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
               ">
             <RiErrorWarningFill size={20} />
           </Tooltip>
-        </CardHeader>
+        </CardBorderTop.Header>
 
         <div className="flex justify-end">
           <div className="relative">
@@ -42,7 +40,9 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
         </div>
 
         {StockData.map((data, index) => (
-          <div className="md:hidden flex flex-col gap-1 p-3 after:rounded-lg border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300" key={index}>
+          <div
+            className="md:hidden flex flex-col gap-1 p-3 after:rounded-lg border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
+            key={index}>
             <div>
               Product: <span>{data.product}</span>
             </div>

@@ -1,18 +1,18 @@
-import Business from '@/Components/Settings/BusinessSettings/Business'
-import Product from '@/Components/Settings/BusinessSettings/Product'
-import Sale from '@/Components/Settings/BusinessSettings/Sale'
-import Tax from '@/Components/Settings/BusinessSettings/Tax'
+import Business from '@/features/Settings/BusinessSettings/Business'
+import Product from '@/features/Settings/BusinessSettings/Product'
+import Sale from '@/features/Settings/BusinessSettings/Sale'
+import Tax from '@/features/Settings/BusinessSettings/Tax'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
-import Pos from '@/Components/Settings/BusinessSettings/Pos'
-import Purchases from '@/Components/Settings/BusinessSettings/Purchases'
-import Dashboard from '@/Components/Settings/BusinessSettings/Dashboard'
-import System from '@/Components/Settings/BusinessSettings/System'
-import Prefixes from '@/Components/Settings/BusinessSettings/Prefixes'
-import EmailSetting from '@/Components/Settings/BusinessSettings/EmailSetting'
-import SmsSetting from '@/Components/Settings/BusinessSettings/SmsSetting'
-import Modules from '@/Components/Settings/BusinessSettings/Modules'
-import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
+import Pos from '@/features/Settings/BusinessSettings/Pos'
+import Purchases from '@/features/Settings/BusinessSettings/Purchases'
+import Dashboard from '@/features/Settings/BusinessSettings/Dashboard'
+import System from '@/features/Settings/BusinessSettings/System'
+import Prefixes from '@/features/Settings/BusinessSettings/Prefixes'
+import EmailSetting from '@/features/Settings/BusinessSettings/EmailSetting'
+import SmsSetting from '@/features/Settings/BusinessSettings/SmsSetting'
+import Modules from '@/features/Settings/BusinessSettings/Modules'
+import SecondaryButton from '@/shared/components/Button/SecondaryButton'
 
 interface Props {
   business: {
@@ -30,7 +30,20 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({ business, currencies }) => {
-  const list = ['Bussiness', 'Tax', 'Product', 'Sale', 'POS', 'Purchases', 'Dashboard', 'System', 'Prefixes', 'Email Settings', 'SMS Settings', 'Modules']
+  const list = [
+    'Bussiness',
+    'Tax',
+    'Product',
+    'Sale',
+    'POS',
+    'Purchases',
+    'Dashboard',
+    'System',
+    'Prefixes',
+    'Email Settings',
+    'SMS Settings',
+    'Modules',
+  ]
   const [open, setOpen] = useState('Bussiness')
 
   const handleClick = (name: string) => {
@@ -44,7 +57,11 @@ const Index: React.FC<Props> = ({ business, currencies }) => {
         <aside className="flex flex-row border">
           <ul className=" flex flex-col  border-r text-xs basis-[200px]">
             {list.map((item, index) => (
-              <li className={`relative flex justify-center dark:text-gray-400  items-center ${open === item ? 'bg-cyan-600 text-white dark:text-white' : ''}`} key={index}>
+              <li
+                className={`relative flex justify-center dark:text-gray-400  items-center ${
+                  open === item ? 'bg-cyan-600 text-white dark:text-white' : ''
+                }`}
+                key={index}>
                 <button className="w-full border-b p-3 " onClick={() => handleClick(item)}>
                   <span className="inline-block pr-3">{item}</span>
                 </button>

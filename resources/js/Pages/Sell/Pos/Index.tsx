@@ -1,13 +1,13 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React, { PropsWithChildren, useState } from 'react'
@@ -17,7 +17,21 @@ import Datepicker from 'react-tailwindcss-datepicker'
 
 const Index = () => {
   // Table Header
-  const Thead = ['Date', 'Invoice No', 'Customer name', 'Location', 'Payment status', 'Total amount', 'Total paid', 'Payment due', 'Vatable', 'Vat@12%', 'Vat Exempt', 'Vat Zero Rated', 'Action']
+  const Thead = [
+    'Date',
+    'Invoice No',
+    'Customer name',
+    'Location',
+    'Payment status',
+    'Total amount',
+    'Total paid',
+    'Payment due',
+    'Vatable',
+    'Vat@12%',
+    'Vat Exempt',
+    'Vat Zero Rated',
+    'Action',
+  ]
   const [date, setDate] = useState<any>({
     startDate: new Date(),
     endDate: new Date().setMonth(11),

@@ -1,9 +1,9 @@
 import { useEffect, FormEventHandler } from 'react'
 import GuestLayout from '@/Layouts/GuestLayout'
-import InputError from '@/Components/Shared/ui/InputError'
-import InputLabel from '@/Components/Shared/ui/InputLabel'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import InputError from '@/shared/components/InputError'
+import InputLabel from '@/shared/components/InputLabel'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import { Head, useForm } from '@inertiajs/react'
 
 export default function ResetPassword({ token, email }: { token: string; email: string }) {
@@ -34,7 +34,15 @@ export default function ResetPassword({ token, email }: { token: string; email: 
         <div>
           <InputLabel htmlFor="email" value="Email" />
 
-          <TextInput id="email" type="email" name="email" value={data.email} className="mt-1 block w-full" autoComplete="username" onChange={(e) => setData('email', e.target.value)} />
+          <TextInput
+            id="email"
+            type="email"
+            name="email"
+            value={data.email}
+            className="mt-1 block w-full"
+            autoComplete="username"
+            onChange={(e) => setData('email', e.target.value)}
+          />
 
           <InputError message={errors.email} className="mt-2" />
         </div>

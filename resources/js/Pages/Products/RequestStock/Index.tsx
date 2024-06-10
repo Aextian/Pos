@@ -1,10 +1,10 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
@@ -19,7 +19,9 @@ const Index = () => {
       <CardBorderTop>
         <CardHeader>
           <CardTitle>Request Lists</CardTitle>
-          <Link href={route('request-stock.create')} className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
+          <Link
+            href={route('request-stock.create')}
+            className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
             Create Stock Request
           </Link>
         </CardHeader>
@@ -43,7 +45,12 @@ const Index = () => {
                 <div className="flex items-center">
                   Request From
                   <a href="#">
-                    <svg className="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-3 h-3 ms-1.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
                       <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                     </svg>
                   </a>
@@ -65,12 +72,17 @@ const Index = () => {
           </TableHead>
           <tbody>
             <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right whitespace-nowrap gap-2">
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]"> Manage Discount</button>
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]">
+                  {' '}
+                  Manage Discount
+                </button>
               </td>
             </tr>
           </tbody>

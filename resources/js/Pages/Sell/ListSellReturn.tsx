@@ -1,16 +1,26 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
 
 const ListSellReturn = () => {
-  const Thead = ['Date', 'Invoice No', 'Parent Sale', 'Customer Name', 'Location', 'Payment status', 'Total amount', 'Payment due', 'Action']
+  const Thead = [
+    'Date',
+    'Invoice No',
+    'Parent Sale',
+    'Customer Name',
+    'Location',
+    'Payment status',
+    'Total amount',
+    'Payment due',
+    'Action',
+  ]
   return (
     <MainLayout>
       <ContentTitle>Sell Return</ContentTitle>
@@ -22,7 +32,12 @@ const ListSellReturn = () => {
               <FaSearch size={20} />
             </div>
           </div>
-          <TextInput className="rounded-lg px-5 py-2 bg-slate-200 ps-10 text-xs " type="search" name="" id="" />
+          <TextInput
+            className="rounded-lg px-5 py-2 bg-slate-200 ps-10 text-xs "
+            type="search"
+            name=""
+            id=""
+          />
         </div>
         <Table>
           <TableHead>

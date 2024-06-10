@@ -1,10 +1,10 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React, { useState } from 'react'
@@ -12,7 +12,17 @@ import { FaPlus } from 'react-icons/fa'
 import Datepicker from 'react-tailwindcss-datepicker'
 
 const ListPurchaseReturn = () => {
-  const Thead = ['Date', 'Reference No', 'Parent Purchase', 'Location', 'Supplier', 'Payment Status', 'Grand Total', 'Payment due', 'action']
+  const Thead = [
+    'Date',
+    'Reference No',
+    'Parent Purchase',
+    'Location',
+    'Supplier',
+    'Payment Status',
+    'Grand Total',
+    'Payment due',
+    'action',
+  ]
   const [date, setDate] = useState<any>({
     startDate: new Date(),
     endDate: new Date().setMonth(11),

@@ -115,10 +115,11 @@ Route::prefix('expense')->group(function () {
     Route::resource('category', ExpenseCategoryController::class);
 });
 
-Route::prefix('contacts')->group(function () {
+Route::prefix('contact')->group(function () {
     Route::resource('contacts', ContactController::class);
-    Route::resource('supplier', SupplierController::class);
-    Route::resource('customer', CustomerController::class);
+    Route::get('supplier', [ContactController::class, 'supplier'])->name('contacts.supplier');
+    Route::get('customer', [ContactController::class, 'customer'])->name('contacts.customer');
+
     Route::resource('customer-group', CustomerGroupController::class);
 });
 

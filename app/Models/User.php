@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function contacts(): BelongsToMany
     {
-        return $this->belongsToMany(Supplier::class, 'user_contact_access', 'user_id', 'contact_id');
+        return $this->belongsToMany(Contact::class, 'user_contact_access', 'user_id', 'contact_id');
     }
 
 

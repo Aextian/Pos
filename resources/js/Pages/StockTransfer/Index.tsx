@@ -1,18 +1,27 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import PostLabel from '@/Components/Shared/ui/PostLabel'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import PostLabel from '@/shared/components/PostLabel'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
 
 const Index = () => {
-  const Thead = ['Date', 'Reference No', 'Location(From)', 'Location(To)', 'Shipping Charges', 'Total Amount', 'Additional Notes', 'Action']
+  const Thead = [
+    'Date',
+    'Reference No',
+    'Location(From)',
+    'Location(To)',
+    'Shipping Charges',
+    'Total Amount',
+    'Additional Notes',
+    'Action',
+  ]
   return (
     <MainLayout>
       <ContentTitle>

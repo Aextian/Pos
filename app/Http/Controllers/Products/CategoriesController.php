@@ -47,15 +47,9 @@ class CategoriesController extends Controller
      */
     public function store(ProductCategoryRequest $request)
     {
-        $category = new ProductCategory();
-        $category->name = $request->input('name');
-        $category->short_code = $request->input('short_code');
+        $category = new ProductCategory($request->all());
 
-        if ($request->input('parent_id')) {
-            $category->parent_id = $request->parent_id;
-        } else {
-            $category->parent_id = $category->id;
-        }
+        $category->parent_id = $request->parent_id ?? $category->id;
 
         $category->save();
 

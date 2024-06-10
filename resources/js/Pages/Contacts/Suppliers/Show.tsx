@@ -1,40 +1,26 @@
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaBriefcase, FaCalendar, FaHandshake, FaInfo, FaMoneyBill, FaPhone, FaUser } from 'react-icons/fa'
 import { FaMarkdown } from 'react-icons/fa6'
+import { Supplier } from '@/features/Suppliers/types/supplier-types'
 
-interface Supplier {
-  id: number
-  name: string
-  email: string
-  supplier_business_name: string
-  contact_id: string
-  points_status: string
-  type: string
-  tax_number: string
-  city: string
-  state: string
-  country: string
-  landmark: string
-  mobile: string
-  landline: string
-  opening_balance: string | number
-  alternate_number: string
-  pay_term_number: string | number // Assuming pay_term_number could be a string or number
-  pay_term_type: string
-  custom_field1: string
-  custom_field2: string
-  custom_field3: string
-  custom_field4: string
-}
 const Show: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
-  const Thead = ['Date', 'Ref No', 'Supplier', 'Purchase Status', 'Payment Status', 'Grand Total', 'Payment due', 'action']
+  const Thead = [
+    'Date',
+    'Ref No',
+    'Supplier',
+    'Purchase Status',
+    'Payment Status',
+    'Grand Total',
+    'Payment due',
+    'action',
+  ]
 
   const Card2Thead = ['Reference No', 'Paid on', 'Amount', 'Payment Method', 'action']
 

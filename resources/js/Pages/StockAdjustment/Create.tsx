@@ -1,13 +1,13 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextArea from '@/Components/Shared/ui/TextArea'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextArea from '@/shared/components/TextArea'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import { FaMoneyBill, FaRegCalendar, FaSearch, FaTrash } from 'react-icons/fa'
@@ -33,7 +33,9 @@ const Create = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           <LabelRow>
             <SpanLabel>Business Location (To):*</SpanLabel>
-            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -51,7 +53,9 @@ const Create = () => {
           </LabelRow>
           <LabelRow>
             <SpanLabel>Adjustment type:*</SpanLabel>
-            <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+            <select
+              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              name="type">
               <option value="" selected>
                 Please Select
               </option>
@@ -68,7 +72,11 @@ const Create = () => {
           <div className="border dark:border-slate-500 px-2 grid place-items-center">
             <FaSearch size={15} />
           </div>
-          <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="Search Product of stock adjustent" />
+          <TextInput
+            className="w-full  p-2 rounded-none text-xs "
+            type="search"
+            placeholder="Search Product of stock adjustent"
+          />
         </div>
         <div className="overflow-x-auto">
           <Table>
@@ -88,7 +96,8 @@ const Create = () => {
           </Table>
         </div>
         <div className="border-t text-right p-3 space-x-3">
-          <h5 className="text-xs inline font-bold">Net Total Amount </h5> <span className="text-[10px]">0.00</span>
+          <h5 className="text-xs inline font-bold">Net Total Amount </h5>{' '}
+          <span className="text-[10px]">0.00</span>
         </div>
       </CardBorderTop>
 

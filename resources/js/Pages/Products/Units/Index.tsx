@@ -1,24 +1,24 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import Modal from '@/Components/Shared/ui/Modal/Modal'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import SecondaryButton from '@/Components/Shared/ui/Button/SecondaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import Modal from '@/shared/components/Modal/Modal'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import SecondaryButton from '@/shared/components/Button/SecondaryButton'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useCallback, useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import CreateUnit from '@/Components/Units/CreateUnit'
-import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
-import useSort from '@/Hooks/useSort'
-import TableBody from '@/Components/Shared/ui/Table/TableBody'
-import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
-import DangerButton from '@/Components/Shared/ui/Button/DangerButton'
-import Editunit from '@/Components/Units/EditUnit'
-import DeleteModal from '@/Components/Shared/ui/Modal/DeleteModal'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import CreateUnit from '@/features/Units/CreateUnit'
+import TableHeading from '@/shared/components/Table/TableHeading'
+import TableBody from '@/shared/components/Table/TableBody'
+import SearchBar from '@/shared/components/Table/SearchBar'
+import DangerButton from '@/shared/components/Button/DangerButton'
+import Editunit from '@/features/Units/EditUnit'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
 
 interface Unit {
   id: number
@@ -41,38 +41,34 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
     { name: 'Allow Decimal', sort_field: 'allow_decimal' }, // Assuming no sort field for this column
     { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
   ]
-  const [isCreateModal, setCreateModal] = useState<boolean>(false)
-  const [isEditModal, setEditModal] = useState<boolean>(false)
-  const [isDelete, setDelete] = useState<number | null>(0)
-  const [isEdit, setEdit] = useState<Unit>({
+
+  // function for sorting
+  const url = 'unit.index'
+
+  const initialEditState = {
     id: 0,
     actual_name: '',
     short_name: '',
     allow_decimal: 0,
     base_unit_multiplier: 0 as null | number,
     base_unit_id: 0 as null | number,
-  })
+  }
 
-  const handleShowCreate = useCallback(() => {
-    setCreateModal((prevState) => !isCreateModal)
-  }, [isCreateModal])
-
-  const handleShowEditModal = useCallback(
-    (data: Unit) => {
-      setEditModal((prevState) => !isEditModal)
-      setEdit(data)
-    },
-    [isEditModal],
-  )
-
-  // function for sorting
-  const url = 'unit.index'
-  const sortChanged = useSort(queryParams, url)
+  const {
+    isDelete,
+    setDelete,
+    isCreateModal,
+    handleShowCreateModal,
+    isEditModal,
+    handleShowEditModal,
+    isEdit,
+    sortChanged,
+  } = useGlobalModalSortControl(queryParams, url, initialEditState)
 
   return (
     <>
       <MainLayout>
-        <CreateUnit showModal={isCreateModal} handleShowModal={handleShowCreate} units={units.data} />
+        <CreateUnit showModal={isCreateModal} handleShowModal={handleShowCreateModal} units={units.data} />
 
         <Editunit
           showModal={isEditModal}
@@ -96,7 +92,7 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
           <CardBorderTop.Header>
             <CardBorderTop.Title>All your units</CardBorderTop.Title>
             <SecondaryButton
-              onClick={handleShowCreate}
+              onClick={handleShowCreateModal}
               className="rounded-lg px-5 py-1 bg-cyan-500  font-medium gap-2">
               <FaPlus /> Add
             </SecondaryButton>

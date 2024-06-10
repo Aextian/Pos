@@ -1,8 +1,8 @@
 import { useRef, FormEventHandler } from 'react'
-import InputError from '@/Components/Shared/ui/InputError'
-import InputLabel from '@/Components/Shared/ui/InputLabel'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import InputError from '@/shared/components/InputError'
+import InputLabel from '@/shared/components/InputLabel'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TextInput from '@/shared/components/TextInput'
 import { useForm } from '@inertiajs/react'
 import { Transition } from '@headlessui/react'
 
@@ -41,7 +41,9 @@ export default function UpdatePasswordForm({ className = '' }: { className?: str
       <header>
         <h2 className="text-lg font-medium text-gray-900">Update Password</h2>
 
-        <p className="mt-1 text-sm text-gray-600">Ensure your account is using a long, random password to stay secure.</p>
+        <p className="mt-1 text-sm text-gray-600">
+          Ensure your account is using a long, random password to stay secure.
+        </p>
       </header>
 
       <form onSubmit={updatePassword} className="mt-6 space-y-6">
@@ -95,7 +97,12 @@ export default function UpdatePasswordForm({ className = '' }: { className?: str
         <div className="flex items-center gap-4">
           <PrimaryButton disabled={processing}>Save</PrimaryButton>
 
-          <Transition show={recentlySuccessful} enter="transition ease-in-out" enterFrom="opacity-0" leave="transition ease-in-out" leaveTo="opacity-0">
+          <Transition
+            show={recentlySuccessful}
+            enter="transition ease-in-out"
+            enterFrom="opacity-0"
+            leave="transition ease-in-out"
+            leaveTo="opacity-0">
             <p className="text-sm text-gray-600">Saved.</p>
           </Transition>
         </div>

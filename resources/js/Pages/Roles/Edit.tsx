@@ -1,13 +1,13 @@
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import Error from '@/Components/Shared/ui/Alert/Error'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import Error from '@/shared/components/Alert/Error'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { useForm } from '@inertiajs/react'
 import React, { useEffect } from 'react'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 
 interface Permission {
   id: number

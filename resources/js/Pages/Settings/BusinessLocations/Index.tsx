@@ -2,23 +2,34 @@ import CardBorderTop from '@/Components/CardBorderTop'
 import CardContent from '@/Components/CardContent'
 import CardHeader from '@/Components/CardHeader'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import SearchBar from '@/Components/Shared/ui/Table/SearchBar'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import Modal from '@/Components/Shared/ui/Modal/Modal'
-import Pagination from '@/Components/Shared/ui/Table/Pagination'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
-import TableHeading from '@/Components/Shared/ui/Table/TableHeading'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import SearchBar from '@/shared/components/Table/SearchBar'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import Modal from '@/shared/components/Modal/Modal'
+import Pagination from '@/shared/components/Table/Pagination'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import TableHeading from '@/shared/components/Table/TableHeading'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link, router } from '@inertiajs/react'
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 
 const Index = () => {
-  const Thead = ['name', 'Location ID', 'Landmark', 'City', 'Zip Code', 'State', 'Country', ' Invoice scheme', 'Invoice layout', 'Action']
+  const Thead = [
+    'name',
+    'Location ID',
+    'Landmark',
+    'City',
+    'Zip Code',
+    'State',
+    'Country',
+    ' Invoice scheme',
+    'Invoice layout',
+    'Action',
+  ]
   return (
     <>
       <MainLayout>

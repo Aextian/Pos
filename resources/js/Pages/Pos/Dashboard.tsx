@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from 'react'
 import { FaMoneyBill, FaPaperclip } from 'react-icons/fa'
 import { IoIosWarning } from 'react-icons/io'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import ContentTitle from '@/shared/components/ContentTitle'
 import { Line } from 'react-chartjs-2'
-import Info from '@/Components/Shared/ui/Tooltip'
+import Info from '@/shared/components/Tooltip'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,9 +17,9 @@ import {
   Legend,
 } from 'chart.js'
 import { FaCartPlus, FaCircleInfo, FaInfo } from 'react-icons/fa6'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 

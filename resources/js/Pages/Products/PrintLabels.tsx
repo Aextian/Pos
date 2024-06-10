@@ -1,10 +1,10 @@
 import CardBorderTop from '@/Components/CardBorderTop'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { IoSearch } from 'react-icons/io5'
 import { FaInfo } from 'react-icons/fa'
 import { CiSettings } from 'react-icons/ci'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
+import ContentTitle from '@/shared/components/ContentTitle'
 import CardTitle from '@/Components/CardTitle'
 
 const PrintLabels = () => {
@@ -20,7 +20,10 @@ const PrintLabels = () => {
             <div className="px-3 border dark:border-slate-500 dark:text-white flex items-center ">
               <IoSearch size={20} />
             </div>
-            <TextInput className="w-full border rounded-none p-1" placeholder="Enter product name to print labels" />
+            <TextInput
+              className="w-full border rounded-none p-1"
+              placeholder="Enter product name to print labels"
+            />
           </div>
           <div className="overflow-x-auto w-full">
             <table className="w-full border text-[10px] text-left ">
@@ -91,7 +94,9 @@ const PrintLabels = () => {
               <option value="">Exc Tax</option>
             </select>
           </div>
-          <button className="btn rounded-md bg-cyan-600 p-2 text-white uppercase font-bold md:self-end md:w-80">Preview</button>
+          <button className="btn rounded-md bg-cyan-600 p-2 text-white uppercase font-bold md:self-end md:w-80">
+            Preview
+          </button>
         </div>
       </CardBorderTop>
       <div>

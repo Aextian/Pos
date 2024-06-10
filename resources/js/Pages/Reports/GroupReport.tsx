@@ -1,12 +1,12 @@
 import CardBorderTop from '@/Components/CardBorderTop'
 import CardTitle from '@/Components/CardTitle'
-import ContentTitle from '@/Components/Shared/ui/ContentTitle'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import NoDataAvailable from '@/Components/Shared/ui/Table/NoDataAvailable'
-import Table from '@/Components/Shared/ui/Table/Table'
-import TableHead from '@/Components/Shared/ui/Table/TableHead'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import ContentTitle from '@/shared/components/ContentTitle'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
+import Table from '@/shared/components/Table/Table'
+import TableHead from '@/shared/components/Table/TableHead'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React, { useState } from 'react'
@@ -33,7 +33,9 @@ const GroupReport = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
               <LabelRow>
                 <SpanLabel>Customer Groups Name:</SpanLabel>
-                <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+                <select
+                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+                  name="type">
                   <option value="" selected>
                     All
                   </option>
@@ -44,7 +46,9 @@ const GroupReport = () => {
 
               <LabelRow>
                 <SpanLabel>Business Location:</SpanLabel>
-                <select className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300" name="type">
+                <select
+                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+                  name="type">
                   <option value="" selected>
                     All
                   </option>
@@ -55,7 +59,12 @@ const GroupReport = () => {
 
               <LabelRow>
                 <SpanLabel>Date Range:</SpanLabel>
-                <Datepicker primaryColor="cyan" value={date} onChange={handleValueChange} showShortcuts={true} />
+                <Datepicker
+                  primaryColor="cyan"
+                  value={date}
+                  onChange={handleValueChange}
+                  showShortcuts={true}
+                />
               </LabelRow>
             </div>
           </div>

@@ -1,13 +1,13 @@
-import TextInput from '@/Components/Shared/ui/TextInput'
+import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useState } from 'react'
 import { router, useForm } from '@inertiajs/react'
-import LabelRow from '@/Components/Shared/ui/LabelRow'
-import SpanLabel from '@/Components/Shared/ui/SpanLabel'
-import Error from '@/Components/Shared/ui/Alert/Error'
+import LabelRow from '@/shared/components/LabelRow'
+import SpanLabel from '@/shared/components/SpanLabel'
+import Error from '@/shared/components/Alert/Error'
 import { error } from 'console'
-import CardBorderTop from '@/Components/Shared/ui/CardBorderTop'
-import PrimaryButton from '@/Components/Shared/ui/Button/PrimaryButton'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 
 interface Permission {
   id: number
@@ -86,7 +86,13 @@ const Create: React.FC<Props> = ({ permissions }) => {
             <form onSubmit={(e) => handleSubmit(e)}>
               <LabelRow>
                 <SpanLabel>Role Names</SpanLabel>
-                <TextInput type="text" className=" text-xs w-full" onChange={(e) => handleChange(e)} name="name" placeholder="Role Name" />
+                <TextInput
+                  type="text"
+                  className=" text-xs w-full"
+                  onChange={(e) => handleChange(e)}
+                  name="name"
+                  placeholder="Role Name"
+                />
               </LabelRow>
 
               <div className="flex flex-col justify-center gap-5 dark:text-white mt-3">
@@ -94,7 +100,12 @@ const Create: React.FC<Props> = ({ permissions }) => {
                   <div className="space-y-5" key={index}>
                     <div className="flex gap-2 items-center rounded-lg">
                       <label className="text-lg font-bold flex items-center">
-                        <input className="mr-5 " name={`bulk-${index}`} type="checkbox" onChange={(e) => handleBulkChange(e, data.permissions)} />
+                        <input
+                          className="mr-5 "
+                          name={`bulk-${index}`}
+                          type="checkbox"
+                          onChange={(e) => handleBulkChange(e, data.permissions)}
+                        />
                         {data['category']}
                       </label>
                     </div>

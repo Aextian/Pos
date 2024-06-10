@@ -91,6 +91,6 @@ class CustomerGroupController extends Controller
 
         $group = CustomerGroup::findorFail($id);
         $group->delete();
-        return back()->with('success', 'Customer Group deleted successfully');
+        return back();
     }
 }

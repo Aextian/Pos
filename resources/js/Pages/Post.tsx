@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { CiMenuBurger } from 'react-icons/ci'
-import { FaWindowClose, FaChartPie, FaCartArrowDown, FaMoneyBill, FaShieldAlt, FaWarehouse, FaCalculator } from 'react-icons/fa'
+import {
+  FaWindowClose,
+  FaChartPie,
+  FaCartArrowDown,
+  FaMoneyBill,
+  FaShieldAlt,
+  FaWarehouse,
+  FaCalculator,
+} from 'react-icons/fa'
 import { MdOutlineProductionQuantityLimits } from 'react-icons/md'
 import { IoSettings } from 'react-icons/io5'
 import { TbReportSearch } from 'react-icons/tb'
 import { IoIosNotificationsOutline, IoIosWarning } from 'react-icons/io'
 import { FiChevronDown } from 'react-icons/fi'
 import { FaUsersLine } from 'react-icons/fa6'
-import TextInput from '@/Components/Shared/ui/TextInput'
+import TextInput from '@/shared/components/TextInput'
 const Post = () => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -60,7 +68,10 @@ const Post = () => {
       </div>
 
       {/* sidebar */}
-      <div className={`h-screen w-48 top-0 bg-white fixed shadow-lg overflow-auto transition-all duration-300 ease-in-out ${isOpen ? 'left-[-250px]' : 'left-[0]'}`}>
+      <div
+        className={`h-screen w-48 top-0 bg-white fixed shadow-lg overflow-auto transition-all duration-300 ease-in-out ${
+          isOpen ? 'left-[-250px]' : 'left-[0]'
+        }`}>
         <div className="p-5 flex justify-between border-b-2">
           <h2>Logo</h2>
           <button onClick={toggleSidebar}>
@@ -71,92 +82,122 @@ const Post = () => {
         <div className="mt-5">
           <ul className="flex flex-col gap-3 items-start justify-start text-[.8rem] md:text-[.9rem] ">
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Stock Alert
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <MdOutlineProductionQuantityLimits size={18} />
                 Products
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaCartArrowDown size={18} />
                 Cart
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaMoneyBill size={18} />
                 Money
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaUsersLine size={18} />
                 Users
                 <FiChevronDown size={18} />
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaShieldAlt size={18} />
                 Roles/Permission
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaWarehouse size={18} />
                 Warehouse
               </a>
             </li>
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <TbReportSearch size={18} />
                 Reports
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <IoSettings size={18} />
                 Settings
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Dashhboard
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Dashhboard
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Dashhboard
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Dashhboard
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Dashhboard
               </a>
             </li>{' '}
             <li className="w-[100%]">
-              <a className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4" href="">
+              <a
+                className="flex flex-row py-2 justify-start gap-3  hover:border-l-4 hover:text-[#A5DD9B] hover:border-[#A5DD9B] px-4"
+                href="">
                 <FaChartPie size={18} />
                 Dashhboard
               </a>
