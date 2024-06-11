@@ -27,8 +27,9 @@ const Index = () => {
         show={open}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('category.index'))}>
-        <div className="grid gap-3 p-3 dark:bg-gray-800 dark:border-gray-700">
+        onClose={() => router.visit(route('category.index'))}
+      >
+        <div className="grid gap-3 p-3 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex justify-between">
             <h1 className="font-bold dark:text-white">Add Tax Rate</h1>
             <button onClick={() => setOpen(false)}>
@@ -39,11 +40,11 @@ const Index = () => {
           <div>
             <label>
               <SpanLabel>Category name:*</SpanLabel>
-              <TextInput className="text-xs p-2 w-full" placeholder="Category name" />
+              <TextInput className="w-full p-2 text-xs" placeholder="Category name" />
             </label>
             <label>
               <SpanLabel> Category code:*</SpanLabel>
-              <TextInput className="text-xs p-2 w-full" placeholder="Category code" />
+              <TextInput className="w-full p-2 text-xs" placeholder="Category code" />
             </label>
           </div>
           <div className="flex justify-end gap-3">

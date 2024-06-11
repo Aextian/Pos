@@ -123,7 +123,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
       <CardBorderTop>
         <CardBorderTop.Content>
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
               <LabelRow>
                 <SpanLabel>Prefix</SpanLabel>
                 <TextInput
@@ -140,7 +140,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <TextInput
                   type="text"
                   name="first_name"
-                  className={`w-full text-xs ${errors.first_name ? ' border-red-500' : ''}`}
+                  className={`w-full text-xs ${errors.first_name ? 'border-red-500' : ''}`}
                   placeholder="First Name"
                   onChange={handleChange}
                 />
@@ -152,7 +152,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <TextInput
                   type="text"
                   name="last_name"
-                  className={`w-full text-xs ${errors.last_name ? ' border-red-500' : ''}`}
+                  className={`w-full text-xs ${errors.last_name ? 'border-red-500' : ''}`}
                   placeholder="Last Name"
                   onChange={handleChange}
                 />
@@ -164,7 +164,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <TextInput
                   type="text"
                   name="email"
-                  className={`w-full text-xs ${errors.email ? ' border-red-500' : ''}`}
+                  className={`w-full text-xs ${errors.email ? 'border-red-500' : ''}`}
                   placeholder="Email"
                   onChange={handleChange}
                 />
@@ -174,10 +174,11 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
               <LabelRow>
                 <SpanLabel>Role:*</SpanLabel>
                 <select
-                  className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
+                  className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                   name="roles"
                   onChange={handleChange}
-                  multiple>
+                  multiple
+                >
                   {roles?.map((role, index) => (
                     <option key={index} value={role.name}>
                       {role.name}
@@ -192,7 +193,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <TextInput
                   type="text"
                   name="username"
-                  className={`w-full text-xs ${errors.username ? ' border-red-500' : ''}`}
+                  className={`w-full text-xs ${errors.username ? 'border-red-500' : ''}`}
                   placeholder="Username"
                   onChange={handleChange}
                 />
@@ -204,7 +205,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <TextInput
                   type="text"
                   name="password"
-                  className={`w-full text-xs ${errors.password ? ' border-red-500' : ''}`}
+                  className={`w-full text-xs ${errors.password ? 'border-red-500' : ''}`}
                   placeholder="Password"
                   onChange={handleChange}
                 />
@@ -216,7 +217,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <TextInput
                   type="text"
                   name="password_confirmation"
-                  className={`w-full text-xs  ${errors.password_confirmation ? ' border-red-500' : ''}`}
+                  className={`w-full text-xs ${errors.password_confirmation ? 'border-red-500' : ''}`}
                   placeholder="Confirm Password"
                   onChange={handleChange}
                 />
@@ -238,7 +239,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <span className="text-red-600">{errors.cmmsn_percent ? errors.cmmsn_percent : ''}</span>
               </LabelRow>
 
-              <label className="inline-flex gap-3 items-center dark:text-white">
+              <label className="inline-flex items-center gap-3 dark:text-white">
                 Restricted Commision Percentage
                 <TextInput
                   className="rounded p-2"
@@ -263,7 +264,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 </LabelRow>
               )}
 
-              <label className="inline-flex gap-3 items-center dark:text-white">
+              <label className="inline-flex items-center gap-3 dark:text-white">
                 <TextInput className="rounded p-2" type="checkbox" name="status" onChange={handleChange} />
                 Is active
               </label>

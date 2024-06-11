@@ -11,9 +11,9 @@ import PosTable from '@/features/Pos/PosTable'
 const PosForm = () => {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <div className="flex flex-row">
-          <div className="border items-center grid p-2">
+          <div className="grid items-center border p-2">
             <FaLocationDot />
           </div>
           <select className="w-full p-1 text-[10px]" name="cars">
@@ -22,12 +22,12 @@ const PosForm = () => {
             <option value=""></option>
             <option value=""></option>
           </select>
-          <div className="border grid items-center p-2">
+          <div className="grid items-center border p-2">
             <FaInfoCircle />
           </div>
         </div>
         <div className="flex flex-row">
-          <div className="border items-center grid p-2">
+          <div className="grid items-center border p-2">
             <FaUser />
           </div>
           <select className="w-full p-1 text-[10px]" name="cars">
@@ -36,35 +36,35 @@ const PosForm = () => {
             <option value=""></option>
             <option value=""></option>
           </select>
-          <div className="border grid items-center p-2">
+          <div className="grid items-center border p-2">
             <FaPlusCircle />
           </div>
         </div>
         <div className="flex flex-row">
-          <div className="border items-center grid p-2">
+          <div className="grid items-center border p-2">
             <FaBarcode />
           </div>
           <TextInput
-            className="w-full p-1 rounded-none text-xs"
+            className="w-full rounded-none p-1 text-xs"
             type="search"
             readOnly
             placeholder="Enter Product name /SKU/Scan bar"
           />
-          <div className="border grid items-center p-2">
+          <div className="grid items-center border p-2">
             <FaPlusCircle />
           </div>
         </div>
       </div>
       <PosTable />
-      <div className="bg-gray-200 space-y-5 p-5">
-        <div className="grid grid-flow-row md:flex flex-row gap-6">
+      <div className="space-y-5 bg-gray-200 p-5">
+        <div className="grid grid-flow-row flex-row gap-6 md:flex">
           <div className="flex flex-row gap-5">
             <div>
-              <h1 className="font-bold text-lg">Total</h1>
+              <h1 className="text-lg font-bold">Total</h1>
               <span>0</span>
             </div>
             <div>
-              <h1 className="font-bold text-lg">Discount(-):</h1>
+              <h1 className="text-lg font-bold">Discount(-):</h1>
               <button>
                 <FaEdit size={20} />
               </button>
@@ -72,11 +72,11 @@ const PosForm = () => {
             </div>
           </div>
           <div>
-            <h1 className="font-bold text-lg">Total Payable:</h1>
+            <h1 className="text-lg font-bold">Total Payable:</h1>
             <span>0</span>
           </div>
           <div>
-            <h1 className="font-bold text-lg">Items:</h1>
+            <h1 className="text-lg font-bold">Items:</h1>
             <span>0</span>
           </div>
         </div>

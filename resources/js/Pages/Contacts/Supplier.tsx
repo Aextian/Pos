@@ -6,7 +6,7 @@ import Table from '@/shared/components/Table/Table'
 import TableHead from '@/shared/components/Table/TableHead'
 import Pagination from '@/shared/components/Table/Pagination'
 import CardBorderTop from '@/shared/components/CardBorderTop'
-import TableRow from '@/features/Suppliers/TableRow'
+import TableRow from '@/features/Contact/components/SupplierTableRow'
 import TableHeading from '@/shared/components/Table/TableHeading'
 import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
@@ -15,18 +15,11 @@ import { FaPlus } from 'react-icons/fa'
 import TableBody from '@/shared/components/Table/TableBody'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
 import { QueryParam } from '@/shared/types/queryparams'
-
-interface Supplier {
-  id: number
-  contact_id: number
-  supplier_business_name: string
-  name: string
-  mobile: string
-}
+import { Contact } from '@/features/Contact/types/contact-types'
 
 type Props = {
   suppliers: {
-    data: Supplier[]
+    data: Contact[]
     links: []
     sort_field: string
     sort_direction: string
@@ -39,10 +32,11 @@ const Supplier: React.FC<Props> = ({ successMessage, suppliers, queryParams }) =
   const Thead = [
     { name: 'Contact ID', sort_field: 'contact_Id' },
     { name: 'Business name', sort_field: 'supplier_business_name' },
-    { name: 'Name', sort_field: 'name' }, // Assuming no sort field for this column
+    { name: 'Name', sort_field: 'name' },
     { name: 'Contact', sort_field: 'email' },
-    { name: 'Total Purchase Due', sort_field: '' }, // Assuming no sort field for this column
-    { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
+    { name: 'Total Purchase Due', sort_field: '' },
+    { name: 'Total Purchase Return', sort_field: '' },
+    { name: 'Action', sort_field: '' },
   ]
 
   const url = 'contacts.supplier'
@@ -52,31 +46,26 @@ const Supplier: React.FC<Props> = ({ successMessage, suppliers, queryParams }) =
   return (
     <MainLayout>
       <Success message={successMessage} />
-
       <DeleteModal
         isDelete={isDelete}
         setDelete={setDelete}
-        url="supplier.destroy"
+        url="contacts.destroy"
         onCloseRoute="supplier.index"
-        success="Supplier deleted successfully"
+        success="Contact deleted successfully"
       />
-
       <ContentTitle>
         Suppliers <span className="text-xs text-gray-300">Manage your suppliers</span>
       </ContentTitle>
-
       <CardBorderTop>
         <CardBorderTop.Header>
           <CardBorderTop.Title>All your Suppliers</CardBorderTop.Title>
           <Link
             href={route('contacts.create', { type: 'supplier' })}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
+            className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25">
             <FaPlus /> Add
           </Link>
         </CardBorderTop.Header>
-
-        <SearchBar queryParams={queryParams} url="supplier.index" />
-
+        <SearchBar queryParams={queryParams} url="contacts.supplier" />
         <CardBorderTop.Content>
           <Table>
             <TableHead>
@@ -99,8 +88,8 @@ const Supplier: React.FC<Props> = ({ successMessage, suppliers, queryParams }) =
               ))}
             </TableBody>
           </Table>
+          <Pagination links={suppliers.links} />
         </CardBorderTop.Content>
-        <Pagination links={suppliers.links} />
       </CardBorderTop>
     </MainLayout>
   )

@@ -14,6 +14,7 @@ class CustomerGroupController extends Controller
      */
     public function index()
     {
+
         $sortFields = request("sort_field", 'created_at');
         $sortDirection = request("sort_direction", 'desc');
         $search = request('search');
@@ -25,7 +26,7 @@ class CustomerGroupController extends Controller
             ->onEachSide(1);
 
 
-        return inertia('Contacts/CustomerGroups/Index', [
+        return inertia('Contacts/CustomerGroup', [
             'groups' => $groups,
             'successMessage' => session('success'),
             'queryParams' => request()->query(),

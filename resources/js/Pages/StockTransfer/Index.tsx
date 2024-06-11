@@ -32,7 +32,8 @@ const Index = () => {
           <CardTitle>All Stock Transfer</CardTitle>
           <Link
             href={route('users.create')}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+          >
             Add
           </Link>
         </CardHeader>
@@ -41,7 +42,7 @@ const Index = () => {
             <TableHead>
               <tr>
                 {Thead.map((item, index) => (
-                  <th scope="col" className="px-4 py-3 border-r" key={index}>
+                  <th scope="col" className="border-r px-4 py-3" key={index}>
                     {item}
                   </th>
                 ))}
@@ -72,7 +73,7 @@ const Index = () => {
             </tbody>
           </Table>
         </div>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

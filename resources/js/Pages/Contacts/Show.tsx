@@ -8,9 +8,9 @@ import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaBriefcase, FaCalendar, FaHandshake, FaInfo, FaMoneyBill, FaPhone, FaUser } from 'react-icons/fa'
 import { FaMarkdown } from 'react-icons/fa6'
-import { Supplier } from '@/features/Suppliers/types/supplier-types'
+import { Contact } from '@/features/Contact/types/contact-types'
 
-const Show: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
+const Show: React.FC<{ supplier: Contact }> = ({ supplier }) => {
   const Thead = [
     'Date',
     'Ref No',
@@ -35,8 +35,8 @@ const Show: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
           Supplier info
         </CardBorderTop.Title>
         <CardBorderTop.Content>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-5 ">
-            <div className="flex gap-5 flex-col p-3 bg-slate-50  shadow-inner">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-4">
+            <div className="flex flex-col gap-5 bg-slate-50 p-3 shadow-inner">
               <h5 className="font-semibold">{supplier.supplier_business_name}</h5>
               <div className="space-y-3">
                 <h5 className="flex items-center gap-3 font-semibold">
@@ -52,7 +52,7 @@ const Show: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
               </div>
             </div>
 
-            <div className="flex gap-5 flex-col p-3 md:max-h-16  bg-slate-50 shadow-inner">
+            <div className="flex flex-col gap-5 bg-slate-50 p-3 shadow-inner md:max-h-16">
               <div className="space-y-3">
                 <h5 className="flex items-center gap-3 font-semibold">
                   <FaPhone /> Mobile
@@ -61,7 +61,7 @@ const Show: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
               </div>
             </div>
 
-            <div className="flex gap-5 flex-col p-3 bg-slate-50  shadow-inner ">
+            <div className="flex flex-col gap-5 bg-slate-50 p-3 shadow-inner">
               <div className="space-y-3">
                 <h5 className="flex items-center gap-3 font-semibold">
                   <FaInfo /> Tax number
@@ -84,7 +84,7 @@ const Show: React.FC<{ supplier: Supplier }> = ({ supplier }) => {
               </div>
             </div>
 
-            <div className="flex gap-5 flex-col p-3 bg-slate-50  shadow-inner ">
+            <div className="flex flex-col gap-5 bg-slate-50 p-3 shadow-inner">
               <div className="space-y-3">
                 <h5 className="flex items-center gap-3 font-semibold">Total Purchase</h5>
                 <span className="text-slate-500">Php 13,172.00</span>

@@ -16,10 +16,10 @@ const Product: React.FC<{ open: string }> = ({ open }) => {
 
   return (
     <>
-      <div className={`${open === 'Product' ? '' : 'hidden'}  grid grid-cols-1 md:grid-cols-3 gap-5 `}>
+      <div className={`${open === 'Product' ? '' : 'hidden'} grid grid-cols-1 gap-5 md:grid-cols-3`}>
         <LabelRow>
           <SpanLabel>SKU prefix: *</SpanLabel>
-          <TextInput className="p-2 text-xs mt-2 w-full rounded-none" placeholder="SKU prefix" />
+          <TextInput className="mt-2 w-full rounded-none p-2 text-xs" placeholder="SKU prefix" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Enable Product Expiry: *</SpanLabel>
@@ -29,47 +29,49 @@ const Product: React.FC<{ open: string }> = ({ open }) => {
                 defaultChecked={isChecked}
                 onChange={handleExpiry}
                 type="checkbox"
-                className="text-xs px-2  w-full rounded-none"
+                className="w-full rounded-none px-2 text-xs"
               />
             </div>
             <select
               name="time_format"
-              className="text-xs p-2 w-full rounded-none dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+              className="w-full rounded-none p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+            >
               <option value="">FI</option>
               <option value="">FO</option>
             </select>
           </div>
         </LabelRow>
         {isChecked && <ProductExpiry />}
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Brands</span>
         </label>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Categories</span>
         </label>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Sub-Categories</span>
         </label>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Price & Tax Info</span>
         </label>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Brands</span>
         </label>
         <LabelRow>
           <SpanLabel>Default Unit:</SpanLabel>
           <div className="flex items-center justify-center">
-            <div className="border border-r-0 mt-2 p-2 dark:text-white dark:border-slate-500">
+            <div className="mt-2 border border-r-0 p-2 dark:border-slate-500 dark:text-white">
               <FaBalanceScale size={16} />
             </div>
             <select
               name="time_format"
-              className="text-xs p-2 mt-2 w-full rounded-none dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+              className="mt-2 w-full rounded-none p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -77,15 +79,15 @@ const Product: React.FC<{ open: string }> = ({ open }) => {
             </select>
           </div>
         </LabelRow>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Racks</span>
         </label>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Row</span>
         </label>
-        <label className="inline-flex gap-3 items-center dark:text-white">
+        <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none" />
           <span className="text-xs font-bold">Enable Position</span>
         </label>
@@ -102,11 +104,12 @@ const ProductExpiry = () => {
         <div className="flex items-center justify-center">
           <select
             name="time_format"
-            className="text-xs p-2 w-full rounded-none dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+            className="w-full rounded-none p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+          >
             <option value="">FI</option>
             <option value="">FO</option>
           </select>
-          <TextInput className="text-xs p-2 w-full rounded-none" value={0} />
+          <TextInput className="w-full rounded-none p-2 text-xs" value={0} />
         </div>
       </LabelRow>
     </>

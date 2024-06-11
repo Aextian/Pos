@@ -26,14 +26,14 @@ const ListSellReturn = () => {
       <ContentTitle>Sell Return</ContentTitle>
 
       <CardBorderTop>
-        <div className="self-end relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
+        <div className="relative self-end">
+          <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div className="h-4 w-4 text-gray-500 dark:text-gray-400">
               <FaSearch size={20} />
             </div>
           </div>
           <TextInput
-            className="rounded-lg px-5 py-2 bg-slate-200 ps-10 text-xs "
+            className="rounded-lg bg-slate-200 px-5 py-2 ps-10 text-xs"
             type="search"
             name=""
             id=""
@@ -43,7 +43,7 @@ const ListSellReturn = () => {
           <TableHead>
             <tr>
               {Thead.map((item, index) => (
-                <th scope="col" className="px-4 py-3 border-r" key={index}>
+                <th scope="col" className="border-r px-4 py-3" key={index}>
                   {item}
                 </th>
               ))}
@@ -84,7 +84,7 @@ const ListSellReturn = () => {
           </tfoot> */}
         </Table>
 
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

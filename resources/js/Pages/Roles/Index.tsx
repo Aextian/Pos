@@ -35,12 +35,13 @@ const Index: React.FC<Props> = ({ roles, successMessage }) => {
           message="Are you sure you want to delete this role?"
           success="Role deleted successfully"
         />
-        <CardBorderTop className=" max-w-2xl">
+        <CardBorderTop className="max-w-2xl">
           <CardBorderTop.Header>
             <CardBorderTop.Title>All roles</CardBorderTop.Title>
             <Link
               href={route('roles.create')}
-              className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
+              className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+            >
               <FaPlus /> Add
             </Link>
           </CardBorderTop.Header>
@@ -61,11 +62,13 @@ const Index: React.FC<Props> = ({ roles, successMessage }) => {
               <tbody>
                 {roles.map((role, index) => (
                   <tr
-                    className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600"
-                    key={index}>
+                    className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+                    key={index}
+                  >
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                    >
                       {role.name}
                     </th>
                     <td className="px-6 py-4 text-right">
@@ -73,8 +76,8 @@ const Index: React.FC<Props> = ({ roles, successMessage }) => {
                         <DangerButton onClick={() => setDelete(role.id)}>Delete</DangerButton>
                         <Link
                           href={route('roles.edit', role.id)}
-                          className="
-        `inline-flex items-center  py-1 px-3 bg-gray-800 border border-transparent rounded-md font-bold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 dark:bg-gray-500 dark:hover:bg-gray-400">
+                          className="`inline-flex items-center rounded-md border border-transparent bg-gray-800 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 dark:bg-gray-500 dark:hover:bg-gray-400"
+                        >
                           Edit
                         </Link>
                       </div>

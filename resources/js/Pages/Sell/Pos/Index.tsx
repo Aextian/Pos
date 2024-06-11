@@ -45,12 +45,13 @@ const Index = () => {
       <ContentTitle>Pos</ContentTitle>
 
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           <LabelRow>
             <SpanLabel>Business Location</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -61,8 +62,9 @@ const Index = () => {
           <LabelRow>
             <SpanLabel>Customer</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -73,8 +75,9 @@ const Index = () => {
           <LabelRow>
             <SpanLabel>Payment Status</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -94,7 +97,8 @@ const Index = () => {
           <CardTitle>List POS</CardTitle>
           <Link
             href={route('users.create')}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-3">
+            className="inline-flex items-center gap-3 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+          >
             <FaPlus /> Add
           </Link>
         </CardHeader>
@@ -102,7 +106,7 @@ const Index = () => {
           <TableHead>
             <tr>
               {Thead.map((item, index) => (
-                <th scope="col" className="px-4 py-3 border-r" key={index}>
+                <th scope="col" className="border-r px-4 py-3" key={index}>
                   {item}
                 </th>
               ))}
@@ -151,7 +155,7 @@ const Index = () => {
 const PostLabel: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <label htmlFor="" className="block font-medium text-xs text-gray-700 w-full">
+      <label htmlFor="" className="block w-full text-xs font-medium text-gray-700">
         {children}
       </label>
     </>

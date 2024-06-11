@@ -7,8 +7,9 @@ const TableHead: TableProps = ({ children, ...props }) => {
   return (
     <>
       <thead
-        className="text-[10px] lg:text-xs font-bold text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 "
-        {...props}>
+        className="bg-gray-50 text-[10px] font-bold uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400 lg:text-xs"
+        {...props}
+      >
         {children}
       </thead>
     </>

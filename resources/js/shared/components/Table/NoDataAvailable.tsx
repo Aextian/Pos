@@ -3,9 +3,9 @@ import React from 'react'
 const NoDataAvailable: React.FC<{ span: number }> = ({ span }) => {
   return (
     <>
-      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-70">
+      <tr className="dark:border-gray-70 border-b bg-white dark:bg-gray-800">
         <td colSpan={span}>
-          <div className="text-center p-5 ">
+          <div className="p-5 text-center">
             <span className="text-xs md:text-lg">No data available in table</span>
           </div>
         </td>

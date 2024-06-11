@@ -30,12 +30,13 @@ const Create = () => {
       </ContentTitle>
 
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           <LabelRow>
             <SpanLabel>Business Location (To):*</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -54,8 +55,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Adjustment type:*</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -67,13 +69,13 @@ const Create = () => {
       </CardBorderTop>
 
       <CardBorderTop>
-        <button className="text-left  text-cyan-600"> Search Products</button>
+        <button className="text-left text-cyan-600"> Search Products</button>
         <div className="flex w-full flex-nowrap">
-          <div className="border dark:border-slate-500 px-2 grid place-items-center">
+          <div className="grid place-items-center border px-2 dark:border-slate-500">
             <FaSearch size={15} />
           </div>
           <TextInput
-            className="w-full  p-2 rounded-none text-xs "
+            className="w-full rounded-none p-2 text-xs"
             type="search"
             placeholder="Search Product of stock adjustent"
           />
@@ -95,8 +97,8 @@ const Create = () => {
             </tbody>
           </Table>
         </div>
-        <div className="border-t text-right p-3 space-x-3">
-          <h5 className="text-xs inline font-bold">Net Total Amount </h5>{' '}
+        <div className="space-x-3 border-t p-3 text-right">
+          <h5 className="inline text-xs font-bold">Net Total Amount </h5>{' '}
           <span className="text-[10px]">0.00</span>
         </div>
       </CardBorderTop>
@@ -106,17 +108,17 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Total amount recovered</SpanLabel>
             <div className="flex w-full flex-nowrap">
-              <div className="border dark:border-slate-500 px-2 grid place-items-center">
+              <div className="grid place-items-center border px-2 dark:border-slate-500">
                 <FaMoneyBill size={15} />
               </div>
-              <TextInput className="w-full  p-2 rounded-none text-xs " type="search" placeholder="0" />
+              <TextInput className="w-full rounded-none p-2 text-xs" type="search" placeholder="0" />
             </div>
           </LabelRow>
           <LabelRow>
             <SpanLabel>Reason</SpanLabel>
             <TextArea className="w-full" cols={20}></TextArea>
           </LabelRow>
-          <div className="border-t  p-3 gap-5 flex flex-col items-end justify-end">
+          <div className="flex flex-col items-end justify-end gap-5 border-t p-3">
             <PrimaryButton>Save</PrimaryButton>
           </div>
         </div>

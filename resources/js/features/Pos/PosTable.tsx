@@ -2,16 +2,16 @@ import React from 'react'
 
 const PosTable = () => {
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="w-full overflow-x-auto">
       <table className="w-full">
-        <thead className="border text-[10px] md:text-sm ">
+        <thead className="border text-[10px] md:text-sm">
           <tr>
-            <th className="px-2 border-r">Product</th>
-            <th className="px-2 border-r">Quantity</th>
-            <th className="px-2 border-r">Price inc tax</th>
-            <th className="px-2 border-r">Discount(%)</th>
-            <th className="px-2 border-r">Subtotal</th>
-            <th className="px-2 border-r">x</th>
+            <th className="border-r px-2">Product</th>
+            <th className="border-r px-2">Quantity</th>
+            <th className="border-r px-2">Price inc tax</th>
+            <th className="border-r px-2">Discount(%)</th>
+            <th className="border-r px-2">Subtotal</th>
+            <th className="border-r px-2">x</th>
           </tr>
         </thead>
         <tbody>

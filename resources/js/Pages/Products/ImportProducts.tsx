@@ -11,11 +11,11 @@ const ImportProducts = () => {
     <MainLayout>
       <ContentTitle>Import Contacts</ContentTitle>
       <CardBorderTop>
-        <div className="flex flex-col justify-start items-start gap-5">
+        <div className="flex flex-col items-start justify-start gap-5">
           <h5 className="dark:text-white">File to Import</h5>
           <TextInput type="file" name="" id="" />
-          <button className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">Upload</button>
-          <button className="rounded-lg px-5 py-1 bg-emerald-400 text-white font-medium">
+          <button className="rounded-lg bg-cyan-500 px-5 py-1 font-medium text-white">Upload</button>
+          <button className="rounded-lg bg-emerald-400 px-5 py-1 font-medium text-white">
             Download CSV file template
           </button>
         </div>

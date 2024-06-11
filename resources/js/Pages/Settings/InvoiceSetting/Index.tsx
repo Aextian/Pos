@@ -15,29 +15,32 @@ const Index = () => {
         <ContentTitle>
           Invoice Settings <span className="text-xs text-gray-300"> Manage your invoice settings</span>
         </ContentTitle>
-        <div className="grid border gap-3 shadow-lg dark:bg-gray-800 dark:border-gray-700">
+        <div className="grid gap-3 border shadow-lg dark:border-gray-700 dark:bg-gray-800">
           <div className="grid grid-flow-col dark:text-white">
             <button
-              className={`border font-bold p-3 ${
-                show ? 'border-b-0  border-x-0 md:border-t-2 border-t-cyan-600' : ''
+              className={`border p-3 font-bold ${
+                show ? 'border-x-0 border-b-0 border-t-cyan-600 md:border-t-2' : ''
               }`}
-              onClick={() => setShow(true)}>
+              onClick={() => setShow(true)}
+            >
               Invoice Schemes
             </button>
             <button
-              className={`border font-bold  p-3 ${
-                show ? '' : 'border-b-0 border-x-0 md:border-t-2 border-t-cyan-600'
+              className={`border p-3 font-bold ${
+                show ? '' : 'border-x-0 border-b-0 border-t-cyan-600 md:border-t-2'
               }`}
-              onClick={() => setShow(false)}>
+              onClick={() => setShow(false)}
+            >
               Invoice Layouts
             </button>
           </div>
-          <div className={`p-3 space-y-3 ${show ? '' : 'hidden'}`}>
-            <div className="flex justify-between gap-3 items-center">
-              <h1 className="font-bold text-lg dark:text-white">All your invoice schemes</h1>
+          <div className={`space-y-3 p-3 ${show ? '' : 'hidden'}`}>
+            <div className="flex items-center justify-between gap-3">
+              <h1 className="text-lg font-bold dark:text-white">All your invoice schemes</h1>
               <Link
                 href={route('invoice-schemes.create')}
-                className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
+                className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+              >
                 <FaPlus /> add
               </Link>
             </div>
@@ -61,12 +64,13 @@ const Index = () => {
               </Table>
             </div>
           </div>
-          <div className={`p-3 space-y-3 ${show ? 'hidden' : ''}`}>
-            <div className="flex justify-between gap-3 items-center">
-              <h1 className="font-bold text-lg dark:text-white">All your invoice layouts</h1>
+          <div className={`space-y-3 p-3 ${show ? 'hidden' : ''}`}>
+            <div className="flex items-center justify-between gap-3">
+              <h1 className="text-lg font-bold dark:text-white">All your invoice layouts</h1>
               <Link
                 href={route('invoice-schemes.create')}
-                className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
+                className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+              >
                 <FaPlus /> add
               </Link>
             </div>

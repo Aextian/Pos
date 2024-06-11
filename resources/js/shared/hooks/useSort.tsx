@@ -11,7 +11,8 @@ const useSort = (queryParams: QueryParams, url: string) => {
   const sortChanged = useCallback(
     (name: string) => {
       const sortField = name
-      const sortDirection = name === queryParams.sort_field ? (queryParams.sort_direction === 'asc' ? 'desc' : 'asc') : 'asc'
+      const sortDirection =
+        name === queryParams.sort_field ? (queryParams.sort_direction === 'asc' ? 'desc' : 'asc') : 'asc'
 
       router.get(
         route(url),

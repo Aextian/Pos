@@ -71,23 +71,24 @@ const Header: React.FC<ButtonProps> = ({ handleClick }) => {
 
   return (
     <>
-      <header className="w-screen h-[58px] bg-green-500 top-0 fixed z-10 flex items-center justify-between px-10 shadow-md">
-        <div className="flex gap-10 justify-center items-center text-white ">
+      <header className="fixed top-0 z-10 flex h-[58px] w-screen items-center justify-between bg-green-500 px-10 shadow-md">
+        <div className="flex items-center justify-center gap-10 text-white">
           <button onClick={handleClick}>
             <CiMenuBurger />
           </button>
         </div>
 
-        <div className="flex gap-40 justify-center items-center">
-          <div className="hidden md:flex items-center md:gap-5 lg:gap-7 font-bold text-xs lg:text-lg text-white">
-            <button className="px-3 py-1 rounded-tl-lg rounded-br-lg border-slate-500 bg-lime-700  hover:bg-lime-800 ">
+        <div className="flex items-center justify-center gap-40">
+          <div className="hidden items-center text-xs font-bold text-white md:flex md:gap-5 lg:gap-7 lg:text-lg">
+            <button className="rounded-br-lg rounded-tl-lg border-slate-500 bg-lime-700 px-3 py-1 hover:bg-lime-800">
               Price Check
             </button>
 
-            <div className="relative flex justify-center items-center">
+            <div className="relative flex items-center justify-center">
               <button
-                className="px-3 rounded-tl-lg rounded-br-lg bg-lime-700  border-slate-500 hover:bg-lime-800  h-6 lg:h-10 inline-flex items-center "
-                onClick={() => dropdownToggle('Calculator')}>
+                className="inline-flex h-6 items-center rounded-br-lg rounded-tl-lg border-slate-500 bg-lime-700 px-3 hover:bg-lime-800 lg:h-10"
+                onClick={() => dropdownToggle('Calculator')}
+              >
                 <FaCalculator size={13} />
               </button>
               <Calculator
@@ -100,30 +101,32 @@ const Header: React.FC<ButtonProps> = ({ handleClick }) => {
               />
             </div>
 
-            <button className=" px-3 rounded-tl-lg rounded-br-lg bg-lime-700 border border-slate-500 hover:bg-lime-800 h-6  lg:h-10 inline-flex items-center  ">
+            <button className="inline-flex h-6 items-center rounded-br-lg rounded-tl-lg border border-slate-500 bg-lime-700 px-3 hover:bg-lime-800 lg:h-10">
               Z
             </button>
 
-            <a className=" px-3 rounded-tl-lg rounded-br-lg bg-lime-700 border border-slate-500 hover:bg-lime-800 h-6 lg:h-10 inline-flex items-center ">
+            <a className="inline-flex h-6 items-center rounded-br-lg rounded-tl-lg border border-slate-500 bg-lime-700 px-3 hover:bg-lime-800 lg:h-10">
               <span>X</span>
             </a>
 
-            <button className="rounded-tl-lg rounded-br-lg px-3 bg-lime-700  border-slate-500 hover:bg-lime-800  h-6 lg:h-10 inline-flex items-center">
+            <button className="inline-flex h-6 items-center rounded-br-lg rounded-tl-lg border-slate-500 bg-lime-700 px-3 hover:bg-lime-800 lg:h-10">
               <span>POS</span>
             </button>
 
             <a
-              className=" rounded-tl-lg rounded-br-lg px-3 bg-lime-700 border border-slate-500 hover:bg-lime-800 p-2 h-6 lg:h-10 inline-flex items-center "
-              href="">
+              className="inline-flex h-6 items-center rounded-br-lg rounded-tl-lg border border-slate-500 bg-lime-700 p-2 px-3 hover:bg-lime-800 lg:h-10"
+              href=""
+            >
               <FaMoneyBill />
             </a>
           </div>
 
-          <div className="flex items-center gap-10 h-full">
+          <div className="flex h-full items-center gap-10">
             <div className="relative">
               <button
-                className="text-white text-xs md:text-xl "
-                onClick={() => dropdownToggle('Notification')}>
+                className="text-xs text-white md:text-xl"
+                onClick={() => dropdownToggle('Notification')}
+              >
                 <IoIosNotifications size={20} />
               </button>
               {/* notification */}
@@ -131,7 +134,7 @@ const Header: React.FC<ButtonProps> = ({ handleClick }) => {
             </div>
 
             <div>
-              <button className="text-sm md:text-xl " onClick={() => darkModeHandler()}>
+              <button className="text-sm md:text-xl" onClick={() => darkModeHandler()}>
                 {dark && <IoSunny className="dark:text-white" />}
                 {!dark && <IoMoon />}
               </button>
@@ -139,8 +142,9 @@ const Header: React.FC<ButtonProps> = ({ handleClick }) => {
 
             <div className="relative">
               <button
-                className="text-white text-xs md:text-lg  font-bold "
-                onClick={() => dropdownToggle('Profile')}>
+                className="text-xs font-bold text-white md:text-lg"
+                onClick={() => dropdownToggle('Profile')}
+              >
                 POS
               </button>
               {/* user profile */}

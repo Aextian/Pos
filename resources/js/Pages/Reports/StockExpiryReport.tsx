@@ -26,15 +26,16 @@ const StockExpiryReport = () => {
       <MainLayout>
         <ContentTitle>Customer Groups Report</ContentTitle>
         <CardBorderTop>
-          <div className="flex flex-col justify-start items-start gap-5">
+          <div className="flex flex-col items-start justify-start gap-5">
             <CardTitle>Filters</CardTitle>
-            <hr className=" w-full" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+            <hr className="w-full" />
+            <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3">
               <LabelRow>
                 <SpanLabel>Business Location:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -46,8 +47,9 @@ const StockExpiryReport = () => {
               <LabelRow>
                 <SpanLabel>Category:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -58,8 +60,9 @@ const StockExpiryReport = () => {
               <LabelRow>
                 <SpanLabel>Sub Category:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -70,8 +73,9 @@ const StockExpiryReport = () => {
               <LabelRow>
                 <SpanLabel>Brand:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -82,8 +86,9 @@ const StockExpiryReport = () => {
               <LabelRow>
                 <SpanLabel>Unit:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -94,8 +99,9 @@ const StockExpiryReport = () => {
               <LabelRow>
                 <SpanLabel>View Stock:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -113,7 +119,7 @@ const StockExpiryReport = () => {
               <TableHead>
                 <tr>
                   {Thead.map((item, index) => (
-                    <th scope="col" className="px-4 py-3 border-r" key={index}>
+                    <th scope="col" className="border-r px-4 py-3" key={index}>
                       {item}
                     </th>
                   ))}
@@ -144,7 +150,7 @@ const StockExpiryReport = () => {
               <tfoot>
                 <tr>
                   <td colSpan={4}>
-                    <div className="p-5 flex items-center">Total</div>
+                    <div className="flex items-center p-5">Total</div>
                   </td>
                   <td colSpan={5}>
                     <ul>
@@ -155,7 +161,7 @@ const StockExpiryReport = () => {
               </tfoot>
             </Table>
           </div>
-          <div className="flex justify-center items-center">pagination</div>
+          <div className="flex items-center justify-center">pagination</div>
         </CardBorderTop>
       </MainLayout>
     </>

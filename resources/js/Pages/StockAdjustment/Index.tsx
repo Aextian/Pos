@@ -27,10 +27,11 @@ const Index = () => {
       </ContentTitle>
       <CardBorderTop>
         <CardTitle>All Stock Adjustments</CardTitle>
-        <div className="flex flex-row justify-between items-center gap-2">
+        <div className="flex flex-row items-center justify-between gap-2">
           <Link
             href={route('users.create')}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-3">
+            className="inline-flex items-center gap-3 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+          >
             <FaPlus />
             Add
           </Link>
@@ -40,7 +41,7 @@ const Index = () => {
             <TableHead>
               <tr>
                 {Thead.map((item, index) => (
-                  <th scope="col" className="px-4 py-3 border-r" key={index}>
+                  <th scope="col" className="border-r px-4 py-3" key={index}>
                     {item}
                   </th>
                 ))}
@@ -51,7 +52,7 @@ const Index = () => {
             </tbody>
             <tfoot className="bg-gray-300 text-black">
               <tr className="text-[12px]">
-                <td className="text-center py-10 " colSpan={2}>
+                <td className="py-10 text-center" colSpan={2}>
                   Total
                 </td>
                 <td className="border-l">Received -1</td>
@@ -63,7 +64,7 @@ const Index = () => {
             </tfoot>
           </Table>
         </div>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

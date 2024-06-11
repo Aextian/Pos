@@ -1,8 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-
-// Define an interface that extends React.FC and includes the custom properties
 interface MainCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  // Include className prop in the interface
   className?: string
 }
 
@@ -16,7 +13,8 @@ const CardBorderTop: CardBorderTopComponent = ({ children, className }) => {
   return (
     <>
       <div
-        className={`rounded-md grid gap-5 bg-white border-t-4 border-cyan-500  text-xs p-4 shadow-lg dark:bg-gray-800 dark:border-gray-700 ${className}`}>
+        className={`grid gap-5 rounded-md border-t-4 border-cyan-500 bg-white p-4 text-xs shadow-lg dark:border-gray-700 dark:bg-gray-800 ${className}`}
+      >
         {children}
       </div>
     </>
@@ -24,13 +22,13 @@ const CardBorderTop: CardBorderTopComponent = ({ children, className }) => {
 }
 
 const CardHeader: React.FC<PropsWithChildren> = ({ children }) => {
-  return <div className="flex justify-between flex-row">{children}</div>
+  return <div className="flex flex-row justify-between">{children}</div>
 }
 
 const CardTitle: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
-      <h1 className="text-sm md:text-lg font-bold dark:text-white flex gap-3 items-center">{children}</h1>
+      <h1 className="flex items-center gap-3 text-sm font-semibold dark:text-white md:text-lg">{children}</h1>
     </>
   )
 }

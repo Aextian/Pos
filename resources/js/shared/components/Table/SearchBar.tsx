@@ -24,13 +24,13 @@ const SearchBar: React.FC<Props> = ({ queryParams, url }) => {
     <>
       <div className="flex justify-end">
         <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <div className="w-4 h-4 text-gray-500 dark:text-gray-400 flex items-center">
+          <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <div className="flex h-4 w-4 items-center text-gray-500 dark:text-gray-400">
               <FaSearch size={15} />
             </div>
           </div>
           <TextInput
-            className="rounded-lg px-5 py-1 focus:bg-slate-200 ps-10 "
+            className="rounded-lg px-5 py-1 ps-10 focus:bg-slate-200"
             defaultValue={queryParams.search}
             onChange={handleSearchChange}
             type="search"

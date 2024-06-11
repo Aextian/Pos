@@ -42,7 +42,7 @@ const ZReading = () => {
               <TableHead>
                 <tr>
                   {Thead.map((item, XReading) => (
-                    <th scope="col" className="px-4 py-3 border-r" key={XReading}>
+                    <th scope="col" className="border-r px-4 py-3" key={XReading}>
                       {item}
                     </th>
                   ))}
@@ -73,7 +73,7 @@ const ZReading = () => {
             </Table>
           </div>
         </CardContent>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

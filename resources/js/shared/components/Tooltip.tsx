@@ -3,18 +3,17 @@ import React, { PropsWithChildren } from 'react'
 interface Props {
   title?: string
   children: React.ReactNode
-  content: React.ReactNode
+  content?: React.ReactNode
 }
 
 const Tooltip: React.FC<Props> = ({ title, children, content }) => {
   return (
     <>
-      <div className="text-cyan-500 relative  group cursor-help inline-flex justify-center">
+      <div className="group relative inline-flex cursor-help justify-center text-cyan-500">
         {children}
-        {/* left-[-145px]  */}
-        <div className="tooltip absolute  p-3 mt-4 shadow-lg rounded-lg outline-2 bg-white border-2 w-48 md:w-[300px]  border-slate-200 scale-0 text-black group-hover:scale-100 transition-all z-10">
-          <h1 className="font-semibold text-xs ">{title}</h1>
-          <span className="text-[10px] font-normal mt-3 heading-5">{content}</span>
+        <div className="tooltip absolute z-10 mt-4 w-48 scale-0 rounded-lg border-2 border-slate-200 bg-white p-3 text-black shadow-lg outline-2 transition-all group-hover:scale-100 md:w-[300px]">
+          <h1 className="text-xs font-semibold text-slate-600">{title}</h1>
+          <span className="heading-5 mt-3 text-[10px] font-normal text-slate-500">{content}</span>
         </div>
       </div>
     </>

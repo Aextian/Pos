@@ -56,12 +56,13 @@ function Index() {
 
       <CardBorderTop>
         <CardBorderTop.Content>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
             <LabelRow>
               <SpanLabel>Business Location</SpanLabel>
               <select
-                className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-                name="type">
+                className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   Please Select
                 </option>
@@ -73,8 +74,9 @@ function Index() {
             <LabelRow>
               <SpanLabel>Supplier</SpanLabel>
               <select
-                className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-                name="type">
+                className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   Please Select
                 </option>
@@ -86,8 +88,9 @@ function Index() {
             <LabelRow>
               <SpanLabel>Purchase Status</SpanLabel>
               <select
-                className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-                name="type">
+                className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   Please Select
                 </option>
@@ -99,8 +102,9 @@ function Index() {
             <LabelRow>
               <SpanLabel>Payment Status</SpanLabel>
               <select
-                className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-                name="type">
+                className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   Please Select
                 </option>
@@ -127,7 +131,8 @@ function Index() {
           <CardBorderTop.Title>All Purchases</CardBorderTop.Title>
           <Link
             href={route('purchase.create')}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+          >
             Add
           </Link>
         </CardBorderTop.Header>
@@ -146,12 +151,14 @@ function Index() {
               <tbody>
                 {data.map((product, index) => (
                   <tr
-                    className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600"
-                    key={index}>
+                    className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+                    key={index}
+                  >
                     <td className="rtl:text-center">02.03.2024</td>
                     <td
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                    >
                       {product.sku}
                     </td>
                     <td className="px-6 py-4">{product.product}</td>
@@ -163,7 +170,7 @@ function Index() {
                     <td className="px-6 py-4">{product.price}</td>
 
                     <td className="px-6 py-4">
-                      <button className="px-2 text-white rounded bg-cyan-500">Action</button>
+                      <button className="rounded bg-cyan-500 px-2 text-white">Action</button>
                     </td>
                   </tr>
                 ))}
@@ -172,7 +179,7 @@ function Index() {
           </div>
         </CardBorderTop.Content>
 
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

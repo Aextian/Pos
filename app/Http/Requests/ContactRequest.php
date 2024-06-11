@@ -24,6 +24,9 @@ class ContactRequest extends FormRequest
     {
         $routeName = $this->route()->getName();
 
+        $type = request('type');
+
+
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'mobile' => ['required'],
@@ -32,7 +35,7 @@ class ContactRequest extends FormRequest
             'type' => ['required']
         ];
 
-        if ($routeName !== 'customer.store') {
+        if ($type === 'supplier' || $type === 'both') {
             $rules['supplier_business_name'][] = 'required';
         }
 

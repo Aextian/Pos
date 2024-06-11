@@ -21,114 +21,133 @@ const Calculator: React.FC<Props> = ({
     <>
       <div
         ref={close}
-        className={`absolute  bg-white  w-48 h-72 top-16 grid grid-rows-[40px__50px_1fr] border shadow-lg ${
+        className={`absolute top-16 grid h-72 w-48 grid-rows-[40px__50px_1fr] border bg-white shadow-lg ${
           calcutor ? '' : 'hidden'
-        }`}>
-        <span className="absolute inset-x-0 flex items-center justify-center top-[-11px] z-[-1]">
-          <span className="h-5 w-5 bg-slate-200 transform rotate-45"></span>
+        }`}
+      >
+        <span className="absolute inset-x-0 top-[-11px] z-[-1] flex items-center justify-center">
+          <span className="h-5 w-5 rotate-45 transform bg-slate-200"></span>
         </span>
-        <div className="bg-slate-100 p-3 border border-b">
+        <div className="border border-b bg-slate-100 p-3">
           <h1 className="text-black">Calculator</h1>
         </div>
-        <div className="p-2 ">
+        <div className="p-2">
           <TextInput
-            className="bg-gray-400 w-full  h-9 rounded-lg flex justify-start items-center px-2 text-black text-sm overflow-x-aut text-right"
+            className="overflow-x-aut flex h-9 w-full items-center justify-start rounded-lg bg-gray-400 px-2 text-right text-sm text-black"
             value={input}
             readOnly
           />
         </div>
-        <div className="grid grid-cols-4 gap-1 text-xs px-2 text-black pb-3">
+        <div className="grid grid-cols-4 gap-1 px-2 pb-3 text-xs text-black">
           <button
-            className="p-2 border rounded-md bg-red-800 text-white active:shadow-inner"
-            onClick={() => clearInput()}>
+            className="rounded-md border bg-red-800 p-2 text-white active:shadow-inner"
+            onClick={() => clearInput()}
+          >
             AC
           </button>
           <button
-            className="p-2 border rounded-md bg-orange-400 text-white active:shadow-inner"
-            onClick={() => clearInput()}>
+            className="rounded-md border bg-orange-400 p-2 text-white active:shadow-inner"
+            onClick={() => clearInput()}
+          >
             CE
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('%')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('%')}
+          >
             %
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('/')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('/')}
+          >
             ÷
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('7')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('7')}
+          >
             7
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('8')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('8')}
+          >
             8
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('9')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('9')}
+          >
             9
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('*')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('*')}
+          >
             X
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('4')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('4')}
+          >
             4
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('5')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('5')}
+          >
             5
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('6')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('6')}
+          >
             6
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('-')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('-')}
+          >
             -
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('1')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('1')}
+          >
             1
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('2')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('2')}
+          >
             2
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('3')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('3')}
+          >
             3
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('+')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('+')}
+          >
             +
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('0')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('0')}
+          >
             0
           </button>
           <button
-            className="p-2 border rounded-md bg-slate-200 active:shadow-inner"
-            onClick={() => handleButtonClick('.')}>
+            className="rounded-md border bg-slate-200 p-2 active:shadow-inner"
+            onClick={() => handleButtonClick('.')}
+          >
             .
           </button>
-          <button className="p-2 border rounded-md bg-green-800 text-white" onClick={() => calculateResult()}>
+          <button className="rounded-md border bg-green-800 p-2 text-white" onClick={() => calculateResult()}>
             =
           </button>
         </div>

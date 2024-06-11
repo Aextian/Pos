@@ -25,7 +25,7 @@ const SupplierCustomerReport = () => {
             <TableHead>
               <tr>
                 {Thead.map((item, index) => (
-                  <th scope="col" className="px-4 py-3 border-r" key={index}>
+                  <th scope="col" className="border-r px-4 py-3" key={index}>
                     {item}
                   </th>
                 ))}
@@ -53,7 +53,7 @@ const SupplierCustomerReport = () => {
     ))} */}
               <NoDataAvailable span={Thead.length} />
             </tbody>
-            <tfoot className="border-t-2 ">
+            <tfoot className="border-t-2">
               <tr className="bg-gray-300 text-black">
                 <td className="p-5">Total:</td>
                 <td className="p-5">Php 0.00</td>
@@ -66,7 +66,7 @@ const SupplierCustomerReport = () => {
             </tfoot>
           </Table>
         </div>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

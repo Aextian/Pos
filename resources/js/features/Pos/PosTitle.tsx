@@ -2,7 +2,7 @@ import React from 'react'
 import { FaRegKeyboard } from 'react-icons/fa'
 const PosTitle = () => {
   return (
-    <div className="inline-flex gap-3 items-center">
+    <div className="inline-flex items-center gap-3">
       <h1>POS Terminal</h1> <FaRegKeyboard />
     </div>
   )

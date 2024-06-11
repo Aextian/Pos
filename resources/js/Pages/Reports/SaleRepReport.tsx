@@ -63,13 +63,14 @@ const SaleRepReport = () => {
         <ContentTitle>Purcahse Payment Report</ContentTitle>
         <CardBorderTop>
           <CardTitle>Filters</CardTitle>
-          <hr className=" w-full" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+          <hr className="w-full" />
+          <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3">
             <LabelRow>
               <SpanLabel>User:</SpanLabel>
               <select
-                className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                name="type">
+                className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   All
                 </option>
@@ -80,8 +81,9 @@ const SaleRepReport = () => {
             <LabelRow>
               <SpanLabel>Business Location:</SpanLabel>
               <select
-                className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                name="type">
+                className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   All
                 </option>
@@ -103,7 +105,7 @@ const SaleRepReport = () => {
         <CardBorderTop>
           <CardTitle>Summary</CardTitle>
           <CardContent>
-            <div className="text-sm md:text-2xl text-gray-500  space-y-3">
+            <div className="space-y-3 text-sm text-gray-500 md:text-2xl">
               <h5>Total Sale: Total Sales Return: Php 0.00 - Php 0.00 =Php 0.00</h5>
               <h5>Total Expense: Php 0.00</h5>
             </div>
@@ -111,26 +113,29 @@ const SaleRepReport = () => {
         </CardBorderTop>
 
         <CardBorderTop>
-          <div className="flex flex-col md:flex-row text-sm font-bold md:text-2xl dark:text-white">
+          <div className="flex flex-col text-sm font-bold dark:text-white md:flex-row md:text-2xl">
             <button
               className={`border p-3 ${
-                show === 'sales' ? 'border-t-cyan-600  border-b-0 border-r-0' : ''
-              } dark:border-slate-500 `}
-              onClick={(e) => handleClick({ name: 'sales' })}>
+                show === 'sales' ? 'border-b-0 border-r-0 border-t-cyan-600' : ''
+              } dark:border-slate-500`}
+              onClick={(e) => handleClick({ name: 'sales' })}
+            >
               Sale Added
             </button>
             <button
               className={`border p-3 ${
-                show === 'commission' ? 'border-t-cyan-600 border-b-0 border-l-0' : ''
-              } dark:border-slate-500 `}
-              onClick={(e) => handleClick({ name: 'commission' })}>
+                show === 'commission' ? 'border-b-0 border-l-0 border-t-cyan-600' : ''
+              } dark:border-slate-500`}
+              onClick={(e) => handleClick({ name: 'commission' })}
+            >
               Sales With Commission
             </button>
             <button
               className={`border p-3 ${
-                show === 'expenses' ? 'border-t-cyan-600 border-b-0 border-l-0' : ''
-              } dark:border-slate-500 `}
-              onClick={(e) => handleClick({ name: 'expenses' })}>
+                show === 'expenses' ? 'border-b-0 border-l-0 border-t-cyan-600' : ''
+              } dark:border-slate-500`}
+              onClick={(e) => handleClick({ name: 'expenses' })}
+            >
               Expenses
             </button>
           </div>

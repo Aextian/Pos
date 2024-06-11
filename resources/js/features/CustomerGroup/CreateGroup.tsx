@@ -46,24 +46,26 @@ const CreateGroup: React.FC<Props> = ({ handleShowModal, showModal }) => {
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('customer-group.index'))}>
-        <div className="flex justify-between items-center p-5 border-b  dark:bg-gray-700">
+        onClose={() => router.visit(route('customer-group.index'))}
+      >
+        <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
           <h1 className="dark:text-white">Add Customer Group</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
             onClick={handleCloseModal}
-            disabled={processing}>
+            disabled={processing}
+          >
             <FaX />
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="grid grid-flow-row p-5 gap-5  dark:bg-gray-700">
+        <form onSubmit={handleSubmit} className="grid grid-flow-row gap-5 p-5 dark:bg-gray-700">
           <LabelRow>
             <SpanLabel>Customer Group Name:*</SpanLabel>
             <TextInput
               name="name"
               onChange={(e) => setData('name', e.target.value)}
-              className="p-2 text-xs w-full"
+              className="w-full p-2 text-xs"
               placeholder="Customer Group Name"
               required
             />
@@ -76,7 +78,8 @@ const CreateGroup: React.FC<Props> = ({ handleShowModal, showModal }) => {
                 Calculation Percentage (%):
                 <Tooltip
                   title="Selling price = Selling price Set For the product + Calculation percentage"
-                  content="You can specify percentage as positive to increase and negative to decrease selling price">
+                  content="You can specify percentage as positive to increase and negative to decrease selling price"
+                >
                   <FaCircleInfo />
                 </Tooltip>
               </div>
@@ -85,7 +88,7 @@ const CreateGroup: React.FC<Props> = ({ handleShowModal, showModal }) => {
               type="number"
               name="amount"
               onChange={(e) => setData('amount', e.target.value)}
-              className="p-2 text-xs w-full"
+              className="w-full p-2 text-xs"
               placeholder="Calculation Percentage (%):"
               required
             />

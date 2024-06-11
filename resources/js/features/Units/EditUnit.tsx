@@ -82,19 +82,21 @@ const Editunit: React.FC<Props> = ({ showModal, handleShowModal, unit, units }) 
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('unit.index'))}>
-        <div className="flex justify-between items-center p-5 border-b  dark:bg-gray-700">
+        onClose={() => router.visit(route('unit.index'))}
+      >
+        <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
           <h1 className="dark:text-white">Edit Unit</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
             onClick={handleCloseModal}
-            disabled={processing}>
+            disabled={processing}
+          >
             <FaX />
           </button>
         </div>
-        <form onSubmit={handleSubmit} className="flex justify-between border-b-2 items-center p-5">
-          <div className="text-xs   space-y-3 w-full">
+        <form onSubmit={handleSubmit} className="flex items-center justify-between border-b-2 p-5">
+          <div className="w-full space-y-3 text-xs">
             <LabelRow>
               <SpanLabel>Name:*</SpanLabel>
               <TextInput
@@ -113,7 +115,7 @@ const Editunit: React.FC<Props> = ({ showModal, handleShowModal, unit, units }) 
                 name="short_name"
                 value={data.short_name}
                 onChange={(e) => setData('short_name', e.target.value)}
-                className=" w-full rounded p-2 text-xs"
+                className="w-full rounded p-2 text-xs"
                 type="text"
                 placeholder="Short Name"
               />
@@ -123,10 +125,11 @@ const Editunit: React.FC<Props> = ({ showModal, handleShowModal, unit, units }) 
               <SpanLabel>Allow decimal:*</SpanLabel>
               <select
                 onChange={(e) => setData('allow_decimal', parseFloat(e.target.value))}
-                className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+                className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                 name="allow_decimal"
                 required
-                value={data.allow_decimal}>
+                value={data.allow_decimal}
+              >
                 <option value="">Please Select</option>
                 <option value={1}>Yes</option>
                 <option value={0}>No</option>
@@ -140,8 +143,8 @@ const Editunit: React.FC<Props> = ({ showModal, handleShowModal, unit, units }) 
             </div>
             {showUnit && (
               <>
-                <div className="flex items-center gap-2 w-full border-t border-b py-2">
-                  <p className="text-[10px] md:text-xs font-bold whitespace-nowrap">1 {data.actual_name}</p>
+                <div className="flex w-full items-center gap-2 border-b border-t py-2">
+                  <p className="whitespace-nowrap text-[10px] font-bold md:text-xs">1 {data.actual_name}</p>
                   <span>=</span>
                   <TextInput
                     value={data.base_unit_multiplier || ''}
@@ -149,14 +152,15 @@ const Editunit: React.FC<Props> = ({ showModal, handleShowModal, unit, units }) 
                     type="number"
                     min={0}
                     name="base_unit_multiplier"
-                    className="w-full text-xs p-2 "
+                    className="w-full p-2 text-xs"
                     placeholder="times base unit"
                   />
                   <select
                     name="base_unit_id"
                     value={data.base_unit_id || ''}
                     onChange={(e) => setData('base_unit_id', parseFloat(e.target.value) ?? null)}
-                    className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600">
+                    className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  >
                     <option value="">Select base unit</option>
                     {units.map((unit) => (
                       <option key={unit.id} value={unit.id}>
@@ -165,12 +169,12 @@ const Editunit: React.FC<Props> = ({ showModal, handleShowModal, unit, units }) 
                     ))}
                   </select>
                 </div>
-                <span className="text-gray-500 py-5">
+                <span className="py-5 text-gray-500">
                   *Editing this value will hange the purchase & sales stocks accordingly
                 </span>
               </>
             )}
-            <div className="w-full border-t pt-10  flex justify-end gap-3">
+            <div className="flex w-full justify-end gap-3 border-t pt-10">
               <PrimaryButton disabled={processing}>{processing ? 'Updating...' : 'Update'}</PrimaryButton>
               <SecondaryButton onClick={handleCloseModal}>Close</SecondaryButton>
             </div>

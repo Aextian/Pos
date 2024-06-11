@@ -7,41 +7,41 @@ import { FaInfo, FaPercent } from 'react-icons/fa'
 const Sale: React.FC<{ open: string }> = ({ open }) => {
   return (
     <>
-      <div className={`${open === 'Sale' ? '' : 'hidden'} grid grid-cols-1 md:grid-cols-3 gap-5 `}>
+      <div className={`${open === 'Sale' ? '' : 'hidden'} grid grid-cols-1 gap-5 md:grid-cols-3`}>
         <LabelRow>
           <SpanLabel>Default Sale Discount: *</SpanLabel>
           <div className="flex items-center justify-center">
-            <div className="border border-r-0 p-2 dark:text-white dark:border-slate-500">
+            <div className="border border-r-0 p-2 dark:border-slate-500 dark:text-white">
               <FaPercent size={16} />
             </div>
-            <TextInput className="text-xs p-2 w-full rounded-none" />
+            <TextInput className="w-full rounded-none p-2 text-xs" />
           </div>
         </LabelRow>
         <LabelRow>
           <SpanLabel>Default Sale Tax: *</SpanLabel>
           <div className="flex items-center justify-center">
-            <div className="border border-r-0 p-2 dark:text-white dark:border-slate-500">
+            <div className="border border-r-0 p-2 dark:border-slate-500 dark:text-white">
               <FaInfo size={16} />
             </div>
-            <TextInput className="text-xs p-2 w-full rounded-none" />
+            <TextInput className="w-full rounded-none p-2 text-xs" />
           </div>
         </LabelRow>
         <LabelRow>
           <SpanLabel>Sale Commission Agent: *</SpanLabel>
           <div className="flex items-center justify-center">
-            <div className="border border-r-0 p-2 dark:text-white dark:border-slate-500">
+            <div className="border border-r-0 p-2 dark:border-slate-500 dark:text-white">
               <FaInfo size={16} />
             </div>
-            <TextInput className="text-xs p-2 w-full rounded-none" />
+            <TextInput className="w-full rounded-none p-2 text-xs" />
           </div>
         </LabelRow>
         <LabelRow>
           <SpanLabel>Sales item Additional Method: *</SpanLabel>
           <div className="flex items-center justify-center">
-            <div className="border border-r-0 p-2 dark:text-white dark:border-slate-500">
+            <div className="border border-r-0 p-2 dark:border-slate-500 dark:text-white">
               <FaInfo size={16} />
             </div>
-            <select className="w-full text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+            <select className="w-full text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400">
               <option value="">Add item new row</option>
               <option value="">Increase item quantity if it already exist</option>
             </select>
@@ -49,11 +49,11 @@ const Sale: React.FC<{ open: string }> = ({ open }) => {
         </LabelRow>
         <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none p-2 outline-none" />
-          <span className="text-[10px] md:text-xs font-bold">Sales price is minimum selling price </span>
+          <span className="text-[10px] font-bold md:text-xs">Sales price is minimum selling price </span>
         </label>
         <label className="inline-flex items-center gap-3 dark:text-white">
           <TextInput type="checkbox" className="rounded-none p-2 outline-none" />
-          <span className="text-[10px] md:text-xs font-bold">Allow Overselling</span>
+          <span className="text-[10px] font-bold md:text-xs">Allow Overselling</span>
         </label>
       </div>
     </>

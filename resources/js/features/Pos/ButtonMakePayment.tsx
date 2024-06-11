@@ -3,7 +3,7 @@ import { FaCheck } from 'react-icons/fa'
 
 const ButtonMakePayment = () => {
   return (
-    <button className=" bg-cyan-950 text-2xl font-bold text-white px-10 py-5 inline-flex items-center justify-center gap-3">
+    <button className="inline-flex items-center justify-center gap-3 bg-cyan-950 px-10 py-5 text-2xl font-bold text-white">
       <FaCheck />
       Make Payment
     </button>

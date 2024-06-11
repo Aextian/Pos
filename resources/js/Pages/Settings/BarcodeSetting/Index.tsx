@@ -19,11 +19,12 @@ const Index = () => {
         <CardBorderTop>
           <CardHeader>
             <CardTitle>Barcode Setting</CardTitle>
-            <div className="flex gap-2 ">
+            <div className="flex gap-2">
               {/* <SearchBar queryParams={queryParams} handleSearchChange={handleSearchChange} /> */}
               <Link
                 href={route('barcode.create')}
-                className="inline-flex items-center px-3 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 gap-2">
+                className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+              >
                 <FaPlus />
                 Add new setting
               </Link>

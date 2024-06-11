@@ -61,7 +61,7 @@ const ListPurchaseReturn = () => {
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={5} className="text-center p-5 text-lg font-bold">
+              <td colSpan={5} className="p-5 text-center text-lg font-bold">
                 Total
               </td>
               <td></td>

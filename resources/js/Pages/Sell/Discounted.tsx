@@ -39,12 +39,13 @@ const Discounted = () => {
         Sell <span className="text-xs text-gray-300">Discounted</span>
       </ContentTitle>
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
           <LabelRow>
             <SpanLabel>Business Location</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -55,8 +56,9 @@ const Discounted = () => {
           <LabelRow>
             <SpanLabel>Customer</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -67,8 +69,9 @@ const Discounted = () => {
           <LabelRow>
             <SpanLabel>Payment Status</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-3 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -88,7 +91,7 @@ const Discounted = () => {
           <TableHead>
             <tr>
               {Thead.map((item, index) => (
-                <th scope="col" className="px-4 py-3 border-r" key={index}>
+                <th scope="col" className="border-r px-4 py-3" key={index}>
                   {item}
                 </th>
               ))}
@@ -116,7 +119,7 @@ const Discounted = () => {
             ))} */}
           </tbody>
         </Table>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

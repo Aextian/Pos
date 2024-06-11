@@ -4,8 +4,8 @@ import React from 'react'
 const Pos: React.FC<{ open: string }> = ({ open }) => {
   return (
     <>
-      <div className={`${open === 'POS' ? '' : 'hidden'}  grid gap-5 `}>
-        <div className="text-[10px] space-y-3 dark:text-white">
+      <div className={`${open === 'POS' ? '' : 'hidden'} grid gap-5`}>
+        <div className="space-y-3 text-[10px] dark:text-white">
           <h2 className="text-lg">Add Keyboard shorcuts:</h2>
           <p>
             Shortcut should be the names of the keys separated by '+'; Example:{' '}
@@ -20,9 +20,9 @@ const Pos: React.FC<{ open: string }> = ({ open }) => {
         </div>
         <table>
           <thead className="bg-gray-200">
-            <tr className="text-xs text-left ">
+            <tr className="text-left text-xs">
               <th className="p-3">Operations</th>
-              <th className="p-3 whitespace-nowrap">Keyboard Shorcut</th>
+              <th className="whitespace-nowrap p-3">Keyboard Shorcut</th>
             </tr>
           </thead>
           <tbody className="text-[10px] dark:text-white">

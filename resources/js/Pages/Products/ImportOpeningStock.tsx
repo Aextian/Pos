@@ -37,11 +37,11 @@ const ImportOpeningStock = () => {
     <MainLayout>
       <ContentTitle>Import Opening Stock</ContentTitle>
       <CardBorderTop>
-        <div className="flex flex-col justify-start items-start gap-5">
+        <div className="flex flex-col items-start justify-start gap-5">
           <h5 className="dark:text-white">File to Import</h5>
           <TextInput type="file" name="" />
-          <button className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">Upload</button>
-          <button className="rounded-lg px-5 py-1 bg-emerald-400 text-white font-medium">
+          <button className="rounded-lg bg-cyan-500 px-5 py-1 font-medium text-white">Upload</button>
+          <button className="rounded-lg bg-emerald-400 px-5 py-1 font-medium text-white">
             Download CSV file template
           </button>
         </div>
@@ -54,8 +54,8 @@ const ImportOpeningStock = () => {
             in the following order.
           </p>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="table-fixed w-full text-[8px] text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="w-full table-fixed text-left text-[8px] text-gray-500 dark:text-gray-400 rtl:text-right">
+              <thead className="bg-gray-50 uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th>Column Number</th>
                   <th>Column Name</th>
@@ -64,8 +64,8 @@ const ImportOpeningStock = () => {
               </thead>
               <tbody>
                 {data.map((item) => (
-                  <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                    <td className="py-3 px-3">{item.number}</td>
+                  <tr className="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800">
+                    <td className="px-3 py-3">{item.number}</td>
                     <td>{item.name}</td>
                     <td>{item.instruction}</td>
                   </tr>

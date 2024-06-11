@@ -11,13 +11,13 @@ const System: React.FC<{ open: string }> = ({ open }) => {
 
   return (
     <>
-      <div className={`${open === 'System' ? '' : 'hidden'} dark:text-white grid gap-5 grid-cols-2`}>
-        <label className="w-full flex flex-col gap-3 md:flex-row">
+      <div className={`${open === 'System' ? '' : 'hidden'} grid grid-cols-2 gap-5 dark:text-white`}>
+        <label className="flex w-full flex-col gap-3 md:flex-row">
           Theme Color
-          <TextInput type="color" className="w-full max-w-xs " defaultValue="#ff0000" />
+          <TextInput type="color" className="w-full max-w-xs" defaultValue="#ff0000" />
         </label>
 
-        <label className="w-full flex flex-col gap-3 items-center whitespace-nowrap md:flex-row">
+        <label className="flex w-full flex-col items-center gap-3 whitespace-nowrap md:flex-row">
           <TextInput type="checkbox" />
           Show help text
         </label>

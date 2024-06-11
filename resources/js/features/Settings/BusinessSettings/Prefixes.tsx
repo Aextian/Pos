@@ -9,58 +9,59 @@ const Prefixes: React.FC<{ open: string }> = ({ open }) => {
       <div
         className={`${
           open === 'Prefixes' ? '' : 'hidden'
-        }  grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3`}>
+        } grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3`}
+      >
         <LabelRow>
           <SpanLabel>Purchase Order:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="PO" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="PO" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Purchase Return:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="PR" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="PR" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Stock Transfer:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="ST" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="ST" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Stock Adjustment:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="SA" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="SA" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Sell Return:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="SR" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="SR" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Expenses:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="Expenses" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="Expenses" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Contacts:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="Contacts" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="Contacts" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Purchase Payment:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="PP" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="PP" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Sell Payment:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="SP" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="SP" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Expense Payment:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="EP" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="EP" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Business Location:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="BL" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="BL" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Username:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="Usernmae" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="Usernmae" />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Subscription No.:</SpanLabel>
-          <TextInput className="p-1 mt-2 w-full rounded-none" placeholder="Sub No" />
+          <TextInput className="mt-2 w-full rounded-none p-1" placeholder="Sub No" />
         </LabelRow>
       </div>
     </>

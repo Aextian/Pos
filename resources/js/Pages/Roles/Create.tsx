@@ -88,20 +88,20 @@ const Create: React.FC<Props> = ({ permissions }) => {
                 <SpanLabel>Role Names</SpanLabel>
                 <TextInput
                   type="text"
-                  className=" text-xs w-full"
+                  className="w-full text-xs"
                   onChange={(e) => handleChange(e)}
                   name="name"
                   placeholder="Role Name"
                 />
               </LabelRow>
 
-              <div className="flex flex-col justify-center gap-5 dark:text-white mt-3">
+              <div className="mt-3 flex flex-col justify-center gap-5 dark:text-white">
                 {permissions.map((data, index) => (
                   <div className="space-y-5" key={index}>
-                    <div className="flex gap-2 items-center rounded-lg">
-                      <label className="text-lg font-bold flex items-center">
+                    <div className="flex items-center gap-2 rounded-lg">
+                      <label className="flex items-center text-lg font-bold">
                         <input
-                          className="mr-5 "
+                          className="mr-5"
                           name={`bulk-${index}`}
                           type="checkbox"
                           onChange={(e) => handleBulkChange(e, data.permissions)}
@@ -110,7 +110,7 @@ const Create: React.FC<Props> = ({ permissions }) => {
                       </label>
                     </div>
 
-                    <div className="flex flex-col justify-center gap-5 ml-5">
+                    <div className="ml-5 flex flex-col justify-center gap-5">
                       {data.permissions.map((permission, permissionindex) => (
                         <label key={permissionindex}>
                           <TextInput
@@ -119,7 +119,7 @@ const Create: React.FC<Props> = ({ permissions }) => {
                             name="permission"
                             value={permission['id']}
                             onChange={(e) => handleChange(e)}
-                            className="mr-5 p-2 "
+                            className="mr-5 p-2"
                             placeholder="Role Name"
                           />
                           {permission['name']}

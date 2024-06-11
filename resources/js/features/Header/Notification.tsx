@@ -6,8 +6,10 @@ interface Props {
 const Notification: React.FC<Props> = ({ notification }) => {
   return (
     <>
-      <div className={`bg-white  p-3 absolute w-72 top-[44px] md:right-0 right-[-160px] rounded shadow-lg border flex justify-center items-center ${notification ? '' : 'hidden'}`}>
-        <p className="text-xs text-dark">No Notifications</p>
+      <div
+        className={`absolute right-[-160px] top-[44px] flex w-72 items-center justify-center rounded border bg-white p-3 shadow-lg md:right-0 ${notification ? '' : 'hidden'}`}
+      >
+        <p className="text-dark text-xs">No Notifications</p>
       </div>
     </>
   )

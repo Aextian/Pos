@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 
 class ContactController extends Controller
 {
@@ -20,6 +21,7 @@ class ContactController extends Controller
         $search = request('search');
 
         $suppliers = Contact::query()
+            ->where('type', 'supplier')
             ->search($search)
             ->orderBy($sortFields, $sortDirection)
             ->paginate(10)
@@ -32,25 +34,26 @@ class ContactController extends Controller
         ]);
     }
 
-    // public function customer()
-    // {
-    //      // sorting fields and direction
-    //      $sortFields = request("sort_field", 'created_at');
-    //      $sortDirection = request("sort_direction", 'desc');
-    //      $search = request('search');
+    public function customer()
+    {
+        // sorting fields and direction
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
 
-    //      $suppliers = Contact::query()
-    //          ->search($search)
-    //          ->orderBy($sortFields, $sortDirection)
-    //          ->paginate(10)
-    //          ->onEachSide(1);
+        $customers = Contact::query()
+            ->where('type', 'customer')
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
 
-    //      return inertia('Contacts/Suppliers/Index', [
-    //          'suppliers'  => $suppliers,
-    //          'successMessage' => session('success'),
-    //          'queryParams' => request()->query(),
-    //      ]);
-    // }
+        return inertia('Contacts/Customer', [
+            'customers'  => $customers,
+            'successMessage' => session('success'),
+            'queryParams' => request()->query(),
+        ]);
+    }
 
 
     /**
@@ -72,9 +75,16 @@ class ContactController extends Controller
 
         $supplier = new Contact($request->all());
         $supplier->business_id = auth()->user()->business_id;
+        $supplier->created_by = auth()->user()->id;
         $supplier->save();
 
-        return redirect()->route('supplier.index')->with('success', 'Supplier created successfully');
+        if ($request->type == "supplier") {
+            return redirect()->route('contacts.supplier')->with('success', 'Supplier created successfully');
+        } else if ($request->type == "customer") {
+            return redirect()->route('contacts.customer')->with('success', 'Customer created successfully');
+        }
+
+        return redirect()->route('contacts.supplier')->with('success', 'Both created successfully');
     }
 
     /**
@@ -82,8 +92,10 @@ class ContactController extends Controller
      */
     public function show(string $id)
     {
+
         return inertia('Contacts/Suppliers/Show', [
-            'supplier' => Contact::findorfail($id),
+            'contact' => Contact::findorfail($id),
+            'type' => request('type')
         ]);
     }
 
@@ -92,16 +104,26 @@ class ContactController extends Controller
      */
     public function edit(string $id)
     {
+        return inertia('Contacts/Edit', [
+            'contact' => Contact::findorfail($id),
+            'type' => request('type')
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ContactRequest $request, string $id)
     {
-        Contact::findorfail($id)->update($request->all());
 
-        return redirect()->route('supplier.index')->with('success', 'Supplier updated successfully');
+        $contact =  Contact::findorfail($id)->update($request->all());
+
+        if ($request->t == "supplier") {
+            return redirect()->route('contacts.supplier')->with('success', 'Supplier created successfully');
+        } else if ($request->t == "customer") {
+            return redirect()->route('contacts.customer')->with('success', 'Customer created successfully');
+        }
+        return redirect()->route('contacts.supplier')->with('success', 'Both created successfully');
     }
 
     /**

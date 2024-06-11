@@ -17,15 +17,15 @@ const Create = () => {
       </ContentTitle>
 
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <LabelRow>
             <SpanLabel>Date:*</SpanLabel>
             <div className="flex flex-col gap-1">
               <div className="inline-flex">
-                <div className="p-1 border dark:border-slate-500 dark:text-white">
+                <div className="border p-1 dark:border-slate-500 dark:text-white">
                   <MdOutlineCalendarMonth size={22} />
                 </div>
-                <TextInput className="w-full p-2 text-xs rounded-none" type="date" />
+                <TextInput className="w-full rounded-none p-2 text-xs" type="date" />
               </div>
             </div>
           </LabelRow>
@@ -34,7 +34,8 @@ const Create = () => {
             <select
               name="cars"
               id="cars"
-              className="w-full p-2 text-xs   dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -50,7 +51,8 @@ const Create = () => {
             <select
               name="cars"
               id="cars"
-              className="w-full p-2 text-xs   dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -65,11 +67,11 @@ const Create = () => {
       <CardBorderTop>
         <CardTitle>Search Product</CardTitle>
         <div className="inline-flex">
-          <div className="px-2 border dark:border-slate-500 dark:text-white items-center justify-center inline-flex">
+          <div className="inline-flex items-center justify-center border px-2 dark:border-slate-500 dark:text-white">
             <IoIosSearch size={22} />
           </div>
           <TextInput
-            className="w-full p-2 text-xs rounded-none"
+            className="w-full rounded-none p-2 text-xs"
             type="search"
             placeholder="Search products for stock adjustment"
           />

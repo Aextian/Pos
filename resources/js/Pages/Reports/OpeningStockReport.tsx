@@ -65,7 +65,7 @@ const OpeningStockReport = () => {
               </tfoot>
             </Table>
           </div>
-          <div className="flex justify-center items-center">pagination</div>
+          <div className="flex items-center justify-center">pagination</div>
         </CardBorderTop>
       </MainLayout>
     </>

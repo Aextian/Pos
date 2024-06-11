@@ -63,15 +63,17 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('categories.index'))}>
-        <form onSubmit={handleSubmit} className="grid grid-flow-row p-5 gap-5 dark:bg-gray-700">
-          <div className="flex justify-between items-center ">
+        onClose={() => router.visit(route('categories.index'))}
+      >
+        <form onSubmit={handleSubmit} className="grid grid-flow-row gap-5 p-5 dark:bg-gray-700">
+          <div className="flex items-center justify-between">
             <h1 className="dark:text-white">Add Category</h1>
             <button
               type="button"
               className="items-start p-2 hover:text-red-500"
               onClick={handleCloseModal}
-              disabled={processing}>
+              disabled={processing}
+            >
               <FaX />
             </button>
           </div>
@@ -81,7 +83,7 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
             <TextInput
               name="name"
               onChange={(e) => setData('name', e.target.value)}
-              className="p-2 text-xs w-full"
+              className="w-full p-2 text-xs"
               placeholder="Category name"
               required
             />
@@ -93,7 +95,7 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
             <TextInput
               name="short_code"
               onChange={(e) => setData('short_code', e.target.value)}
-              className="p-2 text-xs w-full"
+              className="w-full p-2 text-xs"
               placeholder="Category code"
               required
             />
@@ -112,10 +114,11 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
               <SpanLabel>Select as sub-category</SpanLabel>
               <select
                 onChange={(e) => setData('parent_id', e.target.value)}
-                className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+                className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                 name="parent_id"
                 value={data.parent_id}
-                required>
+                required
+              >
                 <option value="" selected>
                   NONE
                 </option>

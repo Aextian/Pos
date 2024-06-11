@@ -67,12 +67,12 @@ const Index = () => {
 
         <div className="flex justify-end">
           <div className="relative">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
+            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+              <div className="h-4 w-4 text-gray-500 dark:text-gray-400">
                 <FaSearch size={20} />
               </div>
             </div>
-            <TextInput className="rounded-lg px-5 py-1 bg-slate-200 ps-10 " type="search" name="" id="" />
+            <TextInput className="rounded-lg bg-slate-200 px-5 py-1 ps-10" type="search" name="" id="" />
           </div>
         </div>
 
@@ -97,14 +97,15 @@ const Index = () => {
             </tr>
           </TableHead>
           <tbody>
-            <tr className="bg-white border- dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50  dark:hover:bg-gray-600">
+            <tr className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
               <th
                 scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"></th>
+                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+              ></th>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right whitespace-nowrap gap-2">
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-[10px]">
+              <td className="gap-2 whitespace-nowrap px-6 py-4 text-right">
+                <button className="rounded bg-red-500 px-3 py-1 text-[10px] font-bold text-white hover:bg-red-700">
                   {' '}
                   Manage Discount
                 </button>
@@ -112,7 +113,7 @@ const Index = () => {
             </tr>
           </tbody>
         </Table>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

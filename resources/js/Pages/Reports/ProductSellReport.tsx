@@ -45,20 +45,21 @@ const ProductSellReport = () => {
       <MainLayout>
         <ContentTitle>Product Purchase Report</ContentTitle>
         <CardBorderTop>
-          <div className="flex flex-col justify-start items-start gap-5">
+          <div className="flex flex-col items-start justify-start gap-5">
             <CardTitle>Filters</CardTitle>
-            <hr className=" w-full" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+            <hr className="w-full" />
+            <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3">
               <LabelRow>
                 <SpanLabel>Search Product:</SpanLabel>
-                <TextInput placeholder="Enter Product name /SKU/Scan bar code" className=" p-2 w-full" />
+                <TextInput placeholder="Enter Product name /SKU/Scan bar code" className="w-full p-2" />
               </LabelRow>
 
               <LabelRow>
                 <SpanLabel>Customer:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -69,8 +70,9 @@ const ProductSellReport = () => {
               <LabelRow>
                 <SpanLabel>Business Location:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -92,19 +94,21 @@ const ProductSellReport = () => {
         </CardBorderTop>
         <CardBorderTop>
           {/* <span>{successMessage ? successMessage : ''}</span> */}
-          <div className="text-sm font-bold md:text-2xl dark:text-white">
+          <div className="text-sm font-bold dark:text-white md:text-2xl">
             <button
               className={`border p-3 ${
-                show === 'detailed' ? 'border-t-cyan-600  border-b-0 border-r-0' : ''
-              } dark:border-slate-500 `}
-              onClick={(e) => handleClick({ name: 'detailed' })}>
+                show === 'detailed' ? 'border-b-0 border-r-0 border-t-cyan-600' : ''
+              } dark:border-slate-500`}
+              onClick={(e) => handleClick({ name: 'detailed' })}
+            >
               Detailed
             </button>
             <button
               className={`border p-3 ${
-                show === 'grouped' ? 'border-t-cyan-600 border-b-0 border-l-0' : ''
-              } dark:border-slate-500 `}
-              onClick={(e) => handleClick({ name: 'grouped' })}>
+                show === 'grouped' ? 'border-b-0 border-l-0 border-t-cyan-600' : ''
+              } dark:border-slate-500`}
+              onClick={(e) => handleClick({ name: 'grouped' })}
+            >
               Grouped
             </button>
           </div>
@@ -167,7 +171,7 @@ const ProductSellReport = () => {
             )}
           </div>
 
-          <div className="flex justify-center items-center">pagination</div>
+          <div className="flex items-center justify-center">pagination</div>
         </CardBorderTop>
       </MainLayout>
     </>

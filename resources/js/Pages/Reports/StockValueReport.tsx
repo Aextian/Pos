@@ -21,7 +21,7 @@ const StockValueReport = () => {
             <TableHead>
               <tr>
                 {Thead.map((item, index) => (
-                  <th scope="col" className="px-4 py-3 border-r" key={index}>
+                  <th scope="col" className="border-r px-4 py-3" key={index}>
                     {item}
                   </th>
                 ))}
@@ -49,9 +49,9 @@ const StockValueReport = () => {
         ))} */}
               <NoDataAvailable span={Thead.length} />
             </tbody>
-            <tfoot className=" dark:bg-gray-600 dark:border-gray-70">
+            <tfoot className="dark:border-gray-70 dark:bg-gray-600">
               <tr className="">
-                <td className="p-16 font-bold text-black text-xs md:text-lg border-r dark:text-white">
+                <td className="border-r p-16 text-xs font-bold text-black dark:text-white md:text-lg">
                   Total
                 </td>
                 <td className="border-r text-xs md:text-lg">
@@ -59,13 +59,13 @@ const StockValueReport = () => {
                     <li>16,316.00 Pc(s)</li>
                   </ul>
                 </td>
-                <td className="px-16  border-r"></td>
+                <td className="border-r px-16"></td>
                 <td className="text-xs md:text-lg"> Php 1,359,280.84</td>
               </tr>
             </tfoot>
           </Table>
         </div>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

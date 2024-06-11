@@ -4,7 +4,7 @@ import React from 'react'
 const Purchases: React.FC<{ open: string }> = ({ open }) => {
   return (
     <>
-      <div className={`${open === 'Purchases' ? '' : 'hidden'} dark:text-white grid gap-5 `}>
+      <div className={`${open === 'Purchases' ? '' : 'hidden'} grid gap-5 dark:text-white`}>
         <label className="inline-flex items-center gap-3">
           <TextInput type="checkbox" className="rounded-none p-2 outline-none" />
           <span className="text-[10px]">Enable editing product price from purchase screen</span>

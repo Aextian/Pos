@@ -5,10 +5,11 @@ const TextArea: React.FC<InputHTMLAttributes<HTMLTextAreaElement>> = ({ classNam
     <>
       <textarea
         className={
-          `w-full text-xs dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white  border-gray-300 focus:border-cyan-600 focus:ring-cyan-600  ` +
+          `w-full border-gray-300 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 ` +
           className
         }
-        {...props}></textarea>
+        {...props}
+      ></textarea>
     </>
   )
 }

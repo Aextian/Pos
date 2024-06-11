@@ -39,14 +39,15 @@ const Index = () => {
         <CardBorderTop.Header>
           <CardBorderTop.Title>Filters</CardBorderTop.Title>
         </CardBorderTop.Header>
-        <hr className=" w-full" />
+        <hr className="w-full" />
         <CardBorderTop.Content>
           <LabelRow>
             <SpanLabel>Business Location:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
               name="type"
-              id="cars">
+              id="cars"
+            >
               <option value="" selected>
                 All
               </option>
@@ -58,9 +59,10 @@ const Index = () => {
           <LabelRow>
             <SpanLabel>Expense for:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
               name="type"
-              id="cars">
+              id="cars"
+            >
               <option value="" selected>
                 All
               </option>
@@ -71,9 +73,10 @@ const Index = () => {
           <LabelRow>
             <SpanLabel>Expense Category:</SpanLabel>
             <select
-              className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
               name="type"
-              id="cars">
+              id="cars"
+            >
               <option value="" selected>
                 All
               </option>
@@ -93,7 +96,8 @@ const Index = () => {
           <CardBorderTop.Title>All Expenses</CardBorderTop.Title>
           <Link
             href={route('users.create')}
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+          >
             Add
           </Link>
         </CardBorderTop.Header>
@@ -131,7 +135,7 @@ const Index = () => {
             </tbody>
             <tfoot>
               <tr className="text-lg">
-                <td className="text-center py-10 " colSpan={4}>
+                <td className="py-10 text-center" colSpan={4}>
                   Total
                 </td>
                 <td className="border-l">Received -1</td>
@@ -142,7 +146,7 @@ const Index = () => {
             </tfoot>
           </Table>
         </CardBorderTop.Content>
-        <div className="flex justify-center items-center">pagination</div>
+        <div className="flex items-center justify-center">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

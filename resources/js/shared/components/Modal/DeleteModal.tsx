@@ -37,24 +37,26 @@ const DeleteModal: React.FC<Props> = ({ isDelete, onCloseRoute, url, setDelete, 
         show={isDelete ? true : false}
         maxWidth="sm"
         closeable={true}
-        onClose={() => router.visit(route(onCloseRoute))}>
-        <div className="p-3 space-y-5 dark:bg-gray-700">
+        onClose={() => router.visit(route(onCloseRoute))}
+      >
+        <div className="space-y-5 p-3 dark:bg-gray-700">
           <div className="flex justify-end px-5 py-1">
             <button onClick={() => setDelete(0)}>
-              <span className="dark:text-white hover:text-red-500">
+              <span className="hover:text-red-500 dark:text-white">
                 <FaX />
               </span>
             </button>
           </div>
-          <div className=" flex flex-col gap-5 justify-center items-center px-10 dark:text-slate-200">
+          <div className="flex flex-col items-center justify-center gap-5 px-10 dark:text-slate-200">
             <FaTrashAlt size={35} />
             <p className="text-sm">{message ? message : 'Are you sure you want to delete this?'}</p>
           </div>
           <div className="flex justify-between px-2 pb-3">
             <PrimaryButton
-              className="bg-black text-white px-3 rounded-lg"
+              className="rounded-lg bg-black px-3 text-white"
               onClick={() => setDelete(0)}
-              disabled={processing}>
+              disabled={processing}
+            >
               No, cancel
             </PrimaryButton>
             <DangerButton onClick={handleDelete} disabled={processing}>

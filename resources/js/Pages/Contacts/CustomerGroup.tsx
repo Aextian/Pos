@@ -26,10 +26,10 @@ type Props = {
   queryParams: QueryParam
 }
 
-const Index: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
+const CustomerGroup: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
   const Thead = [
-    { name: 'Name', sort_field: 'name' }, // Assuming no sort field for this column
-    { name: 'Amount', sort_field: 'amount' },
+    { name: 'Customer Group Name', sort_field: 'name' }, // Assuming no sort field for this column
+    { name: 'Calculation Percentage (%)', sort_field: 'amount' },
     { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
   ]
 
@@ -95,7 +95,7 @@ const Index: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
                 <TableBody.Row key={item.id}>
                   <td className="px-6 py-3">{item.name}</td>
                   <td className="px-6 py-3">{item.amount}</td>
-                  <td className="px-6 py-3 space-x-3 whitespace-nowrap">
+                  <td className="space-x-3 whitespace-nowrap px-6 py-3">
                     <PrimaryButton onClick={() => handleShowEditModal(item)}>Edit</PrimaryButton>
                     <DangerButton onClick={() => setDelete(item.id)}>Delete</DangerButton>
                   </td>
@@ -118,4 +118,4 @@ const Index: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
   )
 }
 
-export default Index
+export default CustomerGroup

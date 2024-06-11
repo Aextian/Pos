@@ -116,13 +116,13 @@ const sidebarData: SidebarItemProps[] = [
       {
         title: 'Customers',
         icon: <FaUserLock />,
-        url: '/contacts/customer',
+        url: '/contact/customer',
       },
 
       {
         title: 'Customer Groups',
         icon: <FaMoneyCheckAlt />,
-        url: '/contacts/customer-group',
+        url: '/contact/customer-group',
       },
 
       {

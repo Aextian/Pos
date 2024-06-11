@@ -9,7 +9,8 @@ const Select: React.FC<Props> = ({ className, children, ...props }) => {
   return (
     <select
       {...props}
-      className={`${className} w-full p-2 text-xsdark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 text-xs`}>
+      className={`${className} text-xsdark:bg-slate-800 w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:text-white dark:placeholder-gray-400`}
+    >
       {children}
     </select>
   )

@@ -18,12 +18,13 @@ const Create = () => {
       </ContentTitle>
 
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           <LabelRow>
             <SpanLabel>Business Location (To):*</SpanLabel>
             <select
-              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -34,8 +35,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Expense Category:*</SpanLabel>
             <select
-              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -46,26 +48,26 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Reference No:</SpanLabel>
             <TextInput
-              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              className="w-full rounded-md border-gray-300 p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
               type="text"
               placeholder="Reference No."
             />
           </LabelRow>
-          <div className="flex flex-col gap-1 w-full">
+          <div className="flex w-full flex-col gap-1">
             <LabelRow>
               <SpanLabel>Date:*</SpanLabel>
               <div className="flex w-full flex-nowrap">
-                <div className="border dark:border-slate-500 px-2 flex items-center">
+                <div className="flex items-center border px-2 dark:border-slate-500">
                   <FaRegCalendar size={18} />
                 </div>
-                <TextInput className="w-full  p-1 rounded-none" type="date" />
+                <TextInput className="w-full rounded-none p-1" type="date" />
               </div>
             </LabelRow>
           </div>
           <LabelRow>
             <SpanLabel>Total Amount:</SpanLabel>
             <TextInput
-              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              className="w-full rounded-md border-gray-300 p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
               placeholder="Total Amount"
               type="text"
             />
@@ -73,8 +75,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Expense for:*</SpanLabel>
             <select
-              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-              name="type">
+              className="w-full rounded-md border-gray-300 p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -85,18 +88,18 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Attach Document:</SpanLabel>
             <TextInput
-              className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
+              className="w-full rounded-md border-gray-300 p-2 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
               type="file"
             />
             <span className="text-xs dark:text-white">Max file size: 1 MB</span>
           </LabelRow>
-          <div className="grid gap-5 w-full">
+          <div className="grid w-full gap-5">
             <LabelRow>
               <SpanLabel>Expense Note</SpanLabel>
               <TextArea cols={20}></TextArea>
             </LabelRow>
           </div>
-          <div className="border-t md:border-t-0 p-2 gap-5 flex flex-col items-end justify-end">
+          <div className="flex flex-col items-end justify-end gap-5 border-t p-2 md:border-t-0">
             <PrimaryButton>Save</PrimaryButton>
           </div>
         </div>

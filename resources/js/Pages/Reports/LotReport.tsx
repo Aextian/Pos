@@ -24,15 +24,16 @@ const LotReport = () => {
       <MainLayout>
         <ContentTitle>Customer Groups Report</ContentTitle>
         <CardBorderTop>
-          <div className="flex flex-col justify-start items-start gap-5">
+          <div className="flex flex-col items-start justify-start gap-5">
             <CardTitle>Filters</CardTitle>
-            <hr className=" w-full" />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
+            <hr className="w-full" />
+            <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3">
               <LabelRow>
                 <SpanLabel>Business Location:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -43,8 +44,9 @@ const LotReport = () => {
               <LabelRow>
                 <SpanLabel>Category:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -55,8 +57,9 @@ const LotReport = () => {
               <LabelRow>
                 <SpanLabel>Sub Category:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -67,8 +70,9 @@ const LotReport = () => {
               <LabelRow>
                 <SpanLabel>Brand:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -79,8 +83,9 @@ const LotReport = () => {
               <LabelRow>
                 <SpanLabel>Unit:</SpanLabel>
                 <select
-                  className="w-full p-3 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300"
-                  name="type">
+                  className="w-full rounded-md border-gray-300 p-3 text-xs dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                  name="type"
+                >
                   <option value="" selected>
                     All
                   </option>
@@ -98,7 +103,7 @@ const LotReport = () => {
               <TableHead>
                 <tr>
                   {Thead.map((item, index) => (
-                    <th scope="col" className="px-4 py-3 border-r" key={index}>
+                    <th scope="col" className="border-r px-4 py-3" key={index}>
                       {item}
                     </th>
                   ))}
@@ -128,21 +133,21 @@ const LotReport = () => {
               </tbody>
               <tfoot>
                 <tr>
-                  <td colSpan={4} className="border-r ">
-                    <div className="p-5 flex items-center justify-center">Total</div>
+                  <td colSpan={4} className="border-r">
+                    <div className="flex items-center justify-center p-5">Total</div>
                   </td>
-                  <td colSpan={5} className="border-r ">
+                  <td colSpan={5} className="border-r">
                     <ul>
                       <li>sd</li>
                     </ul>
                   </td>
-                  <td colSpan={6} className="border-r "></td>
-                  <td colSpan={7} className="border-r "></td>
+                  <td colSpan={6} className="border-r"></td>
+                  <td colSpan={7} className="border-r"></td>
                 </tr>
               </tfoot>
             </Table>
           </div>
-          <div className="flex justify-center items-center">pagination</div>
+          <div className="flex items-center justify-center">pagination</div>
         </CardBorderTop>
       </MainLayout>
     </>

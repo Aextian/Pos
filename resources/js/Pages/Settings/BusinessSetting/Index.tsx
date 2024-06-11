@@ -55,19 +55,20 @@ const Index: React.FC<Props> = ({ business, currencies }) => {
     <MainLayout>
       <div className="shadow-xl">
         <aside className="flex flex-row border">
-          <ul className=" flex flex-col  border-r text-xs basis-[200px]">
+          <ul className="flex basis-[200px] flex-col border-r text-xs">
             {list.map((item, index) => (
               <li
-                className={`relative flex justify-center dark:text-gray-400  items-center ${
+                className={`relative flex items-center justify-center dark:text-gray-400 ${
                   open === item ? 'bg-cyan-600 text-white dark:text-white' : ''
                 }`}
-                key={index}>
-                <button className="w-full border-b p-3 " onClick={() => handleClick(item)}>
+                key={index}
+              >
+                <button className="w-full border-b p-3" onClick={() => handleClick(item)}>
                   <span className="inline-block pr-3">{item}</span>
                 </button>
                 {open === item && (
                   <span className="absolute inset-y-0 right-[-10px] flex items-center">
-                    <span className="h-5 w-5 bg-cyan-600 transform rotate-45"></span>
+                    <span className="h-5 w-5 rotate-45 transform bg-cyan-600"></span>
                   </span>
                 )}
               </li>
@@ -89,7 +90,7 @@ const Index: React.FC<Props> = ({ business, currencies }) => {
           </div>
         </aside>
       </div>
-      <div className="text-right mt-5">
+      <div className="mt-5 text-right">
         <SecondaryButton>Update Settings</SecondaryButton>
       </div>
     </MainLayout>

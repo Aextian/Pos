@@ -100,7 +100,7 @@ const Edit: React.FC<Props> = ({ permissions, role, rolePermissions }) => {
                 placeholder="Role Name"
               />
             </LabelRow>
-            <div className="flex flex-col justify-center gap-5 dark:text-white mt-3">
+            <div className="mt-3 flex flex-col justify-center gap-5 dark:text-white">
               {permissions.map((data, index) => (
                 <label key={index}>
                   <TextInput
@@ -109,7 +109,7 @@ const Edit: React.FC<Props> = ({ permissions, role, rolePermissions }) => {
                     name="permission"
                     value={data.id}
                     onChange={(e) => handleChange(e)}
-                    className="mr-5 p-2 "
+                    className="mr-5 p-2"
                     placeholder="Role Name"
                   />
                   {data.name}
@@ -117,8 +117,8 @@ const Edit: React.FC<Props> = ({ permissions, role, rolePermissions }) => {
               ))}
             </div>
 
-            <div className="flex justify-end  mt-5">
-              <PrimaryButton className="md:px-10 " type="submit" disabled={processing}>
+            <div className="mt-5 flex justify-end">
+              <PrimaryButton className="md:px-10" type="submit" disabled={processing}>
                 {processing ? <span className="animate-pulse">Updating...</span> : 'Update'}
               </PrimaryButton>
             </div>

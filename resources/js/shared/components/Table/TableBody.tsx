@@ -17,7 +17,8 @@ const Row: React.FC<PropsWithChildren> = ({ children, ...props }) => {
     <>
       <tr
         {...props}
-        className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+        className="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
+      >
         {children}
       </tr>
     </>

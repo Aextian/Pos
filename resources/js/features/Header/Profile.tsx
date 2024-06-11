@@ -6,19 +6,21 @@ const Profile: React.FC<{ profile: boolean }> = ({ profile }) => {
   return (
     <>
       <div
-        className={`bg-slate-800 w-72 h-64 absolute top-[44px] md:right-0  right-[-35px] grid  grid-rows-[1fr_60px] shadow-lg ${
+        className={`absolute right-[-35px] top-[44px] grid h-64 w-72 grid-rows-[1fr_60px] bg-slate-800 shadow-lg md:right-0 ${
           profile ? '' : 'hidden'
-        }`}>
-        <div className="flex justify-center text-white mt-5">
+        }`}
+      >
+        <div className="mt-5 flex justify-center text-white">
           <h5>Pos</h5>
         </div>
-        <div className="bg-white flex justify-between p-3 ">
+        <div className="flex justify-between bg-white p-3">
           <SecondaryButton>Profile</SecondaryButton>
           <Link
             href={route('logout')}
             method="post"
             as="button"
-            className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+            className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
+          >
             Sign out
           </Link>
         </div>

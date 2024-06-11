@@ -142,7 +142,7 @@ const Edit: React.FC<Props> = ({ user, roles, errors, contacts }) => {
       <CardBorderTop>
         <CardBorderTop.Content>
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
               <LabelRow>
                 <SpanLabel>Prefix</SpanLabel>
                 <TextInput
@@ -197,11 +197,12 @@ const Edit: React.FC<Props> = ({ user, roles, errors, contacts }) => {
               <LabelRow>
                 <SpanLabel>Role:*</SpanLabel>
                 <select
-                  className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
+                  className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                   name="roles"
                   onChange={handleChange}
                   value={values.roles}
-                  multiple>
+                  multiple
+                >
                   {roles.map((role, index) => (
                     <option key={index} value={role.name}>
                       {role.name}
@@ -264,7 +265,7 @@ const Edit: React.FC<Props> = ({ user, roles, errors, contacts }) => {
                 <span className="text-red-600">{errors.cmmsn_percent ? errors.cmmsn_percent : ''}</span>
               </LabelRow>
 
-              <label className="inline-flex gap-3 items-center dark:text-white">
+              <label className="inline-flex items-center gap-3 dark:text-white">
                 <TextInput
                   className="rounded p-2"
                   name="show_contacts"
@@ -289,7 +290,7 @@ const Edit: React.FC<Props> = ({ user, roles, errors, contacts }) => {
                 </LabelRow>
               ) : null}
 
-              <label className="inline-flex gap-3 items-center dark:text-white">
+              <label className="inline-flex items-center gap-3 dark:text-white">
                 <TextInput
                   className="rounded p-2"
                   type="checkbox"

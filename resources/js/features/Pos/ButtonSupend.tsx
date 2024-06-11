@@ -3,7 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa'
 
 const ButtonSupend = () => {
   return (
-    <button className=" bg-orange-600 text-md font-bold text-white px-10 py-2 inline-flex items-center justify-center gap-3">
+    <button className="text-md inline-flex items-center justify-center gap-3 bg-orange-600 px-10 py-2 font-bold text-white">
       <FaArrowLeft />
       Suspend
     </button>

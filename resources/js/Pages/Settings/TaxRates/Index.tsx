@@ -26,7 +26,7 @@ const Index = () => {
     <>
       <MainLayout>
         <Modal show={TaxRate} onClose={() => {}} maxWidth="2xl" closeable>
-          <div className="grid gap-3 p-3 dark:bg-gray-800 dark:border-gray-700">
+          <div className="grid gap-3 p-3 dark:border-gray-700 dark:bg-gray-800">
             <div className="flex justify-between">
               <h1 className="font-bold dark:text-white">Add Tax Rate</h1>
               <button onClick={() => setTaxRate(false)}>
@@ -37,11 +37,11 @@ const Index = () => {
             <div>
               <label>
                 <SpanLabel>Name:*</SpanLabel>
-                <TextInput className="text-xs p-2 w-full" placeholder="Name" />
+                <TextInput className="w-full p-2 text-xs" placeholder="Name" />
               </label>
               <label>
                 <SpanLabel> Tax Rate %:*</SpanLabel>
-                <TextInput className="text-xs p-2 w-full" placeholder="Sub taxes" />
+                <TextInput className="w-full p-2 text-xs" placeholder="Sub taxes" />
               </label>
             </div>
             <div className="flex justify-end gap-3">
@@ -52,7 +52,7 @@ const Index = () => {
         </Modal>
 
         <Modal show={TaxGroup} onClose={() => {}} maxWidth="2xl" closeable>
-          <div className="grid gap-3 p-3 dark:bg-gray-800 dark:border-gray-700">
+          <div className="grid gap-3 p-3 dark:border-gray-700 dark:bg-gray-800">
             <div className="flex justify-between">
               <h1 className="font-bold dark:text-white">Add Tax Group</h1>
               <button onClick={() => setTaxGroup(false)}>
@@ -64,11 +64,11 @@ const Index = () => {
             <div>
               <label>
                 <SpanLabel>Name:*</SpanLabel>
-                <TextInput className="text-xs p-2 w-full" placeholder="Name" />
+                <TextInput className="w-full p-2 text-xs" placeholder="Name" />
               </label>
               <label>
                 <SpanLabel> Sub taxes:*</SpanLabel>
-                <TextInput className="text-xs p-2 w-full" placeholder="Sub taxes" />
+                <TextInput className="w-full p-2 text-xs" placeholder="Sub taxes" />
               </label>
             </div>
             <div className="flex justify-end gap-3">
@@ -97,7 +97,7 @@ const Index = () => {
               <Table>
                 <TableHead>
                   <tr>
-                    <th scope="col" className="px-4 py-3  ">
+                    <th scope="col" className="px-4 py-3">
                       Name
                     </th>
                     <th scope="col" className="px-4 py-3">
@@ -149,9 +149,9 @@ const Index = () => {
           {/* <span>{successMessage ? successMessage : ''}</span> */}
           <CardHeader>
             <CardTitle>
-              <span className="text-xs md:text-lg font-bold">Tax groups (Combination of multiple)</span>
+              <span className="text-xs font-bold md:text-lg">Tax groups (Combination of multiple)</span>
             </CardTitle>
-            <div className="flex gap-2 ">
+            <div className="flex gap-2">
               {/* <SearchBar queryParams={queryParams} handleSearchChange={handleSearchChange} /> */}
               <SecondaryButton onClick={() => setTaxGroup(true)} className="gap-2">
                 <FaPlus /> Add
@@ -163,16 +163,16 @@ const Index = () => {
               <Table>
                 <TableHead>
                   <tr>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3">
                       Name
                     </th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3">
                       Tax Rate %
                     </th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3">
                       Sub taxes %
                     </th>
-                    <th scope="col" className="px-4 py-3 whitespace-nowrap">
+                    <th scope="col" className="whitespace-nowrap px-4 py-3">
                       Action
                     </th>
                   </tr>

@@ -53,26 +53,28 @@ const AddCommissionAgentModal: React.FC<Props> = ({ handleShowModal, showModal }
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('sales-commission-agents.index'))}>
-        <div className="flex justify-between items-center p-5 border-b  dark:bg-gray-700">
+        onClose={() => router.visit(route('sales-commission-agents.index'))}
+      >
+        <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
           <h1 className="dark:text-white">Add Commission Agent</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
             onClick={handleCloseModal}
-            disabled={processing}>
+            disabled={processing}
+          >
             <FaX />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-5 space-y-5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <form onSubmit={handleSubmit} className="space-y-5 p-5">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             <LabelRow>
               <SpanLabel>Prefix</SpanLabel>
               <TextInput
                 name="prefix"
                 onChange={(e) => setData('prefix', e.target.value)}
-                className="p-2 text-xs w-full"
+                className="w-full p-2 text-xs"
                 placeholder="Mr/Mrs"
               />
               <InputError message={errors.prefix} />
@@ -83,7 +85,7 @@ const AddCommissionAgentModal: React.FC<Props> = ({ handleShowModal, showModal }
               <TextInput
                 name="first_name"
                 onChange={(e) => setData('first_name', e.target.value)}
-                className="p-2 text-xs w-full"
+                className="w-full p-2 text-xs"
                 placeholder="First name"
               />
               <InputError message={errors.first_name} />
@@ -94,20 +96,20 @@ const AddCommissionAgentModal: React.FC<Props> = ({ handleShowModal, showModal }
               <TextInput
                 name="last_name"
                 onChange={(e) => setData('last_name', e.target.value)}
-                className="p-2 text-xs w-full"
+                className="w-full p-2 text-xs"
                 placeholder="Last name"
               />
               <InputError message={errors.last_name} />
             </LabelRow>
           </div>
 
-          <div className="col-span-3 md:grid md:grid-cols-2 gap-5">
+          <div className="col-span-3 gap-5 md:grid md:grid-cols-2">
             <LabelRow>
               <SpanLabel>Email:</SpanLabel>
               <TextInput
                 name="email"
                 onChange={(e) => setData('email', e.target.value)}
-                className="p-2 text-xs w-full"
+                className="w-full p-2 text-xs"
                 placeholder="Email"
               />
               <InputError message={errors.email} />
@@ -118,7 +120,7 @@ const AddCommissionAgentModal: React.FC<Props> = ({ handleShowModal, showModal }
               <TextInput
                 name="contact_no"
                 onChange={(e) => setData('contact_no', e.target.value)}
-                className="p-2 text-xs w-full"
+                className="w-full p-2 text-xs"
                 placeholder="Contact No."
               />
               <InputError message={errors.contact_no} />
@@ -130,7 +132,8 @@ const AddCommissionAgentModal: React.FC<Props> = ({ handleShowModal, showModal }
             <TextArea
               name="address"
               onChange={(e) => setData('address', e.target.value)}
-              placeholder="Address"></TextArea>
+              placeholder="Address"
+            ></TextArea>
             <InputError message={errors.address} />
           </LabelRow>
 
@@ -139,7 +142,7 @@ const AddCommissionAgentModal: React.FC<Props> = ({ handleShowModal, showModal }
             <TextInput
               name="cmmsn_percent"
               onChange={(e) => setData('cmmsn_percent', e.target.value)}
-              className="p-2 text-xs max-w-[450px] w-full"
+              className="w-full max-w-[450px] p-2 text-xs"
               placeholder="Sales Commission Percentage(%)."
             />
             <InputError message={errors.cmmsn_percent} />

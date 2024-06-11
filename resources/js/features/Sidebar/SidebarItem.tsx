@@ -41,20 +41,21 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
   return (
     <>
       {/* Main menu */}
-      <li className="w-full ">
+      <li className="w-full">
         <Link
-          className={`flex flex-row py-3  text-gray-500 dark:text-gray-200  justify-between gap-2  hover:border-l-2 hover:rounded-r-2xl hover:text-white hover:border-yellow-600  hover:bg-cyan-600 active:border-cyan-600 px-4 ${
+          className={`flex flex-row justify-between gap-2 px-4 py-3 text-gray-500 hover:rounded-r-2xl hover:border-l-2 hover:border-yellow-600 hover:bg-cyan-600 hover:text-white active:border-cyan-600 dark:text-gray-200 ${
             url === item.url || isOpen
-              ? 'border-yellow-600 border-l-2 bg-cyan-600 text-white rounded-r-2xl'
+              ? 'rounded-r-2xl border-l-2 border-yellow-600 bg-cyan-600 text-white'
               : ''
           }`}
           href={item.url || '#'}
           preserveScroll
           preserveState
-          onClick={item.children ? (e) => toggle(e) : undefined}>
+          onClick={item.children ? (e) => toggle(e) : undefined}
+        >
           <div className="flex gap-3">
             <div className="text-lg">{item.icon}</div>
-            <div className="text-xs md:text-sm ">{item.title}</div>
+            <div className="text-xs md:text-sm">{item.title}</div>
           </div>
           <div className={isOpen ? 'rotate-180' : 'null'}>{item.children ? item.subMenuIcon : null}</div>
         </Link>
@@ -62,19 +63,21 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
         {/* Submenu*/}
         {item.children && (
           <div
-            className={`overflow-hidden transition-all duration-[1000ms] bg-slate-100 dark:bg-slate-700 dark:text-gray-300 ${
+            className={`overflow-hidden bg-slate-100 transition-all duration-[1000ms] dark:bg-slate-700 dark:text-gray-300 ${
               isOpen ? 'max-h-screen' : 'max-h-0'
-            }`}>
-            <ul className="ml-5 my-3 border-l-2 border-cyan-500 pl-7 py-2 space-y-5 text-slate-500  ">
+            }`}
+          >
+            <ul className="my-3 ml-5 space-y-5 border-l-2 border-cyan-500 py-2 pl-7 text-slate-500">
               {item.children.map((childrenItem, index) => (
                 <li key={index}>
                   <Link
                     href={childrenItem.url}
                     preserveScroll
                     preserveState
-                    className={`border-b-8  hover:text-cyan-600 hover:border-cyan-600 active:border-[#A5DD9B] ${
+                    className={`border-b-8 hover:border-cyan-600 hover:text-cyan-600 active:border-[#A5DD9B] ${
                       url === childrenItem.url ? 'text-cyan-600' : ''
-                    }`}>
+                    }`}
+                  >
                     <div className="flex gap-3">
                       <div className="text-sm">{childrenItem.icon}</div>
                       <div className="text-xs md:text-sm">{childrenItem.title}</div>

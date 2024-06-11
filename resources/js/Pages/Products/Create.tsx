@@ -43,7 +43,7 @@ const Create = () => {
       <ContentTitle>Add new Product</ContentTitle>
 
       <CardBorderTop>
-        <div className="grid grid-cols-1 md:grid-cols-3  gap-3 items-center">
+        <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-3">
           <LabelRow>
             <SpanLabel>Product Name:*</SpanLabel>
             <TextInput className="w-full rounded-none p-2 text-xs" placeholder="Product Name" />
@@ -54,7 +54,8 @@ const Create = () => {
             <div className="flex w-full flex-nowrap">
               <select
                 name="type"
-                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600">
+                className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              >
                 <option value="">Please Select</option>
                 <option value="" selected>
                   Suppliers
@@ -62,7 +63,7 @@ const Create = () => {
                 <option value="">Customers</option>
                 <option value="">Both (Suppliers and Customer)</option>
               </select>
-              <button className="bg-white-500 border dark:border-slate-500 px-2 text-cyan-600">
+              <button className="bg-white-500 border px-2 text-cyan-600 dark:border-slate-500">
                 <IoIosAddCircle size={24} />
               </button>
             </div>
@@ -73,7 +74,8 @@ const Create = () => {
             <div className="flex w-full flex-nowrap">
               <select
                 name="type"
-                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600   ">
+                className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              >
                 <option value="">Please Select</option>
                 <option value="" selected>
                   Suppliers
@@ -81,7 +83,7 @@ const Create = () => {
                 <option value="">Customers</option>
                 <option value="">Both (Suppliers and Customer)</option>
               </select>
-              <button className="bg-white-500 border dark:border-slate-500 px-2 text-cyan-600">
+              <button className="bg-white-500 border px-2 text-cyan-600 dark:border-slate-500">
                 <IoIosAddCircle size={24} />
               </button>
             </div>
@@ -90,8 +92,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Category:</SpanLabel>
             <select
-              className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-              name="type">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -103,8 +106,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Sub Category:</SpanLabel>
             <select
-              className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-              name="type">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 Please Select
               </option>
@@ -116,8 +120,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>SKU:</SpanLabel>
             <select
-              className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-              name="type">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 All
               </option>
@@ -129,8 +134,9 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Barcode Type:*</SpanLabel>
             <select
-              className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-              name="type">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="type"
+            >
               <option value="" selected>
                 All
               </option>
@@ -143,11 +149,11 @@ const Create = () => {
               <input type="checkbox" name="" id="m-stock" />
               <label htmlFor="m-stock">Manage Stock?</label>
             </div>
-            <span className="italic text-[10px]">Enable stock management at product level</span>
+            <span className="text-[10px] italic">Enable stock management at product level</span>
           </div>
           <LabelRow>
             <SpanLabel>Alert quantity:*</SpanLabel>
-            <TextInput className="w-full p-2 text-xs rounded-none" placeholder="Product Name" />
+            <TextInput className="w-full rounded-none p-2 text-xs" placeholder="Product Name" />
           </LabelRow>
 
           <div className="md:col-span-2">
@@ -159,13 +165,13 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Product Image:*</SpanLabel>
             {image && (
-              <div className="flex items-start justify-start flex-col gap-5 p-3 w-full border max-h-60 shadow-xl">
+              <div className="flex max-h-60 w-full flex-col items-start justify-start gap-5 border p-3 shadow-xl">
                 <img className="object-fit shadow-lg" src={image} alt="Preview" />
-                {fileSize && <span className="dark:text-white text-[10px]">{formatBytes(fileSize)} MB</span>}
+                {fileSize && <span className="text-[10px] dark:text-white">{formatBytes(fileSize)} MB</span>}
               </div>
             )}
             <TextInput
-              className="border p-1 rounded-none w-full"
+              className="w-full rounded-none border p-1"
               type="file"
               accept="image/*"
               onChange={handleImageChange}
@@ -178,12 +184,13 @@ const Create = () => {
 
       <CardBorderTop>
         <CardBorderTop.Content>
-          <div className="grid grid-flow-row-dense md:grid-cols-3 gap-3">
+          <div className="grid grid-flow-row-dense gap-3 md:grid-cols-3">
             <LabelRow>
               <SpanLabel>Applicable Tax::</SpanLabel>
               <select
-                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-                name="type">
+                className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   All
                 </option>
@@ -194,8 +201,9 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Selling Price Tax Type:*:</SpanLabel>
               <select
-                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-                name="type">
+                className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   All
                 </option>
@@ -209,14 +217,16 @@ const Create = () => {
                 <SpanLabel> Product Type:* :</SpanLabel>
                 <Tooltip
                   title="Default profit margin for the product"
-                  content="(You can manage default profit margin in Business Settings.)">
+                  content="(You can manage default profit margin in Business Settings.)"
+                >
                   <FaExclamationCircle size={15} />
                 </Tooltip>
               </div>
 
               <select
-                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-                name="type">
+                className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="type"
+              >
                 <option value="" selected>
                   All
                 </option>
@@ -226,51 +236,52 @@ const Create = () => {
             </LabelRow>
           </div>
           <div className="overflow-auto md:p-8">
-            <table className="w-full text-[8px] text-left  text-gray-500 dark:text-gray-400">
-              <thead className=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="w-full text-left text-[8px] text-gray-500 dark:text-gray-400">
+              <thead className="bg-gray-50 uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="py-3 md:px-2">
                     Default Purchase Price
                   </th>
-                  <th scope="col" className="py-3 flex items-center gap-3 md:px-2">
+                  <th scope="col" className="flex items-center gap-3 py-3 md:px-2">
                     <span>x Margin(%)</span>
                     <Tooltip
                       title="Default profit margin for the product"
-                      content="(You can manage default profit margin in Business Settings.)">
+                      content="(You can manage default profit margin in Business Settings.)"
+                    >
                       <FaExclamationCircle size={15} />
                     </Tooltip>
                   </th>
 
-                  <th scope="col" className=" py-3 nowrap md:px-2">
+                  <th scope="col" className="nowrap py-3 md:px-2">
                     Default Selling Price
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white ">
-                  <td className="px-3 py-4 border-r">
-                    <div className="flex flex-col text-xs font-bold text-black w-40 md:w-full md:max-w-80">
+                <tr className="bg-white">
+                  <td className="border-r px-3 py-4">
+                    <div className="flex w-40 flex-col text-xs font-bold text-black md:w-full md:max-w-80">
                       <LabelRow>
                         <SpanLabel>Exc.tax:*</SpanLabel>
-                        <TextInput type="text" className="w-full  text-xs p-2  " placeholder="Exc.tax" />
+                        <TextInput type="text" className="w-full p-2 text-xs" placeholder="Exc.tax" />
                       </LabelRow>
                       <LabelRow>
                         <SpanLabel>Inc.tax:*</SpanLabel>
-                        <TextInput type="text" className=" w-full  text-xs p-2 " placeholder="Inc.tax" />
+                        <TextInput type="text" className="w-full p-2 text-xs" placeholder="Inc.tax" />
                       </LabelRow>
                     </div>
                   </td>
-                  <td className="px-3 py-4  border-r">
-                    <div className="flex flex-col text-xs font-bold text-black w-40 md:w-full md:max-w-80">
-                      <TextInput type="text" className=" w-full text-xs p-2 " />
+                  <td className="border-r px-3 py-4">
+                    <div className="flex w-40 flex-col text-xs font-bold text-black md:w-full md:max-w-80">
+                      <TextInput type="text" className="w-full p-2 text-xs" />
                     </div>
                   </td>
-                  <td className="px-3 py-4  border-r">
-                    <div className="flex flex-col text-xs font-bold text-black w-40 md:w-full md:max-w-80">
+                  <td className="border-r px-3 py-4">
+                    <div className="flex w-40 flex-col text-xs font-bold text-black md:w-full md:max-w-80">
                       <LabelRow>
                         <SpanLabel>Ixc.tax:*</SpanLabel>
                       </LabelRow>
-                      <TextInput type="text" className=" w-full text-xs p-2 " placeholder="Inc.tax" />
+                      <TextInput type="text" className="w-full p-2 text-xs" placeholder="Inc.tax" />
                     </div>
                   </td>
                 </tr>
@@ -280,15 +291,15 @@ const Create = () => {
         </CardBorderTop.Content>
       </CardBorderTop>
 
-      <div className="flex items-center justify-center gap-2 ">
+      <div className="flex items-center justify-center gap-2">
         <PrimaryButton className="rounded-none">
           <span className="text-[10px] md:text-sm">Save & Continue</span>
         </PrimaryButton>
-        <SecondaryButton className="rounded-none text-xs p-2">
+        <SecondaryButton className="rounded-none p-2 text-xs">
           {' '}
           <span className="text-[10px] md:text-sm">Save & Exit </span>
         </SecondaryButton>
-        <PrimaryButton className="rounded-none text-xs px-10">
+        <PrimaryButton className="rounded-none px-10 text-xs">
           {' '}
           <span className="text-[10px] md:text-sm">Save </span>
         </PrimaryButton>

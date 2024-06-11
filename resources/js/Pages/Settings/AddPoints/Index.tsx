@@ -13,17 +13,17 @@ const Index = () => {
     <>
       <MainLayout>
         <ContentTitle>Add Points</ContentTitle>
-        <div className="max-w-4xl ">
+        <div className="max-w-4xl">
           <CardBorderTop>
             <LabelRow>
               <SpanLabel>Amount.*</SpanLabel>
-              <TextInput placeholder="Amount" className="text-xs p-2 w-full" />
+              <TextInput placeholder="Amount" className="w-full p-2 text-xs" />
             </LabelRow>
             <LabelRow>
               <SpanLabel>
                 A percentage of the purchase amount to be credited to the points account of the customer
               </SpanLabel>
-              <TextInput placeholder="Amount" className="text-xs p-2 w-full" />
+              <TextInput placeholder="Amount" className="w-full p-2 text-xs" />
             </LabelRow>
             <div className="flex justify-end">
               <PrimaryButton>Update</PrimaryButton>

@@ -85,15 +85,17 @@ const EditCategoryModal: React.FC<Props> = ({ showModal, category, handleShowMod
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('categories.index'))}>
-        <form onSubmit={handleSubmit} className="grid grid-flow-row p-5 gap-5 dark:bg-gray-700">
-          <div className="flex justify-between items-center ">
+        onClose={() => router.visit(route('categories.index'))}
+      >
+        <form onSubmit={handleSubmit} className="grid grid-flow-row gap-5 p-5 dark:bg-gray-700">
+          <div className="flex items-center justify-between">
             <h1 className="dark:text-white">Edit Category</h1>
             <button
               type="button"
               className="items-start hover:text-red-500"
               onClick={handleCloseModal}
-              disabled={processing}>
+              disabled={processing}
+            >
               <FaX />
             </button>
           </div>
@@ -104,7 +106,7 @@ const EditCategoryModal: React.FC<Props> = ({ showModal, category, handleShowMod
               name="name"
               onChange={(e) => setData('name', e.target.value)}
               value={data.name}
-              className="p-2 text-xs w-full"
+              className="w-full p-2 text-xs"
               placeholder="Category name"
             />
             <InputError message={errors.name} />
@@ -116,14 +118,14 @@ const EditCategoryModal: React.FC<Props> = ({ showModal, category, handleShowMod
               name="short_code"
               onChange={(e) => setData('short_code', e.target.value)}
               value={data.short_code}
-              className="p-2 text-xs w-full"
+              className="w-full p-2 text-xs"
               placeholder="Category code"
             />
             <InputError message={errors.short_code} />
           </LabelRow>
           <span className="text-[10px] dark:text-slate-200">Category code is same as HSN code</span>
 
-          <label className="inline-flex items-center gap-3 text-[10px] dark:text-slate-200 ">
+          <label className="inline-flex items-center gap-3 text-[10px] dark:text-slate-200">
             <TextInput type="checkbox" onChange={handleShowParentCategory} checked={showParentCategory} />
             Add as Sub-category
           </label>
@@ -134,8 +136,9 @@ const EditCategoryModal: React.FC<Props> = ({ showModal, category, handleShowMod
               <select
                 onChange={(e) => setData('parent_id', e.target.value)}
                 value={data.parent_id}
-                className="w-full p-2 text-xs rounded-md  dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600"
-                name="parent_id">
+                className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="parent_id"
+              >
                 <option value="">NONE</option>
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id} hidden={cat.id === category.id}>

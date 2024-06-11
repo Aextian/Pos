@@ -15,20 +15,20 @@ const PrintLabels = () => {
       </ContentTitle>
       <CardBorderTop>
         <CardTitle>Add products to generate Labels</CardTitle>
-        <div className="md:px-44 flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-3 md:px-44">
           <div className="flex w-full">
-            <div className="px-3 border dark:border-slate-500 dark:text-white flex items-center ">
+            <div className="flex items-center border px-3 dark:border-slate-500 dark:text-white">
               <IoSearch size={20} />
             </div>
             <TextInput
-              className="w-full border rounded-none p-1"
+              className="w-full rounded-none border p-1"
               placeholder="Enter product name to print labels"
             />
           </div>
-          <div className="overflow-x-auto w-full">
-            <table className="w-full border text-[10px] text-left ">
+          <div className="w-full overflow-x-auto">
+            <table className="w-full border text-left text-[10px]">
               <thead>
-                <tr className="dark:text-white border ">
+                <tr className="border dark:text-white">
                   <th className="p-2">Products</th>
                   <th className="p-2">No.of labels</th>
                 </tr>
@@ -37,7 +37,7 @@ const PrintLabels = () => {
                 <tr>
                   <td>ETEROCOXIB 120MG()SAPHERETOR</td>
                   <td>
-                    <input className="p-1 rounded" type="text" />
+                    <input className="rounded p-1" type="text" />
                   </td>
                 </tr>
               </tbody>
@@ -48,7 +48,7 @@ const PrintLabels = () => {
 
       <CardBorderTop>
         <CardTitle>Information to show in Labels</CardTitle>
-        <div className="grid grid-flow-dense md:grid-cols-4 dark:text-white gap-3">
+        <div className="grid grid-flow-dense gap-3 dark:text-white md:grid-cols-4">
           <label className="inline-flex items-center gap-3">
             <input className="rounded" type="checkbox" name="" />
             Product Name
@@ -61,15 +61,16 @@ const PrintLabels = () => {
             <input className="rounded" type="checkbox" name="" />
             Product Price
           </label>
-          <div className=" flex-row">
+          <div className="flex-row">
             <label> Show Price:</label>
             <div className="flex">
-              <div className="px-3 border flex items-center ">
+              <div className="flex items-center border px-3">
                 <FaInfo />
               </div>
               <select
-                className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-                name="cars">
+                className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+                name="cars"
+              >
                 <option value="">Inc Tax</option>
                 <option value="">Exc Tax</option>
               </select>
@@ -83,26 +84,27 @@ const PrintLabels = () => {
         <hr />
         <div className="flex flex-col gap-3">
           <h5 className="dark:text-white">Barcode setting:</h5>
-          <div className="flex  w-full max-w-80 ">
-            <div className="px-3 dark:border-slate-500 dark:text-white border flex items-center ">
+          <div className="flex w-full max-w-80">
+            <div className="flex items-center border px-3 dark:border-slate-500 dark:text-white">
               <CiSettings size={20} />
             </div>
             <select
-              className="w-full p-2 text-xs dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 "
-              name="cars">
+              className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
+              name="cars"
+            >
               <option value="">Inc Tax</option>
               <option value="">Exc Tax</option>
             </select>
           </div>
-          <button className="btn rounded-md bg-cyan-600 p-2 text-white uppercase font-bold md:self-end md:w-80">
+          <button className="btn rounded-md bg-cyan-600 p-2 font-bold uppercase text-white md:w-80 md:self-end">
             Preview
           </button>
         </div>
       </CardBorderTop>
       <div>
         <h1>Preview</h1>
-        <div className="w-full border h-96 px-12">
-          <div className=" mx-auto mt-5 border border-dotted w-full h-20 "></div>
+        <div className="h-96 w-full border px-12">
+          <div className="mx-auto mt-5 h-20 w-full border border-dotted"></div>
         </div>
       </div>
     </MainLayout>

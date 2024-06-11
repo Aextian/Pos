@@ -93,7 +93,8 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
             <CardBorderTop.Title>All your units</CardBorderTop.Title>
             <SecondaryButton
               onClick={handleShowCreateModal}
-              className="rounded-lg px-5 py-1 bg-cyan-500  font-medium gap-2">
+              className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium"
+            >
               <FaPlus /> Add
             </SecondaryButton>
           </CardBorderTop.Header>
@@ -108,7 +109,8 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
                       sortChanged={sortChanged}
                       key={index}
                       sort_direction={queryParams.sort_direction}
-                      name={item.sort_field}>
+                      name={item.sort_field}
+                    >
                       {item.name}
                     </TableHeading>
                   ))}
@@ -120,7 +122,7 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
                     <td className="px-6 py-4">{unit.actual_name}</td>
                     <td className="px-6 py-4">{unit.short_name}</td>
                     <td className="px-6 py-4">{unit.allow_decimal}</td>
-                    <td className="px-6 py-4 space-x-3 whitespace-nowrap">
+                    <td className="space-x-3 whitespace-nowrap px-6 py-4">
                       <PrimaryButton onClick={() => handleShowEditModal(unit)}>Edit</PrimaryButton>
                       <DangerButton onClick={() => setDelete(unit.id)}>Delete</DangerButton>
                     </td>

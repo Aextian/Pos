@@ -19,7 +19,7 @@ const Create = () => {
           <LabelRow>
             <SpanLabel>Sticker Sheet setting Name:*</SpanLabel>
             <TextInput
-              className="p-2 text-xs mt-2 w-full rounded-none "
+              className="mt-2 w-full rounded-none p-2 text-xs"
               placeholder="Sticker Sheet Setting Name"
             />
           </LabelRow>
@@ -27,23 +27,23 @@ const Create = () => {
             <SpanLabel>Sticker Sheet setting Description:*</SpanLabel>
             <TextArea cols={30} rows={3} placeholder="Sticker Sheet setting Description"></TextArea>
           </LabelRow>
-          <label className="flex gap-3 items-center">
+          <label className="flex items-center gap-3">
             <TextInput
               type="checkbox"
-              className="p-2 rounded-none"
+              className="rounded-none p-2"
               placeholder="Sticker Sheet Setting Name"
             />
             <SpanLabel> Continous feed or rolls:*</SpanLabel>
           </label>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <LabelRow>
               <SpanLabel>Additional top margin (in inches)</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0  dark:text-white dark:border-slate-500 ">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaArrowLeft />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="Sticker Sheet Setting Name"
                 />
               </div>
@@ -51,11 +51,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Width left margin (in inches)</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaTextWidth />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="Sticker Sheet Setting Name"
                 />
               </div>
@@ -63,11 +63,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Width of sticker (in inches)</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaTextHeight />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="Sticker Sheet Setting Name"
                 />
               </div>
@@ -75,11 +75,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Paper width (in inches)</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaTextWidth />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="Sticker Sheet Setting Name"
                 />
               </div>
@@ -87,11 +87,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Paper height (in inches)</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaTextHeight />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="Sticker Sheet Setting Name"
                 />
               </div>
@@ -99,11 +99,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Stickers in one row:*</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaEllipsis />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="Sticker in one row "
                 />
               </div>
@@ -111,11 +111,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Distance between two rows (In Inches):*</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaArrowsUpDown />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="0"
                 />
               </div>
@@ -123,11 +123,11 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>Distance between two columns (In Inches):*</SpanLabel>
               <div className="flex">
-                <div className="border px-3 grid place-content-center border-r-0 dark:text-white dark:border-slate-500">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaArrowsLeftRight />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="0"
                 />
               </div>
@@ -135,20 +135,20 @@ const Create = () => {
             <LabelRow>
               <SpanLabel>No.of Sticker per sheet:</SpanLabel>
               <div className="flex">
-                <div className="border dark:border-slate-500 px-3 grid place-content-center border-r-0 dark:text-white">
+                <div className="grid place-content-center border border-r-0 px-3 dark:border-slate-500 dark:text-white">
                   <FaTh />
                 </div>
                 <TextInput
-                  className="p-2 text-xs rounded-none w-full  focus:border focus:border-cyan-50 "
+                  className="w-full rounded-none p-2 text-xs focus:border focus:border-cyan-50"
                   placeholder="No.of Sticker per sheet"
                 />
               </div>
             </LabelRow>
           </div>
-          <label className="flex gap-3 items-center">
+          <label className="flex items-center gap-3">
             <TextInput
               type="checkbox"
-              className="p-2 rounded-none"
+              className="rounded-none p-2"
               placeholder="Sticker Sheet Setting Name"
             />
             <SpanLabel>Set as default:*</SpanLabel>

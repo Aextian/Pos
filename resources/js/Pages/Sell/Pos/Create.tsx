@@ -9,7 +9,7 @@ const Create = () => {
   return (
     <PosCard>
       <PosContent>
-        <div className="md:flex justify-between items-center grid">
+        <div className="grid items-center justify-between md:flex">
           <PosTitle />
           <PosButtonIcon />
         </div>

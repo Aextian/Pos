@@ -23,26 +23,28 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
             title="Product with low stock."
             content="
               Based on product alert quantity set in add product screen . Purchases this produc ts before stock ends
-              ">
+              "
+          >
             <RiErrorWarningFill size={20} />
           </Tooltip>
         </CardBorderTop.Header>
 
         <div className="flex justify-end">
           <div className="relative">
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <div className="w-4 h-4 text-gray-500 dark:text-gray-400">
+            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+              <div className="h-4 w-4 text-gray-500 dark:text-gray-400">
                 <FaSearch size={20} />
               </div>
             </div>
-            <TextInput className="rounded-lg px-5 py-1 bg-slate-200 ps-10 " type="search" name="" id="" />
+            <TextInput className="rounded-lg bg-slate-200 px-5 py-1 ps-10" type="search" name="" id="" />
           </div>
         </div>
 
         {StockData.map((data, index) => (
           <div
-            className="md:hidden flex flex-col gap-1 p-3 after:rounded-lg border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300"
-            key={index}>
+            className="flex flex-col gap-1 rounded-lg border border-gray-200 p-3 shadow after:rounded-lg dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 md:hidden"
+            key={index}
+          >
             <div>
               Product: <span>{data.product}</span>
             </div>
@@ -53,7 +55,7 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
               Current Stock: <span>{data.stock}</span>
             </div>
             <div>
-              Action: <button className="bg-cyan-500 px-2 rounded-md py-1 text-white">View Location</button>
+              Action: <button className="rounded-md bg-cyan-500 px-2 py-1 text-white">View Location</button>
             </div>
           </div>
         ))}
@@ -82,7 +84,7 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
                   <td className="px-6 py-4">{data.location}</td>
                   <td className="px-6 py-4">{data.stock}</td>
                   <td className="px-6 py-4">
-                    <button className="bg-cyan-500 px-2 rounded-md py-1 text-white">View Location</button>
+                    <button className="rounded-md bg-cyan-500 px-2 py-1 text-white">View Location</button>
                   </td>
                 </tr>
               ))}
@@ -90,7 +92,7 @@ const StockAlert: React.FC<{ props: any }> = ({ props }) => {
           </Table>
         </div>
 
-        <div className="flex justify-end mt-3">pagination</div>
+        <div className="mt-3 flex justify-end">pagination</div>
       </CardBorderTop>
     </MainLayout>
   )

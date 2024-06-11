@@ -100,7 +100,8 @@ const Index: React.FC<Props> = ({ queryParams, users }) => {
                       sortChanged={sortChanged}
                       key={index}
                       sort_direction={queryParams.sort_direction}
-                      name={item.sort_field}>
+                      name={item.sort_field}
+                    >
                       {item.name}
                     </TableHeading>
                   ))}
@@ -111,7 +112,8 @@ const Index: React.FC<Props> = ({ queryParams, users }) => {
                   <TableBody.Row key={index}>
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                    >
                       {user.full_name}
                     </th>
                     <td className="px-6 py-4">{user.email}</td>

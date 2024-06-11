@@ -100,7 +100,8 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
           <SecondaryButton
             type="button"
             onClick={handleShowCreateModal}
-            className="rounded-lg px-5 py-1 bg-cyan-500  font-medium gap-2">
+            className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium"
+          >
             <FaPlus /> Add
           </SecondaryButton>
         </CardBorderTop.Header>
@@ -115,7 +116,8 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
                     sortChanged={sortChanged}
                     key={index}
                     sort_direction={queryParams.sort_direction}
-                    name={item.sort_field}>
+                    name={item.sort_field}
+                  >
                     {item.name}
                   </TableHeading>
                 ))}
@@ -126,7 +128,8 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
                 <TableBody.Row key={index}>
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                  >
                     {category.name}
                   </th>
                   <td className="px-6 py-4">{category.short_code} </td>

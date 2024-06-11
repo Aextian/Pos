@@ -17,19 +17,19 @@ const Create = () => {
             <SpanLabel>Printer Name:*</SpanLabel>
             <TextInput
               placeholder="Short Descriptive Name to recognize printer"
-              className="text-xs p-2 w-full"
+              className="w-full p-2 text-xs"
             />
           </LabelRow>
           <LabelRow>
             <SpanLabel>Connect Type:*</SpanLabel>
             <TextInput
               placeholder="Short Descriptive Name to recognize printer"
-              className="text-xs p-2 w-full"
+              className="w-full p-2 text-xs"
             />
           </LabelRow>
           <LabelRow>
             <SpanLabel>Capability Profile:*</SpanLabel>
-            <select className="w-full text-xs rounded-md dark:bg-slate-800 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white border-gray-300 focus:border-cyan-600 focus:ring-cyan-600 ">
+            <select className="w-full rounded-md border-gray-300 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400">
               <option value="">Default</option>
               <option value="">Simple</option>
               <option value="">Star Branded</option>
@@ -41,12 +41,12 @@ const Create = () => {
             <SpanLabel>IP Address:*</SpanLabel>
             <TextInput
               placeholder="IP address for connecting to the printer"
-              className="text-xs p-2 w-full"
+              className="w-full p-2 text-xs"
             />
           </LabelRow>
           <LabelRow>
             <SpanLabel>Port:*</SpanLabel>
-            <TextInput className="text-xs p-2 w-full" value={9100} />
+            <TextInput className="w-full p-2 text-xs" value={9100} />
             <span className="text-[10px]">Most printer on port 9100</span>
           </LabelRow>
           <div className="flex justify-end">
