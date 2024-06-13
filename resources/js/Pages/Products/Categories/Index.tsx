@@ -5,36 +5,22 @@ import SecondaryButton from '@/shared/components/Button/SecondaryButton'
 import MainLayout from '@/Layouts/MainLayout'
 import { FaPlus } from 'react-icons/fa'
 import CardBorderTop from '@/shared/components/CardBorderTop'
-import CreateCategoryModal from '@/features/Categories/Create'
+import CreateCategoryModal from '@/features/Categories/components/CreateCategoryModal'
 import SearchBar from '@/shared/components/Table/SearchBar'
 import TableHeading from '@/shared/components/Table/TableHeading'
 import DeleteModal from '@/shared/components/Modal/DeleteModal'
 import DangerButton from '@/shared/components/Button/DangerButton'
-import EditCategoryModal from '@/features/Categories/Edit'
+import EditCategoryModal from '@/features/Categories/components/EdiCategoryModal'
 import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 import Pagination from '@/shared/components/Table/Pagination'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
 import TableBody from '@/shared/components/Table/TableBody'
-
-interface Category {
-  id: number
-  name: string
-  short_code: string
-  parent_id: string
-}
+import { Category, CategoryData } from '@/features/Categories/types/categories-types'
+import { QueryParam } from '@/shared/types/queryparams'
 
 type Props = {
-  categories: {
-    data: Category[]
-    links: []
-    sort_field: string
-    sort_direction: string
-  }
-  queryParams: {
-    sort_field: string
-    sort_direction: 'asc' | 'desc'
-    search: string
-  }
+  categories: CategoryData
+  queryParams: QueryParam
 }
 
 const Index: React.FC<Props> = ({ categories, queryParams }) => {
@@ -45,14 +31,13 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
     { name: 'Action', sort_field: '' },
   ]
 
-  // function for sorting
   const url = 'categories.index'
 
   const initialEditState = {
-    id: null as number | null,
+    id: null,
     name: '',
     short_code: '',
-    parent_id: '',
+    parent_id: null,
   }
 
   const {
@@ -64,7 +49,7 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
     handleShowEditModal,
     isEdit,
     sortChanged,
-  } = useGlobalModalSortControl(queryParams, url, initialEditState)
+  } = useGlobalModalSortControl<Category>(queryParams, url, initialEditState)
 
   return (
     <MainLayout>
@@ -100,8 +85,7 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
           <SecondaryButton
             type="button"
             onClick={handleShowCreateModal}
-            className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium"
-          >
+            className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium">
             <FaPlus /> Add
           </SecondaryButton>
         </CardBorderTop.Header>
@@ -116,8 +100,7 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
                     sortChanged={sortChanged}
                     key={index}
                     sort_direction={queryParams.sort_direction}
-                    name={item.sort_field}
-                  >
+                    name={item.sort_field}>
                     {item.name}
                   </TableHeading>
                 ))}
@@ -128,8 +111,7 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
                 <TableBody.Row key={index}>
                   <th
                     scope="row"
-                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-                  >
+                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                     {category.name}
                   </th>
                   <td className="px-6 py-4">{category.short_code} </td>

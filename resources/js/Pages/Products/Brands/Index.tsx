@@ -1,6 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/shared/components/ContentTitle'
 import LabelRow from '@/shared/components/LabelRow'
 import SpanLabel from '@/shared/components/SpanLabel'
@@ -14,114 +11,112 @@ import { router } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa'
 import { FaX } from 'react-icons/fa6'
+import CardBorderTop from '@/shared/components/CardBorderTop'
+import TableHeading from '@/shared/components/Table/TableHeading'
+import { QueryParam } from '@/shared/types/queryparams'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
+import { Brand, BrandData } from '@/features/Brands/types/brand-types'
+import TableBody from '@/shared/components/Table/TableBody'
+import DangerButton from '@/shared/components/Button/DangerButton'
+import PrimaryButton from '@/shared/components/Button/PrimaryButton'
+import Pagination from '@/shared/components/Table/Pagination'
+import CreateBrandModal from '@/features/Brands/components/CreateBrandModal'
+import SearchBar from '@/shared/components/Table/SearchBar'
+import EditBrandModal from '@/features/Brands/components/EditBrandModal'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
 
-const Index = () => {
-  const [showModal, setShowModal] = useState(false)
+type Props = {
+  queryParams: QueryParam
+  brands: BrandData
+}
+
+const Index: React.FC<Props> = ({ queryParams, brands }) => {
+  const Thead = [
+    { name: 'Brands', sort_field: 'name' },
+    { name: 'Note', sort_field: 'description' },
+    { name: 'Action', sort_field: '' },
+  ]
+  const url = 'brand.index'
+  const initialEditState = {
+    id: null,
+    name: '',
+    description: '',
+  }
+
+  const {
+    isDelete,
+    setDelete,
+    isCreateModal,
+    handleShowCreateModal,
+    isEditModal,
+    handleShowEditModal,
+    isEdit,
+    sortChanged,
+  } = useGlobalModalSortControl<Brand>(queryParams, url, initialEditState)
 
   return (
     <MainLayout>
-      <Modal
-        show={showModal}
-        maxWidth="2xl"
-        closeable={true}
-        onClose={() => router.visit(route('brand.index'))}
-      >
-        <div className="grid w-full grid-flow-row gap-5 p-5">
-          <div className="flex items-center justify-between">
-            <h1>Add Brand</h1>
-            <span className="cursor-pointer items-start" onClick={() => setShowModal(false)}>
-              <FaX />
-            </span>
-          </div>
-          <LabelRow>
-            <SpanLabel>Brand name:*</SpanLabel>
-            <TextInput className="w-full p-2 text-xs" placeholder="Brand" />
-          </LabelRow>
-          <LabelRow>
-            <SpanLabel>Short Description:*</SpanLabel>
-            <TextInput className="w-full p-2 text-xs" placeholder="Description" />
-          </LabelRow>
+      <CreateBrandModal showModal={isCreateModal} handleShowModal={handleShowCreateModal} />
+      <EditBrandModal showModal={isEditModal} handleShowModal={handleShowEditModal} brand={isEdit} />
 
-          <div className="flex justify-end gap-3">
-            <hr />
-            <button className="rounded-lg bg-cyan-500 px-5 py-1 font-medium text-white">Save</button>
-            <button
-              className="rounded-lg bg-red-500 px-5 py-1 font-medium text-white"
-              onClick={() => setShowModal(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      </Modal>
+      <DeleteModal
+        url="brand.destroy"
+        setDelete={setDelete}
+        isDelete={isDelete}
+        onCloseRoute="brand.index"
+        success="Brand deleted successfully"
+      />
+
       <ContentTitle>
-        Brands <span className="text-xs">Manage your brands</span>
+        Brands <span className="text-xs text-gray-300">Manage your brands</span>
       </ContentTitle>
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>All your brands</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>All your brands</CardBorderTop.Title>
           <SecondaryButton
             type="button"
-            onClick={() => setShowModal(!showModal)}
-            className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium"
-          >
+            onClick={() => handleShowCreateModal()}
+            className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium">
             <FaPlus /> Add
           </SecondaryButton>
-        </CardHeader>
-        <div className="flex justify-end">
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-              <div className="h-4 w-4 text-gray-500 dark:text-gray-400">
-                <FaSearch size={20} />
-              </div>
-            </div>
-            <input className="rounded-lg bg-slate-200 px-5 py-1 ps-10" type="search" name="" id="" />
-          </div>
-        </div>
+        </CardBorderTop.Header>
+        <SearchBar queryParams={queryParams} url={url} />
 
         <Table>
           <TableHead>
             <tr>
-              <th scope="col" className="px-6 py-3">
-                Brands
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <div className="flex items-center">
-                  Note
-                  <a href="#"></a>
-                </div>
-              </th>
-
-              <th scope="col" className="px-6 py-3">
-                <div className="flex items-center">
-                  <span></span>
-                </div>
-              </th>
+              {Thead.map((item, index) => (
+                <TableHeading
+                  sort_field={queryParams.sort_field || ''}
+                  sortChanged={sortChanged}
+                  key={index}
+                  sort_direction={queryParams.sort_direction}
+                  name={item.sort_field}>
+                  {item.name}
+                </TableHeading>
+              ))}
             </tr>
           </TableHead>
-          <tbody>
-            <tr className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              ></th>
-              <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right">
-                <div className="flex gap-2 text-xs">
-                  <button className="rounded bg-red-500 px-3 py-1 text-[10px] font-bold text-white hover:bg-red-700">
-                    {' '}
-                    Edit
-                  </button>
-                  <button className="rounded bg-blue-500 px-3 py-1 text-[10px] font-bold text-white hover:bg-blue-700">
-                    {' '}
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
+          <TableBody>
+            {brands.data.map((brand, index) => (
+              <TableBody.Row key={index}>
+                <th
+                  scope="row"
+                  className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                  {brand.name}
+                </th>
+                <td className="px-6 py-4">{brand.description} </td>
+                <td className="px-6 py-4 text-right">
+                  <div className="flex gap-2 text-xs">
+                    <DangerButton onClick={() => setDelete(brand.id)}>Delete</DangerButton>
+                    <PrimaryButton onClick={() => handleShowEditModal(brand)}>Edit</PrimaryButton>
+                  </div>
+                </td>
+              </TableBody.Row>
+            ))}
+          </TableBody>
         </Table>
-        <div className="flex items-center justify-center">pagination</div>
+        <Pagination links={brands.links} />
       </CardBorderTop>
     </MainLayout>
   )

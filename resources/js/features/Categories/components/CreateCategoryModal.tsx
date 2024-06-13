@@ -1,22 +1,16 @@
 import React, { useState, memo } from 'react'
-import PrimaryButton from '../../shared/components/Button/PrimaryButton'
-import SecondaryButton from '../../shared/components/Button/SecondaryButton'
-import LabelRow from '../../shared/components/LabelRow'
-import SpanLabel from '../../shared/components/SpanLabel'
-import TextInput from '../../shared/components/TextInput'
+import PrimaryButton from '../../../shared/components/Button/PrimaryButton'
+import SecondaryButton from '../../../shared/components/Button/SecondaryButton'
+import LabelRow from '../../../shared/components/LabelRow'
+import SpanLabel from '../../../shared/components/SpanLabel'
+import TextInput from '../../../shared/components/TextInput'
 import { FaX } from 'react-icons/fa6'
-import Modal from '../../shared/components/Modal/Modal'
+import Modal from '../../../shared/components/Modal/Modal'
 import { router } from '@inertiajs/react'
-import InputError from '../../shared/components/InputError'
+import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
 import { toast } from 'react-toastify'
-
-interface Category {
-  id: number
-  name: string
-  short_code: string
-  parent_id: string | null | number
-}
+import { Category } from '../types/categories-types'
 
 type Props = {
   handleShowModal: () => void
@@ -27,10 +21,11 @@ type Props = {
 const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, categories }) => {
   const [showParentCategory, setParentCategory] = useState<boolean>(false)
 
-  const { reset, setData, post, processing, errors, clearErrors, data } = useForm({
+  const { reset, setData, post, processing, errors, clearErrors, data } = useForm<Category>({
+    id: null,
     name: '',
     short_code: '',
-    parent_id: '',
+    parent_id: null,
   })
 
   const handleCloseModal = () => {
@@ -39,7 +34,7 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
   }
 
   const handleParentCategory = () => {
-    setData('parent_id', '')
+    setData('parent_id', null)
     setParentCategory(!showParentCategory)
   }
 
@@ -63,21 +58,18 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('categories.index'))}
-      >
+        onClose={() => router.visit(route('categories.index'))}>
+        <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
+          <h1 className="dark:text-white">Add Category</h1>
+          <button
+            type="button"
+            className="items-start p-2 hover:text-red-500"
+            onClick={handleCloseModal}
+            disabled={processing}>
+            <FaX />
+          </button>
+        </div>
         <form onSubmit={handleSubmit} className="grid grid-flow-row gap-5 p-5 dark:bg-gray-700">
-          <div className="flex items-center justify-between">
-            <h1 className="dark:text-white">Add Category</h1>
-            <button
-              type="button"
-              className="items-start p-2 hover:text-red-500"
-              onClick={handleCloseModal}
-              disabled={processing}
-            >
-              <FaX />
-            </button>
-          </div>
-
           <LabelRow>
             <SpanLabel>Category name:*</SpanLabel>
             <TextInput
@@ -113,17 +105,16 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
             <LabelRow>
               <SpanLabel>Select as sub-category</SpanLabel>
               <select
-                onChange={(e) => setData('parent_id', e.target.value)}
+                onChange={(e) => setData('parent_id', Number(e.target.value))}
                 className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                 name="parent_id"
-                value={data.parent_id}
-                required
-              >
+                value={data.parent_id ?? undefined}
+                required>
                 <option value="" selected>
                   NONE
                 </option>
                 {categories.map((category) => (
-                  <option key={category.id} value={category.id} className="p-2">
+                  <option key={category.id} value={category.id ?? undefined} className="p-2">
                     {category.name}
                   </option>
                 ))}

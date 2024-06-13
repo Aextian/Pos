@@ -1,5 +1,5 @@
-import CreateGroup from '@/features/CustomerGroup/CreateGroup'
-import EditGroup from '@/features/CustomerGroup/EditGroup'
+import CreateGroup from '@/features/CustomerGroup/components/CreateGroup'
+import EditGroup from '@/features/CustomerGroup/components/EditGroup'
 import Success from '@/shared/components/Alert/Success'
 import DangerButton from '@/shared/components/Button/DangerButton'
 import PrimaryButton from '@/shared/components/Button/PrimaryButton'

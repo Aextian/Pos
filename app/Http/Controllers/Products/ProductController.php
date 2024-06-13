@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +15,26 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return inertia('Products/Index');
+        // user business id
+
+        // sorting fields and direction
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
+
+        $categories = Product::query()
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+
+        return inertia('Products/Index', [
+            'categories' => $categories,
+
+            'successMessage' => session('success'),
+            'queryParams' => request()->query(),
+        ]);
     }
 
     /**
@@ -20,7 +42,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return inertia('Products/Create');
+        $business_id =  auth()->user()->business_id;
+
+        return inertia('Products/Create', [
+            'brands' =>  Brand::where('business_id', $business_id)->get(),
+            'units' => Unit::where('business_id', $business_id)->get(),
+        ]);
     }
 
     /**

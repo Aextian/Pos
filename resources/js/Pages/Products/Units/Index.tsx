@@ -1,37 +1,26 @@
 import ContentTitle from '@/shared/components/ContentTitle'
-import LabelRow from '@/shared/components/LabelRow'
-import SpanLabel from '@/shared/components/SpanLabel'
 import Table from '@/shared/components/Table/Table'
 import TableHead from '@/shared/components/Table/TableHead'
-import Modal from '@/shared/components/Modal/Modal'
 import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 import SecondaryButton from '@/shared/components/Button/SecondaryButton'
-import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React, { useCallback, useState } from 'react'
-import { FaPlus, FaSearch } from 'react-icons/fa'
+import { FaPlus } from 'react-icons/fa'
 import CardBorderTop from '@/shared/components/CardBorderTop'
-import CreateUnit from '@/features/Units/CreateUnit'
+import CreateUnit from '@/features/Units/components/CreateUnit'
 import TableHeading from '@/shared/components/Table/TableHeading'
 import TableBody from '@/shared/components/Table/TableBody'
 import SearchBar from '@/shared/components/Table/SearchBar'
 import DangerButton from '@/shared/components/Button/DangerButton'
-import Editunit from '@/features/Units/EditUnit'
+import Editunit from '@/features/Units/components/EditUnit'
 import DeleteModal from '@/shared/components/Modal/DeleteModal'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
-
-interface Unit {
-  id: number
-  actual_name: string
-  short_name: string
-  allow_decimal: number
-  base_unit_multiplier: number | null
-  base_unit_id: number | null
-}
+import { QueryParam } from '@/shared/types/queryparams'
+import { Unit, UnitData } from '@/features/Units/types/unit-types'
 
 type Props = {
-  units: { data: Unit[]; links: []; sort_field: string; sort_direction: string }
-  queryParams: { sort_field: string; sort_direction: 'asc' | 'desc'; search: string }
+  units: UnitData
+  queryParams: QueryParam
 }
 
 const Index: React.FC<Props> = ({ units, queryParams }) => {
@@ -46,12 +35,12 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
   const url = 'unit.index'
 
   const initialEditState = {
-    id: 0,
+    id: null,
     actual_name: '',
     short_name: '',
-    allow_decimal: 0,
-    base_unit_multiplier: 0 as null | number,
-    base_unit_id: 0 as null | number,
+    allow_decimal: null,
+    base_unit_multiplier: null,
+    base_unit_id: null,
   }
 
   const {
@@ -63,7 +52,7 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
     handleShowEditModal,
     isEdit,
     sortChanged,
-  } = useGlobalModalSortControl(queryParams, url, initialEditState)
+  } = useGlobalModalSortControl<Unit>(queryParams, url, initialEditState)
 
   return (
     <>
@@ -93,8 +82,7 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
             <CardBorderTop.Title>All your units</CardBorderTop.Title>
             <SecondaryButton
               onClick={handleShowCreateModal}
-              className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium"
-            >
+              className="gap-2 rounded-lg bg-cyan-500 px-5 py-1 font-medium">
               <FaPlus /> Add
             </SecondaryButton>
           </CardBorderTop.Header>
@@ -109,8 +97,7 @@ const Index: React.FC<Props> = ({ units, queryParams }) => {
                       sortChanged={sortChanged}
                       key={index}
                       sort_direction={queryParams.sort_direction}
-                      name={item.sort_field}
-                    >
+                      name={item.sort_field}>
                       {item.name}
                     </TableHeading>
                   ))}

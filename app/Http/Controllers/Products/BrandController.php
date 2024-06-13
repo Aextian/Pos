@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BrandRequest;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -12,7 +14,22 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return inertia('Products/Brands/Index');
+
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
+
+        $brands = Brand::query()
+            ->where('business_id', auth()->user()->business_id)
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+        return inertia('Products/Brands/Index', [
+            'brands' => $brands,
+            'queryParams' => request()->query(),
+        ]);
     }
 
     /**
@@ -26,9 +43,14 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
-        //
+        $brand = new Brand($request->all());
+        $brand->business_id = auth()->user()->business_id;
+        $brand->created_by = auth()->user()->id;
+        $brand->save();
+
+        return back();
     }
 
     /**
@@ -50,9 +72,11 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BrandRequest $request, string $id)
     {
-        //
+        Brand::findorfail($id)->update($request->all());
+
+        return back();
     }
 
     /**
@@ -60,6 +84,8 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Brand::findorfail($id)->delete();
+
+        return back();
     }
 }

@@ -37,6 +37,7 @@
     "react-select": "^5.8.0",
     "react-tailwindcss-datepicker": "^1.6.6",
     "react-toastify": "^10.0.5",
-    "tippy.js": "^6.3.7"
+    "tippy.js": "^6.3.7",
+    "zustand": "^4.5.2"
   }
 }

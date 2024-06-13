@@ -21,7 +21,7 @@ class ContactController extends Controller
         $search = request('search');
 
         $suppliers = Contact::query()
-            ->where('type', 'supplier')
+            ->where('type', '!=', 'customer')
             ->search($search)
             ->orderBy($sortFields, $sortDirection)
             ->paginate(10)
@@ -42,7 +42,7 @@ class ContactController extends Controller
         $search = request('search');
 
         $customers = Contact::query()
-            ->where('type', 'customer')
+            ->where('type', '!=', 'supplier')
             ->search($search)
             ->orderBy($sortFields, $sortDirection)
             ->paginate(10)

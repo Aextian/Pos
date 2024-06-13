@@ -1,23 +1,15 @@
 import React, { useState, memo } from 'react'
-import Modal from '../../shared/components/Modal/Modal'
-import PrimaryButton from '../../shared/components/Button/PrimaryButton'
-import SecondaryButton from '../../shared/components/Button/SecondaryButton'
-import SpanLabel from '../../shared/components/SpanLabel'
-import LabelRow from '../../shared/components/LabelRow'
-import TextInput from '../../shared/components/TextInput'
+import Modal from '../../../shared/components/Modal/Modal'
+import PrimaryButton from '../../../shared/components/Button/PrimaryButton'
+import SecondaryButton from '../../../shared/components/Button/SecondaryButton'
+import SpanLabel from '../../../shared/components/SpanLabel'
+import LabelRow from '../../../shared/components/LabelRow'
+import TextInput from '../../../shared/components/TextInput'
 import { FaX } from 'react-icons/fa6'
 import { router, useForm } from '@inertiajs/react'
-import InputError from '../../shared/components/InputError'
+import InputError from '../../../shared/components/InputError'
 import { toast } from 'react-toastify'
-
-interface Unit {
-  id: number
-  actual_name: string
-  short_name: string
-  allow_decimal: number
-  base_unit_multiplier: number | null
-  base_unit_id: number | null
-}
+import { Unit } from '../types/unit-types'
 
 type Props = {
   showModal: boolean
@@ -27,12 +19,13 @@ type Props = {
 
 const CreateUnit: React.FC<Props> = ({ showModal, handleShowModal, units }) => {
   const [showUnit, setShowUnit] = useState<boolean>(false)
-  const { reset, setData, post, processing, errors, data, clearErrors } = useForm({
+  const { reset, setData, post, processing, errors, data, clearErrors } = useForm<Unit>({
+    id: null,
     actual_name: '',
     short_name: '',
-    allow_decimal: 0,
-    base_unit_multiplier: 0 as null | number,
-    base_unit_id: 0 as null | number,
+    allow_decimal: null,
+    base_unit_multiplier: null,
+    base_unit_id: null,
   })
 
   const handleShowUnit = () => {
@@ -69,16 +62,14 @@ const CreateUnit: React.FC<Props> = ({ showModal, handleShowModal, units }) => {
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('unit.index'))}
-      >
+        onClose={() => router.visit(route('unit.index'))}>
         <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
           <h1 className="dark:text-white">Add Unit</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
             onClick={handleCloseModal}
-            disabled={processing}
-          >
+            disabled={processing}>
             <FaX />
           </button>
         </div>
@@ -109,12 +100,11 @@ const CreateUnit: React.FC<Props> = ({ showModal, handleShowModal, units }) => {
             <LabelRow>
               <SpanLabel>Allow decimal:*</SpanLabel>
               <select
-                onChange={(e) => setData('allow_decimal', parseFloat(e.target.value))}
+                onChange={(e) => setData('allow_decimal', Number(e.target.value))}
                 className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                 name="allow_decimal"
                 required
-                value={data.allow_decimal}
-              >
+                value={data.allow_decimal ?? undefined}>
                 <option value="" selected>
                   Please Select
                 </option>
@@ -133,7 +123,7 @@ const CreateUnit: React.FC<Props> = ({ showModal, handleShowModal, units }) => {
                 <p className="whitespace-nowrap text-[10px]">1 Unit</p>
                 <span>=</span>
                 <TextInput
-                  onChange={(e) => setData('base_unit_multiplier', parseFloat(e.target.value))}
+                  onChange={(e) => setData('base_unit_multiplier', Number(e.target.value))}
                   type="number"
                   min={0}
                   name="base_unit_multiplier"
@@ -142,12 +132,11 @@ const CreateUnit: React.FC<Props> = ({ showModal, handleShowModal, units }) => {
                 />
                 <select
                   name="base_unit_id"
-                  onChange={(e) => setData('base_unit_id', parseFloat(e.target.value))}
-                  className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
-                >
+                  onChange={(e) => setData('base_unit_id', Number(e.target.value))}
+                  className="w-full rounded-md border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400">
                   <option value="">Select base unit</option>
                   {units.map((unit) => (
-                    <option key={unit.id} value={unit.id}>
+                    <option key={unit.id} value={unit.id ?? undefined}>
                       {unit.actual_name}
                     </option>
                   ))}

@@ -2,18 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Contact;
-use App\Models\Supplier;
+use App\Http\Controllers\Products\BrandController;
+use App\Models\Brand;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SupplierSeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Contact::factory()->count(200)->create();
+        Brand::factory()->count(20)->create();
     }
 }

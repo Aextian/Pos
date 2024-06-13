@@ -22,10 +22,28 @@ class UnitRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+
+        $rules = [
             'actual_name' => ['required', 'string', 'max:255'],
             'short_name' => ['required', 'string', 'max:255'],
             'allow_decimal' => ['required',  Rule::in([1, 0])],
+            'base_unit_id' => [],
+            'base_unit_multiplier' => []
+        ];
+
+
+        if (request('enable_multiple_unit')) {
+            $rules['base_unit_multiplier'] = ['required', 'numeric'];
+            $rules['base_unit_id'] = ['required', 'numeric'];
+        }
+
+        return $rules;
+    }
+
+    public function attributes()
+    {
+        return [
+            'base_unit_id' => __('base unit'),
         ];
     }
 }
