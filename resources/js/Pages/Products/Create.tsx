@@ -19,13 +19,15 @@ import Select from '@/shared/components/Select'
 import useImageStore from '@/shared/stores/useImageStore'
 import ProductForm from '@/features/Products/components/ProductForm'
 import TaxForm from '@/features/Products/components/TaxForm'
+import { Category } from '@/features/Categories/types/categories-types'
 
 type Props = {
-  brands: Brand
-  units: Unit
+  brands: Brand[]
+  units: Unit[]
+  categories: Category[]
 }
 
-const Create: React.FC<Props> = ({ brands, units }) => {
+const Create: React.FC<Props> = ({ brands, units, categories }) => {
   // const { image, fileSize, handleImageChange, formatBytes } = useImageHandler()
 
   const { reset, setData, post, processing, errors, clearErrors, data } = useForm({
@@ -33,7 +35,7 @@ const Create: React.FC<Props> = ({ brands, units }) => {
     name: '',
     type: '',
     unit_id: null,
-    brand_id: null,
+    brand_id: '',
     category_id: null,
     sub_category_id: null,
     tax: null,
@@ -55,12 +57,14 @@ const Create: React.FC<Props> = ({ brands, units }) => {
     is_inactive: null,
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     setData((prevValues) => ({
       ...prevValues,
       [e.target.name]: e.target.value,
     }))
   }
+
+  console.log(data)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -79,12 +83,20 @@ const Create: React.FC<Props> = ({ brands, units }) => {
       <ContentTitle>Add new Product</ContentTitle>
       <CardBorderTop>
         <CardBorderTop.Content>
-          <ProductForm handleChange={handleChange} setData={setData} errors={errors} data={data}/>
+          <ProductForm
+            handleChange={handleChange}
+            setData={setData}
+            errors={errors}
+            data={data}
+            units={units}
+            brands={brands}
+            categories={categories}
+          />
         </CardBorderTop.Content>
       </CardBorderTop>
       <CardBorderTop>
         <CardBorderTop.Content>
-          <TaxForm handleChange={handleChange} setData={setData} errors={errors} data={data}/>
+          {/* <TaxForm handleChange={handleChange} setData={setData} errors={errors} data={data}/> */}
         </CardBorderTop.Content>
       </CardBorderTop>
 

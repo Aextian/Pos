@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class ProductController extends Controller
         return inertia('Products/Create', [
             'brands' =>  Brand::where('business_id', $business_id)->get(),
             'units' => Unit::where('business_id', $business_id)->get(),
+            'categories' => ProductCategory::where('business_id', $business_id)->get(),
         ]);
     }
 
