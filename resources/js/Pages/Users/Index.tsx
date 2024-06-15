@@ -15,7 +15,7 @@ import DangerButton from '@/shared/components/Button/DangerButton'
 import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
 import TableBody from '@/shared/components/Table/TableBody'
 import { toast } from 'react-toastify'
-import useSort from '@/shared/hooks/useSort'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
 
 interface User {
   id: number
@@ -49,7 +49,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
 
   // function for sorting
   const url = 'users.index'
-  const sortChanged = useSort(queryParams, url)
+  const { sortChanged } = useGlobalModalSortControl(queryParams, url)
 
   return (
     <MainLayout>
@@ -69,8 +69,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
             preserveScroll
             preserveState
             href={route('users.create')}
-            className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
-          >
+            className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25">
             <FaPlus /> Add
           </Link>
         </CardBorderTop.Header>
@@ -85,8 +84,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
                     sortChanged={sortChanged}
                     key={index}
                     sort_direction={queryParams.sort_direction}
-                    name={item.sort_field}
-                  >
+                    name={item.sort_field}>
                     {item.name}
                   </TableHeading>
                 ))}
@@ -97,8 +95,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
                 <TableBody.Row key={index}>
                   <th
                     scope="row"
-                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-                  >
+                    className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                     {user.username}
                   </th>
                   <td className="px-6 py-4">{user.full_name} </td>
@@ -113,8 +110,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
                       </DangerButton>
                       <Link
                         href={route('users.edit', user.id)}
-                        className="rounded bg-blue-500 px-3 py-1 font-bold text-white hover:bg-blue-700"
-                      >
+                        className="rounded bg-blue-500 px-3 py-1 font-bold text-white hover:bg-blue-700">
                         Edit
                       </Link>
                     </div>

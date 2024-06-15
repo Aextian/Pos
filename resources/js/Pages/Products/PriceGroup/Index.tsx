@@ -1,6 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/shared/components/ContentTitle'
 import DangerButton from '@/shared/components/Button/DangerButton'
 import LabelRow from '@/shared/components/LabelRow'
@@ -17,6 +14,7 @@ import MainLayout from '@/Layouts/MainLayout'
 import { Link, router } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 
 const Index = () => {
   const [showModal, setShowModal] = useState(false)
@@ -31,8 +29,7 @@ const Index = () => {
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('price-group.index'))}
-      >
+        onClose={() => router.visit(route('price-group.index'))}>
         <div className="flex items-center justify-between border-b-2 p-5">
           <h5>Add Selling Price Group</h5>
           <span className="cursor-pointer items-start" onClick={handleModal}>
@@ -60,13 +57,13 @@ const Index = () => {
       </Modal>
       <ContentTitle>Selling Price Group</ContentTitle>
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>All Selling Price Group</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>All Selling Price Group</CardBorderTop.Title>
           <SecondaryButton onClick={handleModal} className="gap-2">
             <FaPlus />
             Add
           </SecondaryButton>
-        </CardHeader>
+        </CardBorderTop.Header>
         <div className="flex justify-end">
           <div className="relative">
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
@@ -93,8 +90,7 @@ const Index = () => {
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                      viewBox="0 0 24 24">
                       <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
                     </svg>
                   </a>
@@ -109,8 +105,7 @@ const Index = () => {
             <tr className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
               <th
                 scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              ></th>
+                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"></th>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right">
                 <div className="flex gap-2 text-xs">

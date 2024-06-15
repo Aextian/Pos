@@ -1,9 +1,16 @@
-import React, { PropsWithChildren } from 'react'
+import React, { PropsWithChildren, ReactNode } from 'react'
 
-const MainContent: React.FC<PropsWithChildren> = ({ children }) => {
+type Props = {
+  isOpen: boolean
+  children: ReactNode
+}
+const MainContent: React.FC<Props> = ({ children, isOpen }) => {
   return (
-    <main className="mt-14 min-h-screen p-5 dark:bg-slate-900 md:px-10">
-      <div className="h-full space-y-5">{children}</div>
+    <main
+      className={`mt-14 min-h-screen space-y-5 p-5 transition-all duration-500 ease-in-out dark:bg-slate-900 md:px-10 ${
+        isOpen ? 'lg:ml-[250px]' : ''
+      }`}>
+      {children}
     </main>
   )
 }

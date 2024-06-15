@@ -33,7 +33,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
 
   const toggle = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    setIsOpen(!isOpen)
+    setIsOpen((prevState) => !prevState)
 
     return () => setIsOpen(false)
   }
@@ -43,7 +43,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
       {/* Main menu */}
       <li className="w-full">
         <Link
-          className={`flex flex-row justify-between gap-2 px-4 py-3 text-gray-500 hover:rounded-r-2xl hover:border-l-2 hover:border-yellow-600 hover:bg-cyan-600 hover:text-white active:border-cyan-600 dark:text-gray-200 ${
+          className={`flex flex-row justify-between gap-2 whitespace-nowrap px-4 py-3 text-gray-500 hover:rounded-r-2xl hover:border-l-2 hover:border-yellow-600 hover:bg-cyan-600 hover:text-white active:border-cyan-600 dark:text-gray-200 ${
             url === item.url || isOpen
               ? 'rounded-r-2xl border-l-2 border-yellow-600 bg-cyan-600 text-white'
               : ''
@@ -51,22 +51,20 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
           href={item.url || '#'}
           preserveScroll
           preserveState
-          onClick={item.children ? (e) => toggle(e) : undefined}
-        >
+          onClick={item.children ? (e) => toggle(e) : undefined}>
           <div className="flex gap-3">
             <div className="text-lg">{item.icon}</div>
             <div className="text-xs md:text-sm">{item.title}</div>
           </div>
-          <div className={isOpen ? 'rotate-180' : 'null'}>{item.children ? item.subMenuIcon : null}</div>
+          <div className={isOpen ? 'rotate-180' : ''}>{item.children ? item.subMenuIcon : null}</div>
         </Link>
 
         {/* Submenu*/}
         {item.children && (
           <div
-            className={`overflow-hidden bg-slate-100 transition-all duration-[1000ms] dark:bg-slate-700 dark:text-gray-300 ${
+            className={`overflow-hidden whitespace-nowrap bg-slate-100 transition-all duration-500 dark:bg-slate-700 dark:text-gray-300 ${
               isOpen ? 'max-h-screen' : 'max-h-0'
-            }`}
-          >
+            }`}>
             <ul className="my-3 ml-5 space-y-5 border-l-2 border-cyan-500 py-2 pl-7 text-slate-500">
               {item.children.map((childrenItem, index) => (
                 <li key={index}>
@@ -76,8 +74,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
                     preserveState
                     className={`border-b-8 hover:border-cyan-600 hover:text-cyan-600 active:border-[#A5DD9B] ${
                       url === childrenItem.url ? 'text-cyan-600' : ''
-                    }`}
-                  >
+                    }`}>
                     <div className="flex gap-3">
                       <div className="text-sm">{childrenItem.icon}</div>
                       <div className="text-xs md:text-sm">{childrenItem.title}</div>

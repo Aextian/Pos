@@ -96,7 +96,7 @@ const Create: React.FC<Props> = ({ brands, units, categories }) => {
       </CardBorderTop>
       <CardBorderTop>
         <CardBorderTop.Content>
-          {/* <TaxForm handleChange={handleChange} setData={setData} errors={errors} data={data}/> */}
+          <TaxForm handleChange={handleChange} setData={setData} errors={errors} data={data} />
         </CardBorderTop.Content>
       </CardBorderTop>
 

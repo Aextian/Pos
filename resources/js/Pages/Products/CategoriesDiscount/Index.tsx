@@ -1,6 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/shared/components/ContentTitle'
 import Table from '@/shared/components/Table/Table'
 import TableHead from '@/shared/components/Table/TableHead'
@@ -8,6 +5,7 @@ import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 
 const Index = () => {
   return (
@@ -58,12 +56,12 @@ const Index = () => {
         Categories <span className="text-xs text-gray-300">Manage categories discount</span>
       </ContentTitle>
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>Manage your categories</CardTitle>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>Manage your categories</CardBorderTop.Title>
           {/* <button type="button" onClick={handleShowModal} className="rounded-lg px-5 py-1 bg-cyan-500 text-white font-medium">
                 Add
             </button> */}
-        </CardHeader>
+        </CardBorderTop.Header>
 
         <div className="flex justify-end">
           <div className="relative">
@@ -100,8 +98,7 @@ const Index = () => {
             <tr className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
               <th
                 scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              ></th>
+                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"></th>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right"></td>
               <td className="gap-2 whitespace-nowrap px-6 py-4 text-right">

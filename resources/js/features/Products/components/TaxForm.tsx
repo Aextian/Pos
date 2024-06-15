@@ -4,7 +4,14 @@ import { FaExclamationCircle } from 'react-icons/fa'
 import LabelRow from '@/shared/components/LabelRow'
 import SpanLabel from '@/shared/components/SpanLabel'
 
-const TaxForm = () => {
+type Props = {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void
+  data: any
+  setData: any
+  errors: any
+}
+
+const TaxForm: React.FC<Props> = () => {
   return (
     <>
       <div className="grid grid-flow-row-dense gap-3 md:grid-cols-3">

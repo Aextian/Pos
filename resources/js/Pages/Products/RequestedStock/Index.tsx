@@ -1,6 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/shared/components/ContentTitle'
 import Table from '@/shared/components/Table/Table'
 import TableHead from '@/shared/components/Table/TableHead'
@@ -9,6 +6,7 @@ import MainLayout from '@/Layouts/MainLayout'
 import { Link } from '@inertiajs/react'
 import React from 'react'
 import { FaSearch } from 'react-icons/fa'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 
 const Index = () => {
   return (
@@ -17,9 +15,9 @@ const Index = () => {
         Requested <span className="text-xs text-gray-300">Stock</span>
       </ContentTitle>
       <CardBorderTop>
-        <CardHeader>
-          <CardTitle>Request Stock</CardTitle>
-        </CardHeader>
+        <CardBorderTop.Header>
+          <CardBorderTop.Title>Request Stock</CardBorderTop.Title>
+        </CardBorderTop.Header>
         <div className="flex justify-end">
           <div className="relative">
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
@@ -57,8 +55,7 @@ const Index = () => {
             <tr className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
               <th
                 scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-              ></th>
+                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"></th>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right"></td>
               <td className="px-6 py-4 text-right"></td>

@@ -10,10 +10,9 @@ interface ButtonProps {
 const Sidebar: React.FC<ButtonProps> = ({ handleClick, isOpen }) => {
   return (
     <div
-      className={`fixed top-[58px] z-10 h-screen w-48 overflow-auto bg-white shadow-lg transition-all duration-700 ease-in-out scrollbar-thin dark:bg-slate-700 dark:text-white md:w-64 ${
+      className={`fixed top-[58px] z-10 h-screen w-48 overflow-auto bg-white shadow-lg transition-all duration-500 ease-in-out scrollbar-thin dark:bg-slate-700 dark:text-white md:w-64 ${
         isOpen ? 'left-[0]' : 'left-[-280px]'
-      }`}
-    >
+      }`}>
       {/* sidebar title */}
       <div className="flex justify-between border-b-2 p-4">
         <h2>Logo</h2>
