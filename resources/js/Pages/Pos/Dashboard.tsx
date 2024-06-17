@@ -66,26 +66,22 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
         <div>
           <button
             type="button"
-            className="border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-          >
+            className="border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
             Profile
           </button>
           <button
             type="button"
-            className="border-b border-t border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-          >
+            className="border-b border-t border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
             Settings
           </button>
           <button
             type="button"
-            className="border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-          >
+            className="border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
             Messages
           </button>
           <button
             type="button"
-            className="border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500"
-          >
+            className="border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
             This Financial Year
           </button>
         </div>
@@ -102,7 +98,7 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
           </div>
           <div className="grid-flow-row-[auto_1fr_auto] grid gap-3">
             <h2 className="text-sm font-bold">TOTAL STOCK VALUE</h2>
-            <p className="text-xs font-normal leading-6 text-slate-500">
+            <p className="text-[10px] font-normal text-slate-500 md:text-xs md:leading-6">
               ( TOTAL PURCHASE - PURCHASE RETURN - STOCK ADJUSTMENT )
             </p>
             <p className="text-sm font-extrabold">= Php 0.00</p>
@@ -151,8 +147,7 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
             <h1 className="text-md">Sales Payment Due</h1>
             <Info
               title="Pending payment for Sales."
-              content="Based on invoice pay term.Showing payments to be received in 7 days or less."
-            >
+              content="Based on invoice pay term.Showing payments to be received in 7 days or less.">
               <FaCircleInfo />
             </Info>
           </div>
@@ -175,8 +170,7 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
             <h1 className="text-md">Purchase Payment Due</h1>
             <Info
               title="Pending payment for Purchases."
-              content="Based on supplier's pay term. Showing payments to be received in 7 days or less."
-            >
+              content="Based on supplier's pay term. Showing payments to be received in 7 days or less.">
               <FaCircleInfo />
             </Info>
           </div>
@@ -200,8 +194,7 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
             <h1 className="text-md">Stock Expiry Alert</h1>
             <Info
               title="List of stocks expiring in 180 days"
-              content="You can set the no. of days in Business Settings"
-            >
+              content="You can set the no. of days in Business Settings">
               <FaCircleInfo />
             </Info>
           </div>
