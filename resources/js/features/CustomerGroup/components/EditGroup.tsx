@@ -10,6 +10,7 @@ import { router } from '@inertiajs/react'
 import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
 import Tooltip from '../../../shared/components/Tooltip'
+import { toast } from 'react-toastify'
 
 type Props = {
   handleShowModal: Function
@@ -49,6 +50,7 @@ const Editgroup: React.FC<Props> = ({ handleShowModal, showModal, group }) => {
       preserveScroll: true,
       onSuccess: () => {
         handleShowModal(data)
+        toast.success('Customer Group updated successfully')
         reset()
       },
     })

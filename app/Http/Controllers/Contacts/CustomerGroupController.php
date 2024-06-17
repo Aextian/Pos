@@ -28,7 +28,6 @@ class CustomerGroupController extends Controller
 
         return inertia('Contacts/CustomerGroup', [
             'groups' => $groups,
-            'successMessage' => session('success'),
             'queryParams' => request()->query(),
 
         ]);
@@ -54,7 +53,7 @@ class CustomerGroupController extends Controller
         $group->business_id = $auth->business_id;
         $group->save();
 
-        return back()->with('success', 'Customer Group created successfully');
+        return back();
     }
 
     /**
@@ -81,7 +80,7 @@ class CustomerGroupController extends Controller
 
         CustomerGroup::findorFail($id)->update($request->validated());
 
-        return back()->with('success', 'Customer Group updated successfully');
+        return back();
     }
 
     /**

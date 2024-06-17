@@ -10,6 +10,7 @@ import { router } from '@inertiajs/react'
 import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
 import Tooltip from '../../../shared/components/Tooltip'
+import { toast } from 'react-toastify'
 
 type Props = {
   handleShowModal: () => void
@@ -36,6 +37,7 @@ const CreateGroup: React.FC<Props> = ({ handleShowModal, showModal }) => {
       onSuccess: () => {
         handleShowModal()
         reset()
+        toast.success('Customer Group created successfully')
       },
     })
   }
@@ -46,16 +48,14 @@ const CreateGroup: React.FC<Props> = ({ handleShowModal, showModal }) => {
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('customer-group.index'))}
-      >
+        onClose={() => router.visit(route('customer-group.index'))}>
         <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
           <h1 className="dark:text-white">Add Customer Group</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
             onClick={handleCloseModal}
-            disabled={processing}
-          >
+            disabled={processing}>
             <FaX />
           </button>
         </div>
@@ -78,8 +78,7 @@ const CreateGroup: React.FC<Props> = ({ handleShowModal, showModal }) => {
                 Calculation Percentage (%):
                 <Tooltip
                   title="Selling price = Selling price Set For the product + Calculation percentage"
-                  content="You can specify percentage as positive to increase and negative to decrease selling price"
-                >
+                  content="You can specify percentage as positive to increase and negative to decrease selling price">
                   <FaCircleInfo />
                 </Tooltip>
               </div>
