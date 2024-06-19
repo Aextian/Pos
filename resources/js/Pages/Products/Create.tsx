@@ -1,52 +1,46 @@
 import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 import SecondaryButton from '@/shared/components/Button/SecondaryButton'
-import TextInput from '@/shared/components/TextInput'
-import Tooltip from '@/shared/components/Tooltip'
 import MainLayout from '@/Layouts/MainLayout'
-import { FaExclamationCircle } from 'react-icons/fa'
-import React, { useState } from 'react'
-import { IoIosAddCircle } from 'react-icons/io'
+import React, { useEffect } from 'react'
 import ContentTitle from '@/shared/components/ContentTitle'
-import LabelRow from '@/shared/components/LabelRow'
-import SpanLabel from '@/shared/components/SpanLabel'
-import TextArea from '@/shared/components/TextArea'
 import CardBorderTop from '@/shared/components/CardBorderTop'
 import { Brand } from '@/features/Brands/types/brand-types'
 import { Unit } from '@/features/Units/types/unit-types'
-import useImageHandler from '@/shared/hooks/useImageHandler'
 import { useForm } from '@inertiajs/react'
-import Select from '@/shared/components/Select'
 import useImageStore from '@/shared/stores/useImageStore'
 import ProductForm from '@/features/Products/components/ProductForm'
 import TaxForm from '@/features/Products/components/TaxForm'
 import { Category } from '@/features/Categories/types/categories-types'
+import { Barcode } from '@/features/Barcode/types/barcodes-types'
+import { Product } from '@/features/Products/types/products-type'
 
 type Props = {
   brands: Brand[]
   units: Unit[]
   categories: Category[]
+  barcodes: Barcode[]
 }
 
-const Create: React.FC<Props> = ({ brands, units, categories }) => {
-  // const { image, fileSize, handleImageChange, formatBytes } = useImageHandler()
+const Create: React.FC<Props> = ({ brands, units, categories, barcodes }) => {
+  const { file } = useImageStore()
 
-  const { reset, setData, post, processing, errors, clearErrors, data } = useForm({
+  const { reset, setData, post, processing, errors, clearErrors, data } = useForm<Product>({
     id: null,
     name: '',
-    type: '',
+    type: 'single',
     unit_id: null,
-    brand_id: '',
+    brand_id: null,
     category_id: null,
     sub_category_id: null,
     tax: null,
-    tax_type: '',
-    enabled_stock: null,
+    tax_type: 'inclusive',
+    enabled_stock: false,
     alert_quantity: null,
     sku: '',
-    barcode_type: '',
+    barcode_type: 'C128',
     expiry_period: null,
     expiry_period_type: null,
-    enable_sr_no: null,
+    enable_sr_no: false,
     weight: '',
     product_custom_field1: '',
     product_custom_field2: '',
@@ -54,17 +48,20 @@ const Create: React.FC<Props> = ({ brands, units, categories }) => {
     product_custom_field4: '',
     image: '',
     product_description: '',
-    is_inactive: null,
+    is_inactive: false,
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+  useEffect(() => {
     setData((prevValues) => ({
       ...prevValues,
-      [e.target.name]: e.target.value,
+      image: file ? file : prevValues.image,
     }))
-  }
+  }, [file])
 
-  console.log(data)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setData((prevValues) => ({ ...prevValues, [name]: value }))
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -85,12 +82,13 @@ const Create: React.FC<Props> = ({ brands, units, categories }) => {
         <CardBorderTop.Content>
           <ProductForm
             handleChange={handleChange}
-            setData={setData}
-            errors={errors}
+            setData={setData as unknown as React.Dispatch<React.SetStateAction<Product>>}
+            errors={errors as Error}
             data={data}
             units={units}
             brands={brands}
             categories={categories}
+            barcodes={barcodes}
           />
         </CardBorderTop.Content>
       </CardBorderTop>

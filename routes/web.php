@@ -64,6 +64,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('/roles', RolesController::class);
     Route::resource('users', UserManagementController::class);
 
+    Route::prefix('contact')->group(function () {
+        Route::resource('contacts', ContactController::class);
+        Route::get('supplier', [ContactController::class, 'supplier'])->name('contacts.supplier');
+        Route::get('customer', [ContactController::class, 'customer'])->name('contacts.customer');
+        Route::resource('customer-group', CustomerGroupController::class);
+    });
+
     Route::prefix('products')->group(function () {
         Route::get('label', [PrintController::class, 'label']);
         Route::resource('price-group', ProductPriceGroupController::class);
@@ -115,13 +122,7 @@ Route::prefix('expense')->group(function () {
     Route::resource('category', ExpenseCategoryController::class);
 });
 
-Route::prefix('contact')->group(function () {
-    Route::resource('contacts', ContactController::class);
-    Route::get('supplier', [ContactController::class, 'supplier'])->name('contacts.supplier');
-    Route::get('customer', [ContactController::class, 'customer'])->name('contacts.customer');
 
-    Route::resource('customer-group', CustomerGroupController::class);
-});
 
 Route::prefix('import')->group(function () {
     Route::get('/product', [ImportProductController::class, 'import_product']);

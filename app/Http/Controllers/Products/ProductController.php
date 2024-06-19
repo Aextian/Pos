@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barcode;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -49,6 +50,7 @@ class ProductController extends Controller
             'brands' =>  Brand::where('business_id', $business_id)->get(),
             'units' => Unit::where('business_id', $business_id)->get(),
             'categories' => ProductCategory::where('business_id', $business_id)->get(),
+            'barcodes' => Barcode::where('business_id', $business_id)->get()
         ]);
     }
 

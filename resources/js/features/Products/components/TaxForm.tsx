@@ -3,41 +3,36 @@ import Tooltip from '@/shared/components/Tooltip'
 import { FaExclamationCircle } from 'react-icons/fa'
 import LabelRow from '@/shared/components/LabelRow'
 import SpanLabel from '@/shared/components/SpanLabel'
+import Select from '@/shared/components/Select'
 
 type Props = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => void
+  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
   data: any
   setData: any
   errors: any
 }
 
-const TaxForm: React.FC<Props> = () => {
+const TaxForm: React.FC<Props> = ({ handleChange, data, setData, errors }) => {
   return (
     <>
       <div className="grid grid-flow-row-dense gap-3 md:grid-cols-3">
         <LabelRow>
           <SpanLabel>Applicable Tax::</SpanLabel>
-          <select
-            className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
-            name="type">
+          <Select name="type">
             <option value="" selected>
               All
             </option>
             <option value="">Single</option>
             <option value="">Variable</option>
-          </select>
+          </Select>
         </LabelRow>
         <LabelRow>
           <SpanLabel>Selling Price Tax Type:*:</SpanLabel>
-          <select
-            className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
-            name="type">
-            <option value="" selected>
-              All
-            </option>
-            <option value="">Single</option>
-            <option value="">Variable</option>
-          </select>
+          <Select name="tax_type" onChange={handleChange}>
+            <option value="">All</option>
+            <option value="inclusive">Inclusive</option>
+            <option value="exclusive">Exclusive</option>
+          </Select>
         </LabelRow>
 
         <LabelRow>
@@ -50,15 +45,13 @@ const TaxForm: React.FC<Props> = () => {
             </Tooltip>
           </div>
 
-          <select
-            className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
-            name="type">
+          <Select name="type">
             <option value="" selected>
               All
             </option>
             <option value="">Single</option>
             <option value="">Variable</option>
-          </select>
+          </Select>
         </LabelRow>
       </div>
       <div className="overflow-auto md:p-8">
