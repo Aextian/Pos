@@ -4,10 +4,11 @@ import { FaSearch } from 'react-icons/fa'
 
 type Props = {
   url: string
+  type?: string
   queryParams: { search: string }
 }
 
-const SearchBar: React.FC<Props> = ({ queryParams, url }) => {
+const SearchBar: React.FC<Props> = ({ queryParams, url, type }) => {
   // Define a variable to store the timer ID
   let debounceTimer: NodeJS.Timeout
 
@@ -16,7 +17,11 @@ const SearchBar: React.FC<Props> = ({ queryParams, url }) => {
     clearTimeout(debounceTimer)
 
     debounceTimer = setTimeout(() => {
-      router.get(route(url), { search: e.target.value }, { preserveScroll: true, preserveState: true })
+      router.get(
+        route(url),
+        { type: type, search: e.target.value },
+        { preserveScroll: true, preserveState: true },
+      )
     }, 800) // Adjust the delay as needed
   }
 

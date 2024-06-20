@@ -13,15 +13,17 @@ import TaxForm from '@/features/Products/components/TaxForm'
 import { Category } from '@/features/Categories/types/categories-types'
 import { Barcode } from '@/features/Barcode/types/barcodes-types'
 import { Product } from '@/features/Products/types/products-type'
+import { Tax } from '@/features/Tax/types/taxes-types'
 
 type Props = {
   brands: Brand[]
   units: Unit[]
   categories: Category[]
   barcodes: Barcode[]
+  taxes: Tax[]
 }
 
-const Create: React.FC<Props> = ({ brands, units, categories, barcodes }) => {
+const Create: React.FC<Props> = ({ brands, units, categories, barcodes, taxes }) => {
   const { file } = useImageStore()
 
   const { reset, setData, post, processing, errors, clearErrors, data } = useForm<Product>({
@@ -94,7 +96,7 @@ const Create: React.FC<Props> = ({ brands, units, categories, barcodes }) => {
       </CardBorderTop>
       <CardBorderTop>
         <CardBorderTop.Content>
-          <TaxForm handleChange={handleChange} setData={setData} errors={errors} data={data} />
+          <TaxForm handleChange={handleChange} taxes={taxes} setData={setData} errors={errors} data={data} />
         </CardBorderTop.Content>
       </CardBorderTop>
 

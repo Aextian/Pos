@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\UserRequest;
+use App\Models\Contact;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class UserManagementController extends Controller
     {
         return inertia('Users/Create', [
             'roles' => Role::orderby('id', 'asc')->get(),
-            'contacts' =>  Supplier::get(),
+            'contacts' =>  Contact::get(),
 
         ]);
     }
@@ -102,7 +103,7 @@ class UserManagementController extends Controller
 
         return inertia('Users/Edit', [
             'user' => $user->load('roles', 'contacts'),
-            'contacts' => Supplier::get(),
+            'contacts' => Contact::get(),
             'roles' => Role::orderby('id', 'asc')->get(),
         ]);
     }

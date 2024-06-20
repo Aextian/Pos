@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { useState, memo } from 'react'
 import PrimaryButton from '../../../shared/components/Button/PrimaryButton'
 import SecondaryButton from '../../../shared/components/Button/SecondaryButton'
 import LabelRow from '../../../shared/components/LabelRow'
@@ -10,19 +10,17 @@ import { router } from '@inertiajs/react'
 import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
 import { toast } from 'react-toastify'
-import { Brand } from '../types/brand-types'
-import { ChangeEvent } from '@/shared/types/events'
+import { FormEvent } from '@/shared/types/events'
 
 type Props = {
   handleShowModal: () => void
   showModal: boolean
 }
 
-const CreateBrandModal: React.FC<Props> = ({ handleShowModal, showModal }) => {
-  const { reset, setData, post, processing, errors, clearErrors, data } = useForm<Brand>({
-    id: null,
+const CreateTaxGroupModal: React.FC<Props> = ({ handleShowModal, showModal }) => {
+  const { reset, setData, post, processing, errors, clearErrors, data } = useForm({
     name: '',
-    description: '',
+    amount: null,
   })
 
   const handleCloseModal = () => {
@@ -30,23 +28,16 @@ const CreateBrandModal: React.FC<Props> = ({ handleShowModal, showModal }) => {
     clearErrors()
   }
 
-  const handleChange = (e: ChangeEvent) => {
-    setData((prevValues) => ({
-      ...prevValues,
-      [e.target.name]: e.target.value,
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const url = route('brand.store')
+    const url = route('categories.store')
     post(url, {
       preserveState: true,
       preserveScroll: true,
       onSuccess: () => {
         handleShowModal()
         reset()
-        toast.success('Brand created successfully')
+        toast.success('Category created successfully')
       },
     })
   }
@@ -57,9 +48,9 @@ const CreateBrandModal: React.FC<Props> = ({ handleShowModal, showModal }) => {
         show={showModal}
         maxWidth="2xl"
         closeable={true}
-        onClose={() => router.visit(route('brand.index'))}>
+        onClose={() => router.visit(route('categories.index'))}>
         <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
-          <h1 className="dark:text-white">Add Brand</h1>
+          <h1 className="dark:text-white">Add Tax Group</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
@@ -70,26 +61,27 @@ const CreateBrandModal: React.FC<Props> = ({ handleShowModal, showModal }) => {
         </div>
         <form onSubmit={handleSubmit} className="grid grid-flow-row gap-5 p-5 dark:bg-gray-700">
           <LabelRow>
-            <SpanLabel>Brand name:*</SpanLabel>
+            <SpanLabel> Name:*</SpanLabel>
             <TextInput
               name="name"
-              onChange={handleChange}
+              onChange={(e) => setData('name', e.target.value)}
               className="w-full p-2 text-xs"
-              placeholder="Brand name"
+              placeholder="Name"
+              required
             />
             <InputError message={errors.name} />
           </LabelRow>
 
-          <LabelRow>
-            <SpanLabel>Short Description:*</SpanLabel>
+          {/* <LabelRow>
+            <SpanLabel>Sub Taxes %:*</SpanLabel>
             <TextInput
-              name="description"
-              onChange={handleChange}
+              name="name"
+              onChange={(e) => setData('amoun', e.target.value)}
               className="w-full p-2 text-xs"
-              placeholder="Brand name"
+              required
             />
-            <InputError message={errors.description} />
-          </LabelRow>
+            <InputError message={errors.name} />
+          </LabelRow> */}
 
           <div className="flex justify-end gap-3">
             <PrimaryButton type="submit" disabled={processing}>
@@ -105,4 +97,4 @@ const CreateBrandModal: React.FC<Props> = ({ handleShowModal, showModal }) => {
   )
 }
 
-export default memo(CreateBrandModal)
+export default memo(CreateTaxGroupModal)

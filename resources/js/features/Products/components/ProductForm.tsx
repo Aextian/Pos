@@ -127,7 +127,7 @@ const ProductForm: React.FC<Props> = ({
         <LabelRow>
           <SpanLabel>Barcode Type:*</SpanLabel>
           <Select name="type" onChange={handleChange} value={data.type}>
-            <option value="" selected>
+            <option value="" >
               All
             </option>
             {BarcodeTypes.map((type, index) => (

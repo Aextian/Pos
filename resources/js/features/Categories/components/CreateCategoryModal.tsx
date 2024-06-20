@@ -11,6 +11,7 @@ import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
 import { toast } from 'react-toastify'
 import { Category } from '../types/categories-types'
+import { FormEvent } from '@/shared/types/events'
 
 type Props = {
   handleShowModal: () => void
@@ -38,7 +39,7 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
     setParentCategory(!showParentCategory)
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     const url = route('categories.store')
     post(url, {

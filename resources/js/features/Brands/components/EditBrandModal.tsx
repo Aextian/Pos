@@ -11,6 +11,7 @@ import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
 import { toast } from 'react-toastify'
 import { Brand } from '../types/brand-types'
+import { ChangeEvent, FormEvent } from '@/shared/types/events'
 
 type Props = {
   handleShowModal: Function
@@ -38,14 +39,14 @@ const EditBrandModal: React.FC<Props> = ({ handleShowModal, showModal, brand }) 
     clearErrors()
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent) => {
     setData((prevValues) => ({
       ...prevValues,
       [e.target.name]: e.target.value,
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     const url = route('brand.update', { id: brand.id })
     put(url, {

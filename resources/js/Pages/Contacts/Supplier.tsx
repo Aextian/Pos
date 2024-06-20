@@ -14,7 +14,7 @@ import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 import TableBody from '@/shared/components/Table/TableBody'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
-import { QueryParam } from '@/shared/types/queryparams'
+import { QueryParam } from '@/shared/types/params'
 import { Contact } from '@/features/Contact/types/contact-types'
 
 type Props = {

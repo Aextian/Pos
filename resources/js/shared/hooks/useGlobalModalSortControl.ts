@@ -22,7 +22,7 @@ interface PageManagementResult<T> {
 
 const useGlobalModalSortControl = <T>(
   queryParams: SortParams,
-  url: string,
+  url?: any,
   initialEditState?: T,
 ): PageManagementResult<T> => {
   const [isDelete, setDelete] = useState<number | null | string>(0)

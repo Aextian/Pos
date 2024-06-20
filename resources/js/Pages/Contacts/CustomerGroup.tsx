@@ -17,7 +17,7 @@ import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
-import { QueryParam } from '@/shared/types/queryparams'
+import { QueryParam } from '@/shared/types/params'
 import { Group } from '@/features/CustomerGroup/types/group-types'
 
 type Props = {

@@ -33,6 +33,7 @@ use App\Http\Controllers\Settings\BarcodeController;
 use App\Http\Controllers\Settings\BusinessSettingController;
 use App\Http\Controllers\Settings\InvoiceController;
 use App\Http\Controllers\Settings\PrinterController;
+use App\Http\Controllers\Settings\TaxController;
 use App\Http\Controllers\Settings\TaxRateController;
 use App\Http\Controllers\Stock\AdjustmentController;
 use App\Http\Controllers\Stock\TransferController;
@@ -168,7 +169,7 @@ Route::prefix('settings')->group(function () {
     Route::resource('invoice-schemes', InvoiceController::class);
     Route::resource('barcode', BarcodeController::class);
     Route::resource('printer', PrinterController::class);
-    Route::resource('tax-rates', TaxRateController::class);
+    Route::resource('tax-rates', TaxController::class);
 });
 
 

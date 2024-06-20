@@ -15,7 +15,7 @@ import DangerButton from '@/shared/components/Button/DangerButton'
 import Editunit from '@/features/Units/components/EditUnit'
 import DeleteModal from '@/shared/components/Modal/DeleteModal'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
-import { QueryParam } from '@/shared/types/queryparams'
+import { QueryParam } from '@/shared/types/params'
 import { Unit, UnitData } from '@/features/Units/types/unit-types'
 
 type Props = {

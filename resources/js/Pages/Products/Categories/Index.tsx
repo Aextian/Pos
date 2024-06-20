@@ -16,7 +16,7 @@ import Pagination from '@/shared/components/Table/Pagination'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
 import TableBody from '@/shared/components/Table/TableBody'
 import { Category, CategoryData } from '@/features/Categories/types/categories-types'
-import { QueryParam } from '@/shared/types/queryparams'
+import { QueryParam } from '@/shared/types/params'
 
 type Props = {
   categories: CategoryData

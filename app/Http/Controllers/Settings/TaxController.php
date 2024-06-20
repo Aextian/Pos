@@ -1,40 +1,47 @@
 <?php
 
-namespace App\Http\Controllers\Products;
+namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Models\Barcode;
-use App\Models\Brand;
-use App\Models\Product;
-use App\Models\ProductCategory;
 use App\Models\Tax;
-use App\Models\Unit;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class TaxController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
         // sorting fields and direction
         $sortFields = request("sort_field", 'created_at');
         $sortDirection = request("sort_direction", 'desc');
         $search = request('search');
+        $type = request('type');
 
-        $categories = Product::query()
-            ->search($search)
+        $tax_rates = Tax::query()
+            ->where('business_id', auth()->user()->business_id)
+            ->where('is_tax_group', false)
+            ->when($type === 'tax-rates', function ($query) use ($search) {
+                return $query->search($search);
+            })
             ->orderBy($sortFields, $sortDirection)
             ->paginate(10)
             ->onEachSide(1);
 
+        $tax_groups = Tax::query()
+            ->where('business_id', auth()->user()->business_id)
+            ->where('is_tax_group', true)
+            ->when($type === 'tax-groups', function ($query) use ($search) {
+                return $query->search($search);
+            })
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
 
-
-        return inertia('Products/Index', [
-            'categories' => $categories,
-            'successMessage' => session('success'),
+        return inertia('Settings/TaxRates/Index', [
+            'tax_rates' => $tax_rates,
+            'tax_groups' => $tax_groups,
             'queryParams' => request()->query(),
         ]);
     }
@@ -44,16 +51,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $business_id =  auth()->user()->business_id;
-
-
-        return inertia('Products/Create', [
-            'brands' =>  Brand::where('business_id', $business_id)->get(),
-            'units' => Unit::where('business_id', $business_id)->get(),
-            'taxes' => Tax::where('business_id', $business_id)->get(),
-            'categories' => ProductCategory::where('business_id', $business_id)->get(),
-            'barcodes' => Barcode::where('business_id', $business_id)->get()
-        ]);
+        //
     }
 
     /**
@@ -61,7 +59,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $auth = auth()->user();
+
+        $tax = new Tax($request->all());
+        $tax->business_id = $auth->business_id;
+        $tax->created_by = $auth->id;
+        $tax->save();
     }
 
     /**
@@ -93,6 +97,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Tax::findorfail($id)->delete();
+
+        return back();
     }
 }

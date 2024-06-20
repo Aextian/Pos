@@ -14,7 +14,7 @@ import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 import TableBody from '@/shared/components/Table/TableBody'
 import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
-import { QueryParam } from '@/shared/types/queryparams'
+import { QueryParam } from '@/shared/types/params'
 import { Contact } from '@/features/Contact/types/contact-types'
 
 type Props = {
@@ -64,8 +64,7 @@ const Customer: React.FC<Props> = ({ successMessage, customers, queryParams }) =
           <CardBorderTop.Title>All your Customers</CardBorderTop.Title>
           <Link
             href={route('contacts.create', { type: 'customer' })}
-            className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
-          >
+            className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25">
             <FaPlus /> Add
           </Link>
         </CardBorderTop.Header>
@@ -80,8 +79,7 @@ const Customer: React.FC<Props> = ({ successMessage, customers, queryParams }) =
                     sortChanged={sortChanged}
                     key={index}
                     sort_direction={queryParams.sort_direction}
-                    name={item.sort_field}
-                  >
+                    name={item.sort_field}>
                     {item.name}
                   </TableHeading>
                 ))}
