@@ -28,6 +28,9 @@ interface LineChartProps {
   width?: number
   // Add any other props that you want to pass to the Line component
 }
+interface CardProps extends PropsWithChildren {
+  className?: string
+}
 
 const Dashboard: React.FC<LineChartProps> = (props) => {
   const data = {
@@ -93,7 +96,7 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
         <Card>
-          <div className="flex items-center justify-center bg-cyan-600 p-4 text-white">
+          <div className="flex items-center justify-center bg-green-600 p-4 text-white">
             <FaMoneyBill size={40} />
           </div>
           <div className="grid-flow-row-[auto_1fr_auto] grid gap-3">
@@ -216,10 +219,11 @@ const Dashboard: React.FC<LineChartProps> = (props) => {
   )
 }
 
-const Card: React.FC<PropsWithChildren> = ({ children }) => {
+const Card: React.FC<CardProps> = ({ children, className = '' }) => {
   return (
     <>
-      <div className="flex justify-start gap-2 rounded-sm rounded-br-2xl rounded-tl-2xl border-t-2 bg-slate-100 p-3 shadow-lg">
+      <div
+        className={`flex justify-start gap-2 rounded-sm rounded-br-2xl rounded-tl-2xl border-t-2 bg-white p-3 shadow-lg ${className}`}>
         {children}
       </div>
     </>

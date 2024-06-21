@@ -3,7 +3,6 @@ import { IoIosAddCircle } from 'react-icons/io'
 import LabelRow from '@/shared/components/LabelRow'
 import SpanLabel from '@/shared/components/SpanLabel'
 import TextArea from '@/shared/components/TextArea'
-import Select from '@/shared/components/Select'
 import useImageStore from '@/shared/stores/useImageStore'
 import React, { useState } from 'react'
 import { Unit } from '@/features/Units/types/unit-types'
@@ -11,11 +10,19 @@ import { Brand } from '@/features/Brands/types/brand-types'
 import { Category } from '@/features/Categories/types/categories-types'
 import { Barcode } from '@/features/Barcode/types/barcodes-types'
 import { Product } from '../types/products-type'
+import { ChangeEvent } from '@/shared/types/events'
+import Select, { ActionMeta, SingleValue } from 'react-select'
+import { primarySelectStyle, secondarySelectStyle, selectTheme } from '@/shared/utils/styleUtils'
+import { SelectOption } from '@/shared/types/options'
+import InputError from '@/shared/components/InputError'
 
 type Props = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void
+  handleChange: (e: ChangeEvent) => void
   data: Product
   setData: React.Dispatch<React.SetStateAction<Product>>
+  handleSelectChange: (
+    fieldName: string,
+  ) => (selectedOption: SingleValue<SelectOption>, actionMeta: ActionMeta<SelectOption>) => void
   errors: Error
   units: Unit[]
   brands: Brand[]
@@ -25,6 +32,7 @@ type Props = {
 
 const ProductForm: React.FC<Props> = ({
   handleChange,
+  handleSelectChange,
   data,
   units,
   brands,
@@ -40,13 +48,42 @@ const ProductForm: React.FC<Props> = ({
   const BarcodeTypes = ['C39', 'C128', 'EAN13', 'EAN8', 'UPCA', 'UPCE']
 
   const handleQty = () => {
-    setAlertQty(!alertQty) // Toggles alertQty state
-    setData({ ...data, alert_quantity: null }) // Updates alert_quantity in data state
+    setAlertQty(!alertQty)
+    setData({ ...data, alert_quantity: null })
   }
+
+  const selectBrands = brands.map((brand) => ({
+    value: brand.id,
+    label: brand.name,
+  }))
+
+  const selectUnits = units.map((unit) => ({
+    value: unit.id,
+    label: unit.actual_name,
+  }))
+
+  const selectCategories = categories
+    .filter((category) => category.parent_id === null)
+    .map((category) => ({
+      value: category.id,
+      label: category.name,
+    }))
+
+  const selectSubCategories = categories
+    .filter((category) => category.parent_id !== null)
+    .map((category) => ({
+      value: category.id,
+      label: category.name,
+    }))
+
+  const selectBarcodes = barcodes.map((barcode) => ({
+    value: barcode.id,
+    label: barcode.name,
+  }))
 
   return (
     <>
-      <div className="grid grid-cols-1 items-center gap-3 md:grid-cols-3">
+      <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-3">
         <LabelRow>
           <SpanLabel>Product Name:*</SpanLabel>
           <TextInput
@@ -55,22 +92,19 @@ const ProductForm: React.FC<Props> = ({
             className="w-full rounded-none p-2 text-xs"
             placeholder="Product Name"
           />
+          <InputError message={errors.name} />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Brand:</SpanLabel>
           <div className="flex w-full flex-nowrap">
             <Select
-              name="brand_id"
-              onChange={handleChange}
-              value={data.brand_id ? data.brand_id : ''}
-              required>
-              <option value="">Please Select</option>
-              {brands.map((brand) => (
-                <option key={brand.id} value={brand.id || ''}>
-                  {brand.name}
-                </option>
-              ))}
-            </Select>
+              styles={secondarySelectStyle}
+              options={selectBrands}
+              className="my-react-select-container w-full"
+              classNamePrefix="my-react-select"
+              theme={selectTheme}
+              onChange={handleSelectChange('brand_id')}
+            />
             <button className="bg-white-500 border px-2 text-cyan-600 dark:border-slate-500">
               <IoIosAddCircle size={24} />
             </button>
@@ -79,63 +113,61 @@ const ProductForm: React.FC<Props> = ({
         <LabelRow>
           <SpanLabel>Unit:*</SpanLabel>
           <div className="flex w-full flex-nowrap">
-            <Select name="unit_id" onChange={handleChange} value={data.unit_id ? data.unit_id : ''} required>
-              <option value="">Please Select</option>
-              {units.map((unit) => (
-                <option key={unit.id} value={unit.id || ''}>
-                  {unit.actual_name}
-                </option>
-              ))}
-            </Select>
+            <Select
+              styles={secondarySelectStyle}
+              options={selectUnits}
+              className="my-react-select-container w-full"
+              classNamePrefix="my-react-select"
+              theme={selectTheme}
+              onChange={handleSelectChange('unit_id')}
+            />
             <button className="bg-white-500 border px-2 text-cyan-600 dark:border-slate-500">
               <IoIosAddCircle size={24} />
             </button>
           </div>
+          {/* <InputError message={errors.unit_id} /> */}
         </LabelRow>
         <LabelRow>
           <SpanLabel>Category:</SpanLabel>
-          <Select name="category_id" onChange={handleChange} value={data.category_id ? data.category_id : ''}>
-            <option value="">Please Select</option>
-            {categories.map(
-              (category) =>
-                category.parent_id === null && (
-                  <option key={category.id} value={category.id || ''}>
-                    {category.name}
-                  </option>
-                ),
-            )}
-          </Select>
+          <Select
+            styles={secondarySelectStyle}
+            options={selectCategories}
+            className="my-react-select-container w-full"
+            classNamePrefix="my-react-select"
+            theme={selectTheme}
+            onChange={handleSelectChange('category_id')}
+          />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Sub Category:</SpanLabel>
-          <Select name="sub_category_id" value={data.sub_category_id ? data.sub_category_id : ''}>
-            <option value="">Please Select</option>
-            {categories.map(
-              (category) =>
-                category.parent_id !== null && (
-                  <option key={category.id} value={category.id || ''}>
-                    {category.name}
-                  </option>
-                ),
-            )}
-          </Select>
+          <Select
+            styles={secondarySelectStyle}
+            options={selectSubCategories}
+            className="my-react-select-container w-full"
+            classNamePrefix="my-react-select"
+            theme={selectTheme}
+            onChange={handleSelectChange('sub_category_id')}
+          />
         </LabelRow>
         <LabelRow>
           <SpanLabel>SKU:</SpanLabel>
-          <TextInput className="w-full rounded-none p-2 text-xs" placeholder="SKU" />
+          <TextInput
+            name="sku"
+            onChange={handleChange}
+            className="w-full rounded-none p-2 text-xs"
+            placeholder="SKU"
+          />
         </LabelRow>
         <LabelRow>
           <SpanLabel>Barcode Type:*</SpanLabel>
-          <Select name="type" onChange={handleChange} value={data.type}>
-            <option value="" >
-              All
-            </option>
-            {BarcodeTypes.map((type, index) => (
-              <option key={index} value={type}>
-                {type}
-              </option>
-            ))}
-          </Select>
+          <Select
+            styles={secondarySelectStyle}
+            options={selectBarcodes}
+            className="my-react-select-container w-full"
+            classNamePrefix="my-react-select"
+            theme={selectTheme}
+            onChange={handleSelectChange('barcode_id')}
+          />
         </LabelRow>
 
         <div className="flex flex-col gap-3 dark:text-white">

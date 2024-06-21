@@ -14,6 +14,10 @@ import { Category } from '@/features/Categories/types/categories-types'
 import { Barcode } from '@/features/Barcode/types/barcodes-types'
 import { Product } from '@/features/Products/types/products-type'
 import { Tax } from '@/features/Tax/types/taxes-types'
+import { ChangeEvent, FormEvent } from '@/shared/types/events'
+import { SelectOption } from '@/shared/types/options'
+import Select, { SingleValue, ActionMeta } from 'react-select'
+import { toast } from 'react-toastify'
 
 type Props = {
   brands: Brand[]
@@ -53,6 +57,7 @@ const Create: React.FC<Props> = ({ brands, units, categories, barcodes, taxes })
     is_inactive: false,
   })
 
+  console.log(data)
   useEffect(() => {
     setData((prevValues) => ({
       ...prevValues,
@@ -60,59 +65,85 @@ const Create: React.FC<Props> = ({ brands, units, categories, barcodes, taxes })
     }))
   }, [file])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent) => {
     const { name, value } = e.target
     setData((prevValues) => ({ ...prevValues, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSelectChange =
+    (fieldName: string) =>
+    (selectedOption: SingleValue<SelectOption>, actionMeta: ActionMeta<SelectOption>) => {
+      setData((prevValues) => ({
+        ...prevValues,
+        [fieldName]: selectedOption?.value, // Use optional chaining to handle null case
+      }))
+    }
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const url = route('brand.store')
+    console.log('sdsd')
+    const url = route('product.store')
     post(url, {
       preserveState: true,
       preserveScroll: true,
       onSuccess: () => {
         reset()
       },
+      onError: () => {
+        toast.error('Invalid inputs, Check & try again!!')
+      },
     })
+    console.log(errors)
   }
 
   return (
     <MainLayout>
       <ContentTitle>Add new Product</ContentTitle>
-      <CardBorderTop>
-        <CardBorderTop.Content>
-          <ProductForm
-            handleChange={handleChange}
-            setData={setData as unknown as React.Dispatch<React.SetStateAction<Product>>}
-            errors={errors as Error}
-            data={data}
-            units={units}
-            brands={brands}
-            categories={categories}
-            barcodes={barcodes}
-          />
-        </CardBorderTop.Content>
-      </CardBorderTop>
-      <CardBorderTop>
-        <CardBorderTop.Content>
-          <TaxForm handleChange={handleChange} taxes={taxes} setData={setData} errors={errors} data={data} />
-        </CardBorderTop.Content>
-      </CardBorderTop>
+      <form onSubmit={handleSubmit} className="space-y-8">
+        <CardBorderTop>
+          <CardBorderTop.Content>
+            <ProductForm
+              handleChange={handleChange}
+              handleSelectChange={handleSelectChange}
+              setData={setData as unknown as React.Dispatch<React.SetStateAction<Product>>}
+              errors={errors as Error}
+              data={data}
+              units={units}
+              brands={brands}
+              categories={categories}
+              barcodes={barcodes}
+            />
+          </CardBorderTop.Content>
+        </CardBorderTop>
 
-      <div className="flex items-center justify-center gap-2">
-        <PrimaryButton className="rounded-none">
-          <span className="text-[10px] md:text-sm">Save & Continue</span>
-        </PrimaryButton>
-        <SecondaryButton className="rounded-none p-2 text-xs">
+        <CardBorderTop>
+          <CardBorderTop.Content>
+            <TaxForm
+              handleChange={handleChange}
+              handleSelectChange={handleSelectChange}
+              taxes={taxes}
+              setData={setData as unknown as React.Dispatch<React.SetStateAction<Product>>}
+              errors={errors as Error}
+              data={data}
+            />
+          </CardBorderTop.Content>
+        </CardBorderTop>
+
+        {/* button */}
+        <div className="flex items-center justify-center gap-2">
+          <PrimaryButton className="rounded-none" type="submit">
+            {processing ? <span className="text-[10px] md:text-sm">Saving...</span> : 'Save'}
+          </PrimaryButton>
+          {/* <SecondaryButton className="rounded-none p-2 text-xs">
           {' '}
           <span className="text-[10px] md:text-sm">Save & Exit </span>
         </SecondaryButton>
         <PrimaryButton className="rounded-none px-10 text-xs">
           {' '}
           <span className="text-[10px] md:text-sm">Save </span>
-        </PrimaryButton>
-      </div>
+        </PrimaryButton> */}
+        </div>
+      </form>
     </MainLayout>
   )
 }

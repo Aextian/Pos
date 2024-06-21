@@ -7,7 +7,7 @@ type Props = {
 const MainContent: React.FC<Props> = ({ children, isOpen }) => {
   return (
     <main
-      className={`mt-14 min-h-screen space-y-5 p-5 transition-all duration-500 ease-in-out dark:bg-slate-900 md:px-10 ${
+      className={`mt-14 min-h-screen space-y-5 bg-slate-100 p-5 transition-all duration-500 ease-in-out dark:bg-slate-900 md:px-10 ${
         isOpen ? 'lg:ml-[250px]' : ''
       }`}>
       {children}

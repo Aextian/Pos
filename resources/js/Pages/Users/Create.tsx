@@ -7,7 +7,7 @@ import MainLayout from '@/Layouts/MainLayout'
 import { router } from '@inertiajs/react'
 import React, { useState } from 'react'
 import CardBorderTop from '@/shared/components/CardBorderTop'
-import Select from 'react-dropdown-select'
+import Select from 'react-select'
 import { toast } from 'react-toastify'
 import { _readValueToProps } from 'chart.js/helpers'
 
@@ -177,8 +177,7 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                   className="w-full border-gray-300 p-2 text-xs focus:border-cyan-600 focus:ring-cyan-600 dark:border-gray-500 dark:bg-slate-800 dark:text-white dark:placeholder-gray-400"
                   name="roles"
                   onChange={handleChange}
-                  multiple
-                >
+                  multiple>
                   {roles?.map((role, index) => (
                     <option key={index} value={role.name}>
                       {role.name}
@@ -254,11 +253,9 @@ const Create: React.FC<Props> = ({ roles, errors, contacts }) => {
                 <LabelRow>
                   <SpanLabel>Select Contacts:</SpanLabel>
                   <Select
-                    multi={true}
+                    isMulti
                     options={contacts}
-                    labelField="name"
-                    values={values.contacts}
-                    valueField="id"
+                    defaultValue={values.contacts}
                     onChange={(selected) => setValues({ ...values, contacts: selected })}
                   />
                 </LabelRow>

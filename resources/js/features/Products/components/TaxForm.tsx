@@ -3,43 +3,66 @@ import Tooltip from '@/shared/components/Tooltip'
 import { FaExclamationCircle } from 'react-icons/fa'
 import LabelRow from '@/shared/components/LabelRow'
 import SpanLabel from '@/shared/components/SpanLabel'
-// import Select from '@/shared/components/Select'
 import { Tax } from '@/features/Tax/types/taxes-types'
-import Select from 'react-dropdown-select'
+import Select, { ActionMeta, SingleValue } from 'react-select'
+import { ChangeEvent } from '@/shared/types/events'
+import { primarySelectStyle, selectTheme } from '@/shared/utils/styleUtils'
+import { useState } from 'react'
+import { SelectOption } from '@/shared/types/options'
+import { Product } from '../types/products-type'
 
 type Props = {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
-  data: any
-  setData: any
-  errors: any
+  handleChange: (e: ChangeEvent) => void
+  handleSelectChange: (
+    fieldName: string,
+  ) => (selectedOption: SingleValue<SelectOption>, actionMeta: ActionMeta<SelectOption>) => void
+  data: Product
+  setData: React.Dispatch<React.SetStateAction<Product>>
+  errors: Error
   taxes: Tax[]
 }
 
-const TaxForm: React.FC<Props> = ({ handleChange, data, setData, errors, taxes }) => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+const TaxForm: React.FC<Props> = ({ handleChange, data, setData, errors, taxes, handleSelectChange }) => {
+  const taxType = [
+    { value: 'inclusive', label: 'Inclusive' },
+    { value: 'exclusive', label: 'Exclusive' },
+  ]
+
+  const selectTaxes = taxes.map((tax) => ({
+    value: tax.id,
+    label: tax.name,
+  }))
+
+  const productType = [
+    { value: 'single', label: 'Single' },
+    { value: 'variable', label: 'Variable' },
   ]
 
   return (
     <>
       <div className="grid grid-flow-row-dense gap-3 md:grid-cols-3">
-        {/* <LabelRow>
+        <LabelRow>
           <SpanLabel>Applicable Tax::</SpanLabel>
-          <Select name="type" value={data.type}>
-            <option value="single">Single</option>
-            <option value="variable">Variable</option>
-          </Select>
-        </LabelRow> */}
+          <Select
+            styles={primarySelectStyle}
+            options={selectTaxes}
+            className="text-xs"
+            onChange={handleSelectChange('tax_id')}
+            theme={selectTheme}
+          />
+        </LabelRow>
 
-        {/* <LabelRow>
+        <LabelRow>
           <SpanLabel>Selling Price Tax Type:*:</SpanLabel>
-          <Select name="tax_type" onChange={handleChange} value={data.tax_type}>
-            <option value="inclusive">Inclusive</option>
-            <option value="exclusive">Exclusive</option>
-          </Select>
-        </LabelRow> */}
+          <Select
+            styles={primarySelectStyle}
+            defaultValue={[taxType[0]]}
+            isSearchable={false}
+            options={taxType}
+            theme={selectTheme}
+            onChange={handleSelectChange('tax_type')}
+          />
+        </LabelRow>
 
         <LabelRow>
           <div className="flex items-center gap-3">
@@ -50,22 +73,23 @@ const TaxForm: React.FC<Props> = ({ handleChange, data, setData, errors, taxes }
               <FaExclamationCircle size={15} />
             </Tooltip>
           </div>
-
           <Select
-            className={{
-              control: (state: any) => (state.isFocused ? 'border-red-600' : 'border-grey-300'),
-            }}
-            options={options}
-            values={[]}
-            onChange={function (value: { value: string; label: string }[]): void {
-              throw new Error('Function not implemented.')
-            }}
+            defaultValue={[productType[0]]}
+            styles={primarySelectStyle}
+            isSearchable={false}
+            classNamePrefix="select"
+            name="colors"
+            options={productType}
+            className="text-xs"
+            onChange={handleSelectChange('type')}
+            theme={selectTheme}
           />
         </LabelRow>
       </div>
+
       <div className="overflow-auto md:p-8">
-        <table className="w-full text-left text-[8px] text-gray-500 dark:text-gray-400">
-          <thead className="bg-gray-50 uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-left text-[8px] text-gray-500 shadow-lg dark:text-gray-400">
+          <thead className="text-bold bg-green-400 uppercase text-white dark:bg-gray-700 dark:text-gray-400 md:text-sm">
             <tr>
               <th scope="col" className="py-3 md:px-2">
                 Default Purchase Price

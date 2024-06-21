@@ -1,7 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
-import CardContent from '@/Components/CardContent'
-import CardHeader from '@/Components/CardHeader'
-import CardTitle from '@/Components/CardTitle'
 import ContentTitle from '@/shared/components/ContentTitle'
 import NoDataAvailable from '@/shared/components/Table/NoDataAvailable'
 import SearchBar from '@/shared/components/Table/SearchBar'
@@ -16,6 +12,7 @@ import MainLayout from '@/Layouts/MainLayout'
 import { Link, router } from '@inertiajs/react'
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 
 const Index = () => {
   const Thead = [
@@ -37,19 +34,18 @@ const Index = () => {
         <ContentTitle>Business Locations</ContentTitle>
         <CardBorderTop>
           {/* <span>{successMessage ? successMessage : ''}</span> */}
-          <CardHeader>
-            <CardTitle>All your business locations</CardTitle>
+          <CardBorderTop.Header>
+            <CardBorderTop.Title>All your business locations</CardBorderTop.Title>
             <div className="flex gap-2">
               {/* <SearchBar queryParams={queryParams} handleSearchChange={handleSearchChange} /> */}
               <Link
                 href={route('location.create')}
-                className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25"
-              >
+                className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25">
                 <FaPlus /> Add
               </Link>
             </div>
-          </CardHeader>
-          <CardContent>
+          </CardBorderTop.Header>
+          <CardBorderTop.Content>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               <Table>
                 <TableHead>
@@ -92,7 +88,7 @@ const Index = () => {
                 </tbody>
               </Table>
             </div>
-          </CardContent>
+          </CardBorderTop.Content>
           {/* <Pagination links={users.links} /> */}
         </CardBorderTop>
       </MainLayout>

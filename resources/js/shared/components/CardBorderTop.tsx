@@ -13,8 +13,7 @@ const CardBorderTop: CardBorderTopComponent = ({ children, className }) => {
   return (
     <>
       <div
-        className={`grid gap-5 rounded-md border-t-4 border-cyan-500 bg-white p-4 text-xs shadow-lg dark:border-gray-700 dark:bg-gray-800 ${className}`}
-      >
+        className={`grid gap-5 rounded-md border-t-4 border-green-500 bg-white p-4 text-xs shadow-lg dark:border-gray-700 dark:bg-gray-800 ${className}`}>
         {children}
       </div>
     </>

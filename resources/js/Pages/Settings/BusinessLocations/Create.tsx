@@ -1,4 +1,3 @@
-import CardBorderTop from '@/Components/CardBorderTop'
 import ContentTitle from '@/shared/components/ContentTitle'
 import LabelRow from '@/shared/components/LabelRow'
 import SpanLabel from '@/shared/components/SpanLabel'
@@ -6,6 +5,7 @@ import PrimaryButton from '@/shared/components/Button/PrimaryButton'
 import TextInput from '@/shared/components/TextInput'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
+import CardBorderTop from '@/shared/components/CardBorderTop'
 
 const Create = () => {
   return (

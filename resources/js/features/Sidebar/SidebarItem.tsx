@@ -43,9 +43,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
       {/* Main menu */}
       <li className="w-full">
         <Link
-          className={`flex flex-row justify-between gap-2 whitespace-nowrap px-4 py-3 text-gray-500 hover:rounded-r-2xl hover:border-l-2 hover:border-yellow-600 hover:bg-cyan-600 hover:text-white active:border-cyan-600 dark:text-gray-200 ${
+          className={`active:green-cyan-600 flex flex-row justify-between gap-2 whitespace-nowrap px-4 py-3 text-gray-500 hover:rounded-r-2xl hover:border-l-2 hover:border-cyan-600 hover:bg-green-600 hover:text-white dark:text-gray-200 ${
             url === item.url || isOpen
-              ? 'rounded-r-2xl border-l-2 border-yellow-600 bg-cyan-600 text-white'
+              ? 'rounded-r-2xl border-l-2 border-cyan-600 bg-green-600 text-white'
               : ''
           }`}
           href={item.url || '#'}
