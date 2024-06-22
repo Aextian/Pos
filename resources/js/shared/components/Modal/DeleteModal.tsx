@@ -37,8 +37,7 @@ const DeleteModal: React.FC<Props> = ({ isDelete, onCloseRoute, url, setDelete, 
         show={isDelete ? true : false}
         maxWidth="sm"
         closeable={true}
-        onClose={() => router.visit(route(onCloseRoute))}
-      >
+        onClose={() => router.visit(route(onCloseRoute))}>
         <div className="space-y-5 p-3 dark:bg-gray-700">
           <div className="flex justify-end px-5 py-1">
             <button onClick={() => setDelete(0)}>
@@ -55,8 +54,7 @@ const DeleteModal: React.FC<Props> = ({ isDelete, onCloseRoute, url, setDelete, 
             <PrimaryButton
               className="rounded-lg bg-black px-3 text-white"
               onClick={() => setDelete(0)}
-              disabled={processing}
-            >
+              disabled={processing}>
               No, cancel
             </PrimaryButton>
             <DangerButton onClick={handleDelete} disabled={processing}>

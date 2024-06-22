@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 import PrimaryButton from '../../../shared/components/Button/PrimaryButton'
 import SecondaryButton from '../../../shared/components/Button/SecondaryButton'
 import LabelRow from '../../../shared/components/LabelRow'
@@ -9,52 +9,54 @@ import Modal from '../../../shared/components/Modal/Modal'
 import { router } from '@inertiajs/react'
 import InputError from '../../../shared/components/InputError'
 import { useForm } from '@inertiajs/react'
-import Tooltip from '../../../shared/components/Tooltip'
 import { toast } from 'react-toastify'
+import TextArea from '@/shared/components/TextArea'
+import { ChangeEvent } from '@/shared/types/events'
+import { PriceGroup } from '../types/price-groups-types'
 
 type Props = {
   handleShowModal: Function
   showModal: boolean
-  group: {
-    id: any
-    name: string
-    amount: string
-  }
+  price_group: PriceGroup
 }
 
-const Editgroup: React.FC<Props> = ({ handleShowModal, showModal, group }) => {
-  const { reset, setData, put, data, processing, errors } = useForm({
+const EditPriceGroup: React.FC<Props> = ({ handleShowModal, showModal, price_group }) => {
+  const { reset, setData, data, put, processing, errors, clearErrors } = useForm({
     id: null,
     name: '',
-    amount: '',
+    description: '',
   })
 
   useEffect(() => {
     setData((prevValues) => ({
       ...prevValues,
-      id: group.id,
-      name: group.name,
-      amount: group.amount,
+      name: price_group.name,
+      description: price_group.description,
     }))
-  }, [group])
+  }, [price_group])
 
   const handleCloseModal = () => {
-    reset()
-    handleShowModal(data)
+    handleShowModal(price_group)
+    clearErrors()
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const url = route('customer-group.update', { id: group.id })
+    const url = route('price-group.update', { id: price_group.id })
     put(url, {
       preserveState: true,
       preserveScroll: true,
       onSuccess: () => {
-        handleShowModal(data)
-        toast.success('Customer Group updated successfully')
+        handleShowModal(price_group)
         reset()
+        toast.success('Price Group created successfully')
       },
     })
+  }
+
+  const handleChange = (e: ChangeEvent) => {
+    const { name, value } = e.target
+    setData((prevValues) => ({ ...prevValues, [name]: value }))
   }
 
   return (
@@ -65,7 +67,7 @@ const Editgroup: React.FC<Props> = ({ handleShowModal, showModal, group }) => {
         closeable={true}
         onClose={() => router.visit(route('customer-group.index'))}>
         <div className="flex items-center justify-between border-b p-5 dark:bg-gray-700">
-          <h1 className="dark:text-white">Add Customer Group</h1>
+          <h1 className="dark:text-white">Add Selling Price Group</h1>
           <button
             type="button"
             className="items-start p-2 hover:text-red-500"
@@ -76,40 +78,27 @@ const Editgroup: React.FC<Props> = ({ handleShowModal, showModal, group }) => {
         </div>
         <form onSubmit={handleSubmit} className="grid grid-flow-row gap-5 p-5 dark:bg-gray-700">
           <LabelRow>
-            <SpanLabel>Customer Group Name:*</SpanLabel>
+            <SpanLabel>Name:*</SpanLabel>
             <TextInput
               name="name"
-              onChange={(e) => setData('name', e.target.value)}
               value={data.name}
+              onChange={handleChange}
               className="w-full p-2 text-xs"
-              placeholder="Customer Group Name"
-              required
+              placeholder="Name"
             />
             <InputError message={errors.name} />
           </LabelRow>
 
           <LabelRow>
-            <SpanLabel>
-              <div className="flex items-center gap-2">
-                Calculation Percentage (%):
-                <Tooltip
-                  title="Selling price = Selling price Set For the product + Calculation percentage"
-                  content="You can specify percentage as positive to increase and negative to decrease selling price">
-                  <FaCircleInfo />
-                </Tooltip>
-              </div>
-            </SpanLabel>
-            <TextInput
-              step={0.01}
-              type="number"
-              name="amount"
-              onChange={(e) => setData('amount', e.target.value)}
-              value={data.amount}
+            <SpanLabel>Description:</SpanLabel>
+            <TextArea
+              name="description"
+              value={data.description || ''}
+              onChange={handleChange}
               className="w-full p-2 text-xs"
-              placeholder="Calculation Percentage (%):"
-              required
+              placeholder="Description:"
             />
-            <InputError message={errors.amount} />
+            <InputError message={errors.description} />
           </LabelRow>
 
           <div className="flex justify-end gap-3">
@@ -126,4 +115,4 @@ const Editgroup: React.FC<Props> = ({ handleShowModal, showModal, group }) => {
   )
 }
 
-export default memo(Editgroup)
+export default memo(EditPriceGroup)

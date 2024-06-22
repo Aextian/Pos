@@ -48,9 +48,7 @@ class CategoriesController extends Controller
     public function store(ProductCategoryRequest $request)
     {
         $category = new ProductCategory($request->all());
-
         $category->parent_id = $request->parent_id ?? $category->id;
-
         $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully');

@@ -15,114 +15,105 @@ import { Link, router } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { FaPlus, FaSearch } from 'react-icons/fa'
 import CardBorderTop from '@/shared/components/CardBorderTop'
+import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
+import { QueryParam } from '@/shared/types/params'
+import CreatePriceGroup from '@/features/PriceGroup/components/CreatePriceGroup'
+import TableBody from '@/shared/components/Table/TableBody'
+import TableHeading from '@/shared/components/Table/TableHeading'
+import { PriceGroup, PriceGroupData } from '@/features/PriceGroup/types/price-groups-types'
+import DeleteModal from '@/shared/components/Modal/DeleteModal'
+import EditPriceGroup from '@/features/PriceGroup/components/EditPriceGroup'
+import Pagination from '@/shared/components/Table/Pagination'
+import SearchBar from '@/shared/components/Table/SearchBar'
 
-const Index = () => {
-  const [showModal, setShowModal] = useState(false)
+type Props = {
+  queryParams: QueryParam
+  price_groups: PriceGroupData
+}
+const Index: React.FC<Props> = ({ queryParams, price_groups }) => {
+  const Thead = [
+    { name: 'Name', sort_field: 'name' },
+    { name: 'Description', sort_field: 'description' },
+    { name: 'Action', sort_field: '' },
+  ]
 
-  const handleModal = () => {
-    setShowModal(!showModal)
+  const url = 'price-group.index'
+
+  const initialEditState = {
+    id: null,
+    name: '',
+    description: '',
   }
+
+  const {
+    isDelete,
+    setDelete,
+    isCreateModal,
+    handleShowCreateModal,
+    isEditModal,
+    handleShowEditModal,
+    isEdit,
+    sortChanged,
+  } = useGlobalModalSortControl<PriceGroup>(queryParams, url, initialEditState)
 
   return (
     <MainLayout>
-      <Modal
-        show={showModal}
-        maxWidth="2xl"
-        closeable={true}
-        onClose={() => router.visit(route('price-group.index'))}>
-        <div className="flex items-center justify-between border-b-2 p-5">
-          <h5>Add Selling Price Group</h5>
-          <span className="cursor-pointer items-start" onClick={handleModal}>
-            x
-          </span>
-        </div>
-        <div className="w-full space-y-4 p-5 text-xs">
-          <div className="space-y-2">
-            <LabelRow>
-              <SpanLabel>Name:*</SpanLabel>
-              <TextInput className="w-full rounded p-1" type="text" />
-            </LabelRow>
-          </div>
-          <div className="space-y-2">
-            <LabelRow>
-              <SpanLabel>Description:</SpanLabel>
-              <TextArea className="w-full" cols={30} rows={3}></TextArea>
-            </LabelRow>
-          </div>
-        </div>
-        <div className="flex w-full justify-end gap-3 border-t p-5">
-          <PrimaryButton>Save</PrimaryButton>
-          <SecondaryButton onClick={handleModal}>Close</SecondaryButton>
-        </div>
-      </Modal>
+      <DeleteModal
+        url="price-group.destroy"
+        setDelete={setDelete}
+        isDelete={isDelete}
+        onCloseRoute="categories.index"
+        success="Price Group deleted successfully"
+      />
+
+      <CreatePriceGroup showModal={isCreateModal} handleShowModal={handleShowCreateModal} />
+      <EditPriceGroup showModal={isEditModal} handleShowModal={handleShowEditModal} price_group={isEdit} />
+
       <ContentTitle>Selling Price Group</ContentTitle>
       <CardBorderTop>
         <CardBorderTop.Header>
           <CardBorderTop.Title>All Selling Price Group</CardBorderTop.Title>
-          <SecondaryButton onClick={handleModal} className="gap-2">
+          <SecondaryButton onClick={handleShowCreateModal} className="gap-2">
             <FaPlus />
             Add
           </SecondaryButton>
         </CardBorderTop.Header>
-        <div className="flex justify-end">
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-              <div className="h-4 w-4 text-gray-500 dark:text-gray-400">
-                <FaSearch size={20} />
-              </div>
-            </div>
-            <TextInput className="rounded-lg bg-slate-200 px-5 py-1 ps-10" type="search" name="" id="" />
-          </div>
-        </div>
+        <SearchBar queryParams={queryParams} url={url} />
 
-        <Table>
-          <TableHead>
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <div className="flex items-center">
-                  Description
-                  <a href="#">
-                    <svg
-                      className="ms-1.5 h-3 w-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24">
-                      <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                    </svg>
-                  </a>
-                </div>
-              </th>
-              <th scope="col" className="px-6 py-3">
-                <div className="flex items-center">Action</div>
-              </th>
-            </tr>
-          </TableHead>
-          <tbody>
-            <tr className="border- bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
-              <th
-                scope="row"
-                className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"></th>
-              <td className="px-6 py-4 text-right"></td>
-              <td className="px-6 py-4 text-right">
-                <div className="flex gap-2 text-xs">
-                  <button className="rounded bg-red-500 px-3 py-1 text-[10px] font-bold text-white hover:bg-red-700">
-                    {' '}
-                    Edit
-                  </button>
-                  <button className="rounded bg-blue-500 px-3 py-1 text-[10px] font-bold text-white hover:bg-blue-700">
-                    {' '}
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <NoDataAvailable span={3} />
-          </tbody>
-        </Table>
+        <CardBorderTop.Content>
+          <Table>
+            <TableHead>
+              <TableHead.Row>
+                {Thead.map((item, index) => (
+                  <TableHeading
+                    key={index}
+                    sort_field={queryParams.sort_field || ''}
+                    sortChanged={sortChanged}
+                    sort_direction={queryParams.sort_direction}
+                    name={item.sort_field}>
+                    {item.name}
+                  </TableHeading>
+                ))}
+              </TableHead.Row>
+            </TableHead>
+            <TableBody>
+              {price_groups.data.map((price_group, index) => (
+                <TableBody.Row key={index}>
+                  <th className="px-6 py-4">{price_group.name}</th>
+                  <td className="px-6 py-4">{price_group.description} </td>
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex gap-2 text-xs">
+                      <DangerButton onClick={() => setDelete(price_group.id)}>Delete</DangerButton>
+                      <PrimaryButton onClick={() => handleShowEditModal(price_group)}>Edit</PrimaryButton>
+                    </div>
+                  </td>
+                </TableBody.Row>
+              ))}
+            </TableBody>
+          </Table>
+
+          <Pagination links={price_groups.links} />
+        </CardBorderTop.Content>
       </CardBorderTop>
     </MainLayout>
   )

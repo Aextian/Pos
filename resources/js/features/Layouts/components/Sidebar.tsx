@@ -3,7 +3,7 @@ import sidebarData from '@/features/Sidebar/SidebarData'
 import SidebarItem from '../../Sidebar/SidebarItem'
 import exampleImage from '../images/example.jpg'
 import { FaWindowClose } from 'react-icons/fa'
-import TestLogo from '@/assets/images/test-logo.jpg'
+import TestLogo from '/img/test-logo.jpg'
 
 interface ButtonProps {
   handleClick: () => void
@@ -18,8 +18,7 @@ const Sidebar: React.FC<ButtonProps> = ({ handleClick, isOpen }) => {
       <div>
         {/* sidebar logo */}
         <div className="flex justify-between border-b-2 p-4">
-          <h2>Logo</h2>
-          <img src="img/test-logo.jpg" width="165" height="35" alt="" className="logo_normal" />
+          <img src="/img/test-logo.jpg" width="75" height="100" alt="" className="logo_normal" />
         </div>
         {/* sidebar item */}
         <div className="mt-5">

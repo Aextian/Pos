@@ -16,7 +16,7 @@ class ProductCategory extends Model
         if ($search) {
             $query->whereAny(
                 [
-                    'name', 'short_code'
+                    'name', 'short_code', 'cat_status'
                 ],
                 'LIKE',
                 "%$search%"

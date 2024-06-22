@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PriceGroupRequest;
+use App\Models\PriceGroup;
 use Illuminate\Http\Request;
 
 class ProductPriceGroupController extends Controller
@@ -12,7 +14,23 @@ class ProductPriceGroupController extends Controller
      */
     public function index()
     {
-        return inertia('Products/PriceGroup/Index');
+
+        // sorting fields and direction
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
+
+        $price_groups = PriceGroup::query()
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->paginate(10)
+            ->onEachSide(1);
+
+        return inertia('Products/PriceGroup/Index', [
+            'price_groups' => $price_groups,
+            'successMessage' => session('success'),
+            'queryParams' => request()->query(),
+        ]);
     }
 
     /**
@@ -26,9 +44,13 @@ class ProductPriceGroupController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PriceGroupRequest $request)
     {
-        //
+        $price_group = new PriceGroup($request->validated());
+        $price_group->business_id = auth()->user()->business_id;
+        $price_group->save();
+
+        return back();
     }
 
     /**
@@ -50,9 +72,11 @@ class ProductPriceGroupController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PriceGroupRequest $request, string $id)
     {
-        //
+        PriceGroup::findorfail($id)->update($request->validated());
+
+        return back();
     }
 
     /**
@@ -60,6 +84,7 @@ class ProductPriceGroupController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        PriceGroup::findorfail($id)->delete();
+        return back();
     }
 }

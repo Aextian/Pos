@@ -25,6 +25,8 @@ const EditCategoryModal: React.FC<Props> = ({ showModal, category, handleShowMod
   const { processing, errors, put, setData, data, clearErrors, reset } = useForm<Category>({
     id: null,
     name: '',
+    cat_discount: 0,
+    cat_status: false,
     short_code: '',
     parent_id: null,
   })

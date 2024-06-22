@@ -65,11 +65,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
       <CardBorderTop>
         <CardBorderTop.Header>
           <CardBorderTop.Title>All users</CardBorderTop.Title>
-          <Link
-            preserveScroll
-            preserveState
-            href={route('users.create')}
-            className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-gray-700 shadow-sm transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25">
+          <Link preserveScroll preserveState href={route('users.create')} className="secondary-button">
             <FaPlus /> Add
           </Link>
         </CardBorderTop.Header>
@@ -108,9 +104,7 @@ const Index: React.FC<Props> = ({ users, successMessage, queryParams }) => {
                       <DangerButton className="text-[10px]" onClick={() => setDelete(user.id)}>
                         Delete
                       </DangerButton>
-                      <Link
-                        href={route('users.edit', user.id)}
-                        className="rounded bg-blue-500 px-3 py-1 font-bold text-white hover:bg-blue-700">
+                      <Link href={route('users.edit', user.id)} className="primary-button">
                         Edit
                       </Link>
                     </div>

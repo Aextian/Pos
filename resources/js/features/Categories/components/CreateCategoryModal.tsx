@@ -25,6 +25,8 @@ const CreateCategoryModal: React.FC<Props> = ({ handleShowModal, showModal, cate
   const { reset, setData, post, processing, errors, clearErrors, data } = useForm<Category>({
     id: null,
     name: '',
+    cat_discount: 0,
+    cat_status: false,
     short_code: '',
     parent_id: null,
   })

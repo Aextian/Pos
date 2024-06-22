@@ -3,63 +3,42 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryDiscountRequest;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductCategoriesDiscountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        return inertia('Products/CategoriesDiscount/Index');
-    }
+        // sorting fields and direction
+        $sortFields = request("sort_field", 'created_at');
+        $sortDirection = request("sort_direction", 'desc');
+        $search = request('search');
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $categories = ProductCategory::query()
+            ->search($search)
+            ->orderBy($sortFields, $sortDirection)
+            ->whereNull('parent_id')
+            ->paginate(10)
+            ->onEachSide(1);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return inertia('Products/CategoriesDiscount/Index', [
+            'categories' => $categories,
+            'successMessage' => session('success'),
+            'queryParams' => request()->query(),
+        ]);
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    //    update category dicount
+    public function update(CategoryDiscountRequest $request, string $id)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $discount = ProductCategory::findorfail($id);
+        $discount->cat_discount = $request->input('cat_discount');
+        $discount->cat_status = $request->input('cat_status');
+        $discount->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return back();
     }
 }

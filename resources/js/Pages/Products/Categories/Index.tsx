@@ -37,6 +37,8 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
     id: null,
     name: '',
     short_code: '',
+    cat_status: false,
+    cat_discount: 0,
     parent_id: null,
   }
 
@@ -93,7 +95,7 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
         <CardBorderTop.Content>
           <Table>
             <TableHead>
-              <tr>
+              <TableHead.Row>
                 {Thead.map((item, index) => (
                   <TableHeading
                     sort_field={queryParams.sort_field || ''}
@@ -104,7 +106,7 @@ const Index: React.FC<Props> = ({ categories, queryParams }) => {
                     {item.name}
                   </TableHeading>
                 ))}
-              </tr>
+              </TableHead.Row>
             </TableHead>
             <TableBody>
               {categories.data.map((category, index) => (
