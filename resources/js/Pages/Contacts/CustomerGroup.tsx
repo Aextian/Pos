@@ -16,31 +16,19 @@ import TableHeading from '@/shared/components/Table/TableHeading'
 import MainLayout from '@/Layouts/MainLayout'
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
-import useGlobalModalSortControl from '@/shared/hooks/useGlobalModalSortControl'
 import { QueryParam } from '@/shared/types/params'
-import { Group } from '@/features/CustomerGroup/types/group-types'
+import { IGroup, IGroupData } from '@/features/CustomerGroup/types/group-types'
+import useModals from '@/shared/hooks/useModals'
+import useSorts from '@/shared/hooks/useSorts'
+import { Thead, url, initialEditState } from '@/features/CustomerGroup/constants/customer-group-constants'
 
 type Props = {
-  groups: { data: Group[]; links: []; sort_field: string; sort_direction: string }
+  groups: IGroupData
   successMessage: string
   queryParams: QueryParam
 }
 
 const CustomerGroup: React.FC<Props> = ({ groups, queryParams, successMessage }) => {
-  const Thead = [
-    { name: 'Customer Group Name', sort_field: 'name' }, // Assuming no sort field for this column
-    { name: 'Calculation Percentage (%)', sort_field: 'amount' },
-    { name: 'Action', sort_field: '' }, // Assuming no sort field for this column
-  ]
-
-  const url = 'customer-group.index'
-
-  const initialEditState = {
-    id: null as number | null,
-    name: '',
-    amount: '',
-  }
-
   const {
     isDelete,
     setDelete,
@@ -48,15 +36,16 @@ const CustomerGroup: React.FC<Props> = ({ groups, queryParams, successMessage })
     handleShowCreateModal,
     isEditModal,
     handleShowEditModal,
-    isEdit,
-    sortChanged,
-  } = useGlobalModalSortControl(queryParams, url, initialEditState)
+    editState,
+  } = useModals<IGroup>(initialEditState)
+
+  const { sortChanged } = useSorts(queryParams, url)
 
   return (
     <MainLayout>
       {/* modal */}
       <CreateGroup showModal={isCreateModal} handleShowModal={handleShowCreateModal} />
-      <EditGroup showModal={isEditModal} group={isEdit} handleShowModal={handleShowEditModal} />
+      <EditGroup showModal={isEditModal} group={editState} handleShowModal={handleShowEditModal} />
       <DeleteModal
         setDelete={setDelete}
         isDelete={isDelete}
